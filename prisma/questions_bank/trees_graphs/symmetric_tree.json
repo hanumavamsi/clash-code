@@ -1,0 +1,25 @@
+{
+  "title": "Symmetric Tree",
+  "difficulty": "easy",
+  "args": ["TreeNode"],
+  "returnType": "boolean",
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 1000].",
+    "-100 <= Node.val <= 100"
+  ],
+  "description": "Given the `root` of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).",
+  "tests": [
+    {
+      "input": "[1,2,2,3,4,4,3]",
+      "expected": "true",
+      "explanation": "Symmetric tree.",
+      "isSample": true
+    },
+    {
+      "input": "[1,2,2,null,3,null,3]",
+      "expected": "false",
+      "explanation": "Not symmetric.",
+      "isSample": true
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Top K Frequent Elements",
+  "difficulty": "medium",
+  "args": ["integer[]", "integer"],
+  "returnType": "integer[]",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^4 <= nums[i] <= 10^4",
+    "k is in the range [1, the number of unique elements in the array]"
+  ],
+  "description": "Given an integer array `nums` and an integer `k`, return the `k` most frequent elements.\n\nYou may return the answer in **any order**.",
+  "tests": [
+    {
+      "input": "[[1,1,1,2,2,3], 2]",
+      "expected": "[1,2]",
+      "explanation": "1 appears 3 times, 2 appears 2 times.",
+      "isSample": true,
+      "orderIndependent": true
+    },
+    {
+      "input": "[[1], 1]",
+      "expected": "[1]",
+      "explanation": "Only one element.",
+      "isSample": true
+    }
+  ]
+}

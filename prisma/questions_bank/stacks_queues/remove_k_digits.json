@@ -1,0 +1,19 @@
+{
+  "title": "Remove K Digits",
+  "difficulty": "medium",
+  "args": ["string", "integer"],
+  "returnType": "string",
+  "constraints": [
+    "1 <= num.length <= 100000",
+    "0 <= k <= num.length"
+  ],
+  "description": "Given string `num` representing a non-negative integer and an integer `k`, return the smallest possible integer after removing `k` digits from `num`.",
+  "tests": [
+    {
+      "input": "[\"1432219\", 3]",
+      "expected": "\"1219\"",
+      "explanation": "Remove 3 digits to get smallest.",
+      "isSample": true
+    }
+  ]
+}

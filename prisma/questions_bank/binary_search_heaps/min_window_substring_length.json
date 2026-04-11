@@ -1,0 +1,18 @@
+{
+  "title": "Minimum Window Substring Length",
+  "difficulty": "hard",
+  "args": ["string", "string"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= s.length, t.length <= 10^5"
+  ],
+  "description": "Given two strings `s` and `t`, return the length of the minimum window substring of `s` such that every character in `t` is included in the window.",
+  "tests": [
+    {
+      "input": "[\"ADOBECODEBANC\", \"ABC\"]",
+      "expected": "4",
+      "explanation": "\"BANC\" has length 4.",
+      "isSample": true
+    }
+  ]
+}

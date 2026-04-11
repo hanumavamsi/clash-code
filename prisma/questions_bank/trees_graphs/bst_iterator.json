@@ -1,0 +1,19 @@
+{
+  "title": "Binary Search Tree Iterator",
+  "difficulty": "medium",
+  "args": ["TreeNode"],
+  "returnType": "boolean",
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 10^5].",
+    "0 <= Node.val <= 10^6"
+  ],
+  "description": "Implement the `BSTIterator` class that represents an iterator over the in-order traversal of a binary search tree (BST):\n\n- `next()` returns the next smallest number in the BST.\n- `hasNext()` returns whether there is a next element.",
+  "tests": [
+    {
+      "input": "[7,3,15,null,null,9,20]",
+      "expected": "In-order traversal.",
+      "explanation": "BST iterator.",
+      "isSample": true
+    }
+  ]
+}

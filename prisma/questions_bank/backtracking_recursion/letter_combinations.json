@@ -1,0 +1,39 @@
+{
+  "title": "Letter Combinations of a Phone Number",
+  "difficulty": "medium",
+  "args": ["string"],
+  "returnType": "string[]",
+  "constraints": [
+    "0 <= digits.length <= 4",
+    "digits[i] is a digit in the range ['2', '9']."
+  ],
+  "description": "Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in **any order**.\n\nMapping:\n- 2: abc\n- 3: def\n- 4: ghi\n- 5: jkl\n- 6: mno\n- 7: pqrs\n- 8: tuv\n- 9: wxyz",
+  "tests": [
+    {
+      "input": "\"23\"",
+      "expected": "[\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"]",
+      "explanation": "2 maps to abc, 3 maps to def.",
+      "isSample": true,
+      "orderIndependent": true
+    },
+    {
+      "input": "\"\"",
+      "expected": "[]",
+      "explanation": "Empty digits.",
+      "isSample": true
+    },
+    {
+      "input": "\"2\"",
+      "expected": "[\"a\",\"b\",\"c\"]",
+      "explanation": "Only 2.",
+      "isSample": false
+    },
+    {
+      "input": "\"234\"",
+      "expected": "[\"adg\",\"adh\",\"adi\",\"aeg\",\"aeh\",\"aei\",\"afg\",\"afh\",\"afi\",\"bdg\",\"bdh\",\"bdi\",\"beg\",\"beh\",\"bei\",\"bfg\",\"bfh\",\"bfi\",\"cdg\",\"cdh\",\"cdi\",\"ceg\",\"ceh\",\"cei\",\"cfg\",\"cfh\",\"cfi\"]",
+      "explanation": "27 combinations.",
+      "isSample": false,
+      "orderIndependent": true
+    }
+  ]
+}

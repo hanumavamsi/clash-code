@@ -1,0 +1,19 @@
+{
+  "title": "Shortest Path in Graph with Obstacles",
+  "difficulty": "hard",
+  "args": ["integer", "integer", "integer", "integer", "integer[][]"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= m, n <= 40",
+    "1 <= obstacles.length <= m * n"
+  ],
+  "description": "Given a `m x n` grid with obstacles where 1 is an obstacle and 0 is empty, return the shortest path from top-left to bottom-right. You can move up, down, left, right. If path doesn't exist, return -1.",
+  "tests": [
+    {
+      "input": "[4, 5, 4, 4, [[1,0,0],[1,0,1],[0,0,0]]]",
+      "expected": "7",
+      "explanation": "Shortest path length.",
+      "isSample": true
+    }
+  ]
+}

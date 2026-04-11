@@ -1,0 +1,18 @@
+{
+  "title": "Circle Detection in Directed Graph",
+  "difficulty": "hard",
+  "args": ["integer", "integer[][]"],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= n <= 2000"
+  ],
+  "description": "Given a directed graph, determine if the graph contains a cycle.",
+  "tests": [
+    {
+      "input": "[2, [[1,0],[0,1]]]",
+      "expected": "true",
+      "explanation": "Graph contains cycle.",
+      "isSample": true
+    }
+  ]
+}

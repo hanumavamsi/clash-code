@@ -1,0 +1,19 @@
+{
+  "title": "Graph Valid Tree",
+  "difficulty": "medium",
+  "args": ["integer", "integer[][]"],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= n <= 2000",
+    "0 <= edges.length <= 2000"
+  ],
+  "description": "You have a graph with `n` nodes labeled `0` to `n - 1`. You are given the integer `n` and a list of `edges` where edges[i] = [ai, bi] indicates that there is an undirected edge between nodes ai and bi.\n\nReturn `true` if the edges of the given graph make a valid tree, and `false` otherwise.",
+  "tests": [
+    {
+      "input": "[5, [[0,1],[0,2],[0,3],[1,4]]]",
+      "expected": "true",
+      "explanation": "Valid tree.",
+      "isSample": true
+    }
+  ]
+}

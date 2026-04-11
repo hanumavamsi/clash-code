@@ -1,0 +1,31 @@
+{
+  "title": "Permutation Sequence",
+  "difficulty": "hard",
+  "args": ["integer", "integer"],
+  "returnType": "string",
+  "constraints": [
+    "1 <= n <= 9",
+    "1 <= k <= n!"
+  ],
+  "description": "The set `[1,2,3,...,n]` contains a total of `n!` unique permutations.\n\nBy listing and labeling all of the permutations in order, we get the following sequence for `n = 3`:\n\n1. \"123\"\n2. \"132\"\n3. \"213\"\n4. \"231\"\n5. \"312\"\n6. \"321\"\n\nGiven `n` and `k`, return the `kth` permutation sequence.",
+  "tests": [
+    {
+      "input": "[3, 3]",
+      "expected": "\"213\"",
+      "explanation": "3rd permutation.",
+      "isSample": true
+    },
+    {
+      "input": "[4, 9]",
+      "expected": "\"2314\"",
+      "explanation": "9th permutation of [1,2,3,4].",
+      "isSample": true
+    },
+    {
+      "input": "[1, 1]",
+      "expected": "\"1\"",
+      "explanation": "Only one permutation.",
+      "isSample": false
+    }
+  ]
+}

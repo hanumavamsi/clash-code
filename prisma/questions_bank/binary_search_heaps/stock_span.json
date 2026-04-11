@@ -1,0 +1,19 @@
+{
+  "title": "Online Stock Span",
+  "difficulty": "medium",
+  "args": ["integer"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= price <= 10^5",
+    "next() is called at most 10^4 times"
+  ],
+  "description": "Design an algorithm that collects daily price quotes for some stock and returns the span of that stock's price for the current day.\n\nThe span `S` of the stock's price on a given day is defined as the maximum number of consecutive days just before the given day, for which the price of the stock on the current day is less than or equal to its price on the given day.",
+  "tests": [
+    {
+      "input": "100",
+      "expected": "1",
+      "explanation": "First day has span 1.",
+      "isSample": true
+    }
+  ]
+}

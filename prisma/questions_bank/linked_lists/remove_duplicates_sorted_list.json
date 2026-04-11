@@ -1,0 +1,25 @@
+{
+  "title": "Remove Duplicates from Sorted List",
+  "difficulty": "easy",
+  "args": ["ListNode"],
+  "returnType": "ListNode",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 300].",
+    "-100 <= Node.val <= 100"
+  ],
+  "description": "Given the `head` of a sorted linked list, delete all duplicates such that each element appears only **once**. Return the linked list **sorted** as well.",
+  "tests": [
+    {
+      "input": "[1,1,2]",
+      "expected": "[1,2]",
+      "explanation": "Remove duplicate 1.",
+      "isSample": true
+    },
+    {
+      "input": "[1,1,2,3,3]",
+      "expected": "[1,2,3]",
+      "explanation": "Remove duplicates.",
+      "isSample": true
+    }
+  ]
+}

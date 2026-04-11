@@ -1,0 +1,18 @@
+{
+  "title": "Simplify Unix Path",
+  "difficulty": "medium",
+  "args": ["string"],
+  "returnType": "string",
+  "constraints": [
+    "1 <= path.length <= 3000"
+  ],
+  "description": "Given a string `path`, which is an **absolute path** (starting with a slash '/'). Return the string **after simplifying the path**.\n\nCanonical path rules:\n- `.` refers to current directory\n- `..` refers to parent directory\n- Multiple `/` are treated as single `/`",
+  "tests": [
+    {
+      "input": "\"/a/./b/../../c/\"",
+      "expected": "\"/c\"",
+      "explanation": "Simplified path.",
+      "isSample": true
+    }
+  ]
+}

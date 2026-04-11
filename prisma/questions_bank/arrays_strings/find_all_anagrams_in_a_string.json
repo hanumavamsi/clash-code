@@ -1,0 +1,39 @@
+{
+  "title": "Find All Anagrams in a String",
+  "difficulty": "medium",
+  "args": ["string", "string"],
+  "returnType": "integer[]",
+  "constraints": [
+    "1 <= s.length, p.length <= 3 * 10^4",
+    "s and p consist of lowercase English letters only"
+  ],
+  "description": "Given two strings `s` and `p`, return an array of all the start indices of `p`'s anagrams in `s`. You may return the answer in **any order**.\n\nAn **anagram** is a word or phrase formed by rearranging the letters of another, using all the original letters exactly once.",
+  "tests": [
+    {"input": "[\"cbaebabacd\", \"abc\"]", "expected": "[0,6]", "explanation": "Anagram of abc starting at index 0: cba, and at index 6: bac.", "is_single_array_arg": false, "isSample": true},
+    {"input": "[\"abab\", \"ab\"]", "expected": "[0,1,2]", "is_single_array_arg": false, "isSample": true},
+    {"input": "[\"aa\", \"bb\"]", "expected": "[]", "is_single_array_arg": false, "isSample": true},
+    {"input": "[\"abc\", \"abc\"]", "expected": "[0]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abc\", \"d\"]", "expected": "[]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aaa\", \"a\"]", "expected": "[0,1,2]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aaa\", \"aa\"]", "expected": "[0,1]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aaa\", \"aaa\"]", "expected": "[0]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aab\", \"aab\"]", "expected": "[0]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"baa\", \"aa\"]", "expected": "[1]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abcdef\", \"xyz\"]", "expected": "[]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abacbabc\", \"abc\"]", "expected": "[1,2,3,5]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"a\", \"a\"]", "expected": "[0]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"a\", \"b\"]", "expected": "[]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"ab\", \"a\"]", "expected": "[0]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"ba\", \"a\"]", "expected": "[1]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"eidbaooo\", \"ab\"]", "expected": "[3]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"cbaebabacd\", \"abc\"]", "expected": "[0,6]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abcabcabc\", \"abc\"]", "expected": "[0,1,2,3,4,5,6]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"xyz\", \"xyz\"]", "expected": "[0]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abba\", \"ab\"]", "expected": "[0]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aaaa\", \"aa\"]", "expected": "[0,1,2]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abcba\", \"ab\"]", "expected": "[0,3]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abcbabc\", \"abc\"]", "expected": "[0,2,4]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"hello\", \"ll\"]", "expected": "[2]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abcdef\", \"fed\"]", "expected": "[3]", "is_single_array_arg": false, "isSample": false}
+  ]
+}

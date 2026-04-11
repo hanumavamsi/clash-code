@@ -1,0 +1,24 @@
+{
+  "title": "Sqrt(x)",
+  "difficulty": "easy",
+  "args": ["integer"],
+  "returnType": "integer",
+  "constraints": [
+    "0 <= x <= 2^31 - 1"
+  ],
+  "description": "Given a non-negative integer `x`, return the square root of `x` rounded down to the nearest integer. The returned integer should be **non-negative as well**.\n\nYou **must not use** any built-in exponent function or operator.",
+  "tests": [
+    {
+      "input": "4",
+      "expected": "2",
+      "explanation": "sqrt(4) = 2.",
+      "isSample": true
+    },
+    {
+      "input": "8",
+      "expected": "2",
+      "explanation": "sqrt(8) rounds down to 2.",
+      "isSample": true
+    }
+  ]
+}

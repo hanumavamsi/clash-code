@@ -1,0 +1,25 @@
+{
+  "title": "Divide Two Integers",
+  "difficulty": "medium",
+  "args": ["integer", "integer"],
+  "returnType": "integer",
+  "constraints": [
+    "-2^31 <= dividend, divisor <= 2^31 - 1",
+    "divisor != 0"
+  ],
+  "description": "Given two integers `dividend` and `divisor`, divide two integers **without** using multiplication, division, and mod operator.\n\nReturn the quotient after dividing `dividend` by `divisor`.\n\nThe integer division should truncate toward zero, which means losing its fractional part.",
+  "tests": [
+    {
+      "input": "[10, 3]",
+      "expected": "3",
+      "explanation": "10 / 3 = 3 (truncate towards 0).",
+      "isSample": true
+    },
+    {
+      "input": "[7, -3]",
+      "expected": "-2",
+      "explanation": "7 / -3 = -2 (truncate towards 0).",
+      "isSample": true
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Missing Number",
+  "difficulty": "easy",
+  "args": ["integer[]"],
+  "returnType": "integer",
+  "constraints": [
+    "n == nums.length",
+    "1 <= n <= 10^4",
+    "0 <= nums[i] <= n"
+  ],
+  "description": "Given an array `nums` containing `n` distinct numbers in the range `[0, n]`, return the only number in the range that is missing from the array.",
+  "tests": [
+    {
+      "input": "[3,0,1]",
+      "expected": "2",
+      "explanation": "2 is missing.",
+      "isSample": true
+    },
+    {
+      "input": "[0,1]",
+      "expected": "2",
+      "explanation": "2 is missing.",
+      "isSample": true
+    }
+  ]
+}

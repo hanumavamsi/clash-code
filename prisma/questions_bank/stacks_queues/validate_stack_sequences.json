@@ -1,0 +1,19 @@
+{
+  "title": "Validate Stack Sequences",
+  "difficulty": "medium",
+  "args": ["integer[]", "integer[]"],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= pushed.length <= 1000",
+    "0 <= pushed[i] <= 1000"
+  ],
+  "description": "Given two integer arrays `pushed` and `popped` each with distinct values, return `true` if `popped` could be the popping sequence of `pushed`.",
+  "tests": [
+    {
+      "input": "[[1,2,3],[1,3,2]]",
+      "expected": "true",
+      "explanation": "Valid pop sequence.",
+      "isSample": true
+    }
+  ]
+}

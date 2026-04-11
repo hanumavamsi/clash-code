@@ -1,0 +1,20 @@
+{
+  "title": "Queue Reconstruction by Height",
+  "difficulty": "medium",
+  "args": ["integer[][]"],
+  "returnType": "integer[][]",
+  "constraints": [
+    "1 <= queue.length <= 2000",
+    "0 <= h <= 16^4",
+    "0 <= k < len(queue)"
+  ],
+  "description": "You are given an array of people properties where `people[i] = [hi, ki]`.\n\nConstruct the queue such that the k-th person has exactly ki people in front who have a height greater than or equal to hi. Return the constructed queue.",
+  "tests": [
+    {
+      "input": "[[[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]]",
+      "expected": "[[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]",
+      "explanation": "Reconstructed queue.",
+      "isSample": true
+    }
+  ]
+}

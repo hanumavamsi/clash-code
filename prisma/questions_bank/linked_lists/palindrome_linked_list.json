@@ -1,0 +1,25 @@
+{
+  "title": "Palindrome Linked List",
+  "difficulty": "easy",
+  "args": ["ListNode"],
+  "returnType": "boolean",
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 10^5].",
+    "0 <= Node.val <= 9"
+  ],
+  "description": "Given the `head` of a singly linked list, return `true` if it is a **palindrome** or `false` otherwise.",
+  "tests": [
+    {
+      "input": "[1,2,2,1]",
+      "expected": "true",
+      "explanation": "Palindrome list.",
+      "isSample": true
+    },
+    {
+      "input": "[1,2]",
+      "expected": "false",
+      "explanation": "Not a palindrome.",
+      "isSample": true
+    }
+  ]
+}

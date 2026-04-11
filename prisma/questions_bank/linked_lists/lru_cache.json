@@ -1,0 +1,19 @@
+{
+  "title": "LRU Cache",
+  "difficulty": "medium",
+  "args": ["integer", "string", "integer"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= capacity <= 3000",
+    "0 <= key, value <= 10^4"
+  ],
+  "description": "Design a data structure that follows the constraints of a **Least Recently Used (LRU) cache**.\n\nImplement the `LRUCache` class:\n- `get(key)` returns the value of the key if it exists, otherwise returns -1.\n- `put(key, value)` updates or inserts the key with value. When capacity is full, evict least recently used item.",
+  "tests": [
+    {
+      "input": "2",
+      "expected": "-1",
+      "explanation": "LRU cache operations.",
+      "isSample": true
+    }
+  ]
+}

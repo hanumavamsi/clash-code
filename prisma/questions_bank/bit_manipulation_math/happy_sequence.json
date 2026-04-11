@@ -1,0 +1,18 @@
+{
+  "title": "Happy Sequence",
+  "difficulty": "medium",
+  "args": ["integer[]"],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= nums.length <= 1000"
+  ],
+  "description": "Determine if a sequence of numbers forms a pattern.",
+  "tests": [
+    {
+      "input": "[1, 2, 3, 4]",
+      "expected": "true",
+      "explanation": "Arithmetic sequence.",
+      "isSample": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Closest Binary Search Tree Value",
+  "difficulty": "easy",
+  "args": ["integer", "double"],
+  "returnType": "integer",
+  "constraints": [
+    "The number of nodes >= 1",
+    "target range is within 10^4"
+  ],
+  "description": "Given the `root` of a binary search tree and a `target` value, return the value in the BST that is closest to the target.",
+  "tests": [
+    {
+      "input": "[4.142857]",
+      "expected": "4",
+      "explanation": "Closest value to 4.142857.",
+      "isSample": true
+    }
+  ]
+}

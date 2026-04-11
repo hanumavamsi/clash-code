@@ -1,0 +1,20 @@
+{
+  "title": "Partition List",
+  "difficulty": "medium",
+  "args": ["ListNode", "integer"],
+  "returnType": "ListNode",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 200].",
+    "0 <= Node.val <= 100",
+    "0 <= x <= 100"
+  ],
+  "description": "Given the `head` of a linked list and a value `x`, partition the linked list such that all nodes **less than** `x` come before nodes **greater than or equal** to `x`.\n\nYou should **preserve** the original relative order of the nodes in each of the two partitions.",
+  "tests": [
+    {
+      "input": "[[1,4,3,2,5,2], 3]",
+      "expected": "[1,2,2,4,3,5]",
+      "explanation": "Nodes < 3 come first.",
+      "isSample": true
+    }
+  ]
+}

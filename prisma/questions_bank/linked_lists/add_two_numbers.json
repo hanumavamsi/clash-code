@@ -1,0 +1,25 @@
+{
+  "title": "Add Two Numbers",
+  "difficulty": "medium",
+  "args": ["ListNode", "ListNode"],
+  "returnType": "ListNode",
+  "constraints": [
+    "The number of nodes in each linked list is in the range [1, 100].",
+    "0 <= Node.val <= 9"
+  ],
+  "description": "You are given two **non-empty** linked lists representing two non-negative integers. The digits are stored in **reverse order**, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.\n\nYou may assume the two numbers do not contain any leading zero, except the number 0 itself.",
+  "tests": [
+    {
+      "input": "[[2,4,3],[5,6,4]]",
+      "expected": "[7,0,8]",
+      "explanation": "342 + 465 = 807.",
+      "isSample": true
+    },
+    {
+      "input": "[[0],[0]]",
+      "expected": "[0]",
+      "explanation": "0 + 0 = 0.",
+      "isSample": true
+    }
+  ]
+}

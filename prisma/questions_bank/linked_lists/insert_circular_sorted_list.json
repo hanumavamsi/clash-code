@@ -1,0 +1,18 @@
+{
+  "title": "Insert into a Sorted Circular Linked List",
+  "difficulty": "medium",
+  "args": ["Node", "integer"],
+  "returnType": "Node",
+  "constraints": [
+    "Circular sorted linked list"
+  ],
+  "description": "Given a node from a Circular Linked List which is sorted in ascending order, write a function to insert a value `insertVal` into the list such that it remains a circular sorted list.",
+  "tests": [
+    {
+      "input": "[3,4,1], 2",
+      "expected": "Inserted node.",
+      "explanation": "Insert 2 into circular sorted list.",
+      "isSample": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Copy List with Random Pointer",
+  "difficulty": "medium",
+  "args": ["Node"],
+  "returnType": "Node",
+  "constraints": [
+    "0 <= N <= 1000",
+    "-10000 <= Node.val <= 10000"
+  ],
+  "description": "A linked list of length `n` is given such that each node contains an additional random pointer, which could point to any node in the list, or null.\n\nConstruct a **deep copy** of the list.",
+  "tests": [
+    {
+      "input": "[[[7,null],[13,0],[11,4],[10,2],[1,0]]]",
+      "expected": "Deep copy created.",
+      "explanation": "Copy list with random pointers.",
+      "isSample": true
+    }
+  ]
+}

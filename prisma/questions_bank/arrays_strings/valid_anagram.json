@@ -1,0 +1,39 @@
+{
+  "title": "Valid Anagram",
+  "difficulty": "easy",
+  "args": ["string", "string"],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= s.length, t.length <= 5 * 10^4",
+    "s and t consist of lowercase English letters only"
+  ],
+  "description": "Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `false` otherwise.\n\nAn **anagram** is a word or phrase formed by rearranging the letters of a different word or phrase, using all the original letters exactly once.",
+  "tests": [
+    {"input": "[\"anagram\", \"nagaram\"]", "expected": "true", "explanation": "Both strings contain the same characters with the same frequencies.", "is_single_array_arg": false, "isSample": true},
+    {"input": "[\"rat\", \"car\"]", "expected": "false", "is_single_array_arg": false, "isSample": true},
+    {"input": "[\"a\", \"a\"]", "expected": "true", "is_single_array_arg": false, "isSample": true},
+    {"input": "[\"ab\", \"ba\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"ab\", \"a\"]", "expected": "false", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aacc\", \"ccac\"]", "expected": "false", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"listen\", \"silent\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"hello\", \"world\"]", "expected": "false", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aab\", \"baa\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abc\", \"cba\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aaa\", \"aa\"]", "expected": "false", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"z\", \"z\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abc\", \"abc\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abcdef\", \"fedcba\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aabbcc\", \"abcabc\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abc\", \"abd\"]", "expected": "false", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"zzz\", \"zzz\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"zzz\", \"zz\"]", "expected": "false", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"eat\", \"tea\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"tan\", \"nat\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"bat\", \"tab\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"race\", \"care\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"kitten\", \"sitting\"]", "expected": "false", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abcd\", \"dcba\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aabb\", \"bbaa\"]", "expected": "true", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"ab\", \"cd\"]", "expected": "false", "is_single_array_arg": false, "isSample": false}
+  ]
+}

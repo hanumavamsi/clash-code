@@ -1,0 +1,20 @@
+{
+  "title": "Redundant Connection",
+  "difficulty": "medium",
+  "args": ["integer[][]"],
+  "returnType": "integer[]",
+  "constraints": [
+    "n == edges.length",
+    "3 <= n <= 1000",
+    "edges[i].length == 2"
+  ],
+  "description": "In this problem, a tree is an undirected graph that is connected and has no cycles.\n\nYou are given all the edges of a tree as an array where edges[i] = [ui, vi].\n\nAdditionally, you are given an extra edge that creates a cycle. Find and return an edge that can be removed so the resulting graph is a tree.",
+  "tests": [
+    {
+      "input": "[[[1,2],[1,3],[2,3]]]",
+      "expected": "[2,3]",
+      "explanation": "Redundant edge.",
+      "isSample": true
+    }
+  ]
+}

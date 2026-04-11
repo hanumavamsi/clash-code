@@ -1,0 +1,18 @@
+{
+  "title": "Sqrt II",
+  "difficulty": "easy",
+  "args": ["double"],
+  "returnType": "double",
+  "constraints": [
+    "0 <= x <= 2 * 10^4"
+  ],
+  "description": "Implement int sqrt(double x).",
+  "tests": [
+    {
+      "input": "4.0",
+      "expected": "2.0",
+      "explanation": "sqrt(4) = 2.",
+      "isSample": true
+    }
+  ]
+}

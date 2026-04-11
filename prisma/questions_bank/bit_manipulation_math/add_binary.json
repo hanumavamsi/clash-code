@@ -1,0 +1,25 @@
+{
+  "title": "Add Binary",
+  "difficulty": "easy",
+  "args": ["string", "string"],
+  "returnType": "string",
+  "constraints": [
+    "1 <= a.length, b.length <= 10^4",
+    "a and b consist of '0' and '1' characters"
+  ],
+  "description": "Given two binary strings `a` and `b`, return their sum as a binary string.",
+  "tests": [
+    {
+      "input": "[\"11\", \"1\"]",
+      "expected": "\"100\"",
+      "explanation": "11 + 1 = 100 in binary.",
+      "isSample": true
+    },
+    {
+      "input": "[\"1010\", \"1011\"]",
+      "expected": "\"10101\"",
+      "explanation": "1010 + 1011 = 10101.",
+      "isSample": true
+    }
+  ]
+}

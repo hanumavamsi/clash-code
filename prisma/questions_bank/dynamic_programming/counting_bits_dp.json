@@ -1,0 +1,24 @@
+{
+  "title": "Counting Bits DP",
+  "difficulty": "easy",
+  "args": ["integer"],
+  "returnType": "integer[]",
+  "constraints": [
+    "0 <= n <= 10^5"
+  ],
+  "description": "Given an integer `n`, for every integer `i` in the range `0 <= i <= n`, calculate the **number of 1's** in their binary representation and return as an array.",
+  "tests": [
+    {
+      "input": "2",
+      "expected": "[0,1,1]",
+      "explanation": "0 -> 0, 1 -> 1, 2 -> 1.",
+      "isSample": true
+    },
+    {
+      "input": "5",
+      "expected": "[0,1,1,2,1,2]",
+      "explanation": "Bit counts for 0 to 5.",
+      "isSample": true
+    }
+  ]
+}

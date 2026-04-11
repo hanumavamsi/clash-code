@@ -1,0 +1,40 @@
+{
+  "title": "Minimum Window Substring",
+  "difficulty": "hard",
+  "args": ["string", "string"],
+  "returnType": "string",
+  "constraints": [
+    "1 <= s.length, t.length <= 10^5",
+    "s and t consist of uppercase and lowercase English letters",
+    "The answer is guaranteed to be unique."
+  ],
+  "description": "Given two strings `s` and `t` of lengths `m` and `n` respectively, return the **minimum window substring** of `s` such that every character in `t` (including duplicates) is included in the window. If there is no such substring, return the empty string `\"\"`.",
+  "tests": [
+    {"input": "[\"ADOBECODEBANC\", \"ABC\"]", "expected": "\"BANC\"", "explanation": "The minimum window substring containing A, B, and C is BANC.", "is_single_array_arg": false, "isSample": true},
+    {"input": "[\"a\", \"a\"]", "expected": "\"a\"", "is_single_array_arg": false, "isSample": true},
+    {"input": "[\"a\", \"aa\"]", "expected": "\"\"", "is_single_array_arg": false, "isSample": true},
+    {"input": "[\"abc\", \"b\"]", "expected": "\"b\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abc\", \"ac\"]", "expected": "\"abc\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abc\", \"abc\"]", "expected": "\"abc\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abc\", \"cba\"]", "expected": "\"abc\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"ab\", \"b\"]", "expected": "\"b\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"ab\", \"a\"]", "expected": "\"a\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"xyz\", \"xyz\"]", "expected": "\"xyz\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aabc\", \"ab\"]", "expected": "\"ab\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"bba\", \"ab\"]", "expected": "\"ba\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"cabwefgewcwaefgcf\", \"cae\"]", "expected": "\"cwae\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aa\", \"aa\"]", "expected": "\"aa\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"AAAAAA\", \"AA\"]", "expected": "\"AA\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"a\", \"b\"]", "expected": "\"\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"ab\", \"c\"]", "expected": "\"\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"acbbaca\", \"aba\"]", "expected": "\"baca\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abcde\", \"ae\"]", "expected": "\"abcde\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abcde\", \"e\"]", "expected": "\"e\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aab\", \"aab\"]", "expected": "\"aab\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abcdefgh\", \"abc\"]", "expected": "\"abc\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"za\", \"za\"]", "expected": "\"za\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"abc\", \"d\"]", "expected": "\"\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"aab\", \"ab\"]", "expected": "\"ab\"", "is_single_array_arg": false, "isSample": false},
+    {"input": "[\"ADOBECODEBANCABC\", \"ABC\"]", "expected": "\"ABC\"", "is_single_array_arg": false, "isSample": false}
+  ]
+}

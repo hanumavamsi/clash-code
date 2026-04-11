@@ -1,0 +1,24 @@
+{
+  "title": "Decode String",
+  "difficulty": "medium",
+  "args": ["string"],
+  "returnType": "string",
+  "constraints": [
+    "1 <= s.length <= 30"
+  ],
+  "description": "Given an encoded string, return its decoded string.\n\nThe encoding rule is: `k[encoded_string]`, where the `encoded_string` inside the square brackets is being repeated exactly `k` times. `k` is guaranteed to be a positive integer.",
+  "tests": [
+    {
+      "input": "\"3[a]2[bc]\"",
+      "expected": "\"aaabcbc\"",
+      "explanation": "Decoded string.",
+      "isSample": true
+    },
+    {
+      "input": "\"3[a2[c]]\"",
+      "expected": "\"accaccacc\"",
+      "explanation": "Nested decoding.",
+      "isSample": true
+    }
+  ]
+}

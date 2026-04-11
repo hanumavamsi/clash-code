@@ -1,0 +1,25 @@
+{
+  "title": "Excel Sheet Column Number",
+  "difficulty": "easy",
+  "args": ["string"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= columnTitle.length <= 7",
+    "columnTitle consists only of uppercase English letters"
+  ],
+  "description": "Given a string `columnTitle` that represents the column title as it appears in an Excel sheet, return its corresponding column number.\n\nA -> 1, B -> 2, C -> 3, ... Z -> 26, AA -> 27, AB -> 28, etc.",
+  "tests": [
+    {
+      "input": "\"A\"",
+      "expected": "1",
+      "explanation": "A -> 1.",
+      "isSample": true
+    },
+    {
+      "input": "\"AB\"",
+      "expected": "28",
+      "explanation": "AB -> 28.",
+      "isSample": true
+    }
+  ]
+}

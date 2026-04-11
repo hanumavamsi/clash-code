@@ -1,0 +1,26 @@
+{
+  "title": "Remove Invalid Parentheses",
+  "difficulty": "hard",
+  "args": ["string"],
+  "returnType": "string[]",
+  "constraints": [
+    "1 <= s.length <= 25"
+  ],
+  "description": "Given a string `s` containing parentheses and letters, remove the minimum number of invalid parentheses. Return all possible results.\n\nEach result should be a valid string with valid parenthesization.",
+  "tests": [
+    {
+      "input": "\"()())()\"",
+      "expected": "[\"()()()\",\"(())())\"]",
+      "explanation": "Remove 1 or 2 parentheses.",
+      "isSample": true,
+      "orderIndependent": true
+    },
+    {
+      "input": "\"(a)())()\"",
+      "expected": "[\"(a)()()\",\"(a())()\"]",
+      "explanation": "Remove extra parentheses.",
+      "isSample": true,
+      "orderIndependent": true
+    }
+  ]
+}

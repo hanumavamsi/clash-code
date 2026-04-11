@@ -1,0 +1,21 @@
+{
+  "title": "Subsets with Duplicate Target Sum",
+  "difficulty": "hard",
+  "args": ["integer[]", "integer"],
+  "returnType": "integer[][]",
+  "constraints": [
+    "1 <= nums.length <= 20",
+    "-1000 <= nums[i] <= 1000",
+    "-1000 <= target <= 1000"
+  ],
+  "description": "Find all unique subsets with duplicates allowed that sum to the target.",
+  "tests": [
+    {
+      "input": "[[1,2,3], 3]",
+      "expected": "[[3],[1,2]]",
+      "explanation": "Two subsets sum to 3.",
+      "isSample": true,
+      "orderIndependent": true
+    }
+  ]
+}

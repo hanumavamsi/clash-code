@@ -1,0 +1,19 @@
+{
+  "title": "Alien Dictionary",
+  "difficulty": "hard",
+  "args": ["string[]"],
+  "returnType": "string",
+  "constraints": [
+    "1 <= words.length <= 100",
+    "1 <= words[i].length <= 100"
+  ],
+  "description": "There is a foreign language which uses the same alphabet as English. However, the order among letters is unknown.\n\nYou receive a list of non-empty strings from the dictionary, where words are sorted (order unknown) by the rules of this alien language.\n\nDerived the order of the alphabet.",
+  "tests": [
+    {
+      "input": "[\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]",
+      "expected": "\"wertf\"",
+      "explanation": "Alien dictionary order.",
+      "isSample": true
+    }
+  ]
+}

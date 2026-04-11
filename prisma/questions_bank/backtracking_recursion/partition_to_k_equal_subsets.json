@@ -1,0 +1,25 @@
+{
+  "title": "Partition to K Equal Sum Subsets",
+  "difficulty": "hard",
+  "args": ["integer[]", "integer"],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= k <= nums.length <= 16",
+    "1 <= nums[i] <= 10^4"
+  ],
+  "description": "Given an integer array `nums` and an integer `k`, return `true` if `nums` can be partitioned into `k` non-empty subsets with equal sum.",
+  "tests": [
+    {
+      "input": "[[4,3,2,3,5,2,1], 4]",
+      "expected": "true",
+      "explanation": "Can be partitioned into 4 subsets with sum 4 each.",
+      "isSample": true
+    },
+    {
+      "input": "[[1,2,5], 2]",
+      "expected": "false",
+      "explanation": "Cannot partition into 2 equal subsets.",
+      "isSample": true
+    }
+  ]
+}

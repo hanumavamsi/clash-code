@@ -1,0 +1,19 @@
+{
+  "title": "Split Array Largest Sum",
+  "difficulty": "hard",
+  "args": ["integer[]", "integer"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "1 <= m <= 50"
+  ],
+  "description": "Given an integer array `nums` and an integer `m`, partition `nums` into `m` non-empty continuous subarrays.\n\n**Minimize** the largest sum among all `m` subarrays.",
+  "tests": [
+    {
+      "input": "[[7,2,5,10,8], 2]",
+      "expected": "18",
+      "explanation": "Partition as [7,2,5] and [10,8]. Max sum is 18.",
+      "isSample": true
+    }
+  ]
+}

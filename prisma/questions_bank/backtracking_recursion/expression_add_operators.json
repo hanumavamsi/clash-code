@@ -1,0 +1,21 @@
+{
+  "title": "Expression Add Operators",
+  "difficulty": "hard",
+  "args": ["string", "integer"],
+  "returnType": "string[]",
+  "constraints": [
+    "1 <= num.length <= 10",
+    "num contains only digits",
+    "-2^31 <= target <= 2^31 - 1"
+  ],
+  "description": "Given a string `num` containing only digits and an integer `target`, return all possible expressions that evaluate to the `target` by inserting the operators `'+'`, `'-'`, and/or `'*'` between the digits in `num`.\n\nHyphens in `num` can be part of negative numbers, not operators.",
+  "tests": [
+    {
+      "input": "[\"123\", 6]",
+      "expected": "[\"1+2+3\",\"1*2*3\"]",
+      "explanation": "Two expressions.",
+      "isSample": true,
+      "orderIndependent": true
+    }
+  ]
+}

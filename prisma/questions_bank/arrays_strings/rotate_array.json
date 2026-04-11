@@ -1,0 +1,40 @@
+{
+  "title": "Rotate Array",
+  "difficulty": "medium",
+  "args": ["integer[]", "integer"],
+  "returnType": "integer[]",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-2^31 <= nums[i] <= 2^31 - 1",
+    "0 <= k <= 10^5"
+  ],
+  "description": "Given an integer array `nums`, rotate the array to the right by `k` steps, where `k` is non-negative.\n\nReturn the resulting array after rotation.",
+  "tests": [
+    {"input": "[[1,2,3,4,5,6,7], 3]", "expected": "[5,6,7,1,2,3,4]", "explanation": "rotate 1 step: [7,1,2,3,4,5,6], rotate 2 steps: [6,7,1,2,3,4,5], rotate 3 steps: [5,6,7,1,2,3,4].", "is_single_array_arg": false, "isSample": true},
+    {"input": "[[-1,-100,3,99], 2]", "expected": "[3,99,-1,-100]", "is_single_array_arg": false, "isSample": true},
+    {"input": "[[1,2], 1]", "expected": "[2,1]", "is_single_array_arg": false, "isSample": true},
+    {"input": "[[1], 0]", "expected": "[1]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3], 3]", "expected": "[1,2,3]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3], 4]", "expected": "[3,1,2]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4,5], 5]", "expected": "[1,2,3,4,5]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4,5], 2]", "expected": "[4,5,1,2,3]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[0], 100]", "expected": "[0]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4], 6]", "expected": "[3,4,1,2]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2], 0]", "expected": "[1,2]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[-1,-2,-3], 1]", "expected": "[-3,-1,-2]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4,5,6], 4]", "expected": "[3,4,5,6,1,2]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3], 6]", "expected": "[1,2,3]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[10,20,30,40,50], 1]", "expected": "[50,10,20,30,40]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4], 1]", "expected": "[4,1,2,3]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4], 3]", "expected": "[2,3,4,1]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4,5,6,7], 7]", "expected": "[1,2,3,4,5,6,7]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4,5,6,7], 14]", "expected": "[1,2,3,4,5,6,7]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[5], 1]", "expected": "[5]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4,5], 10]", "expected": "[1,2,3,4,5]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4,5], 7]", "expected": "[4,5,1,2,3]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[3,99,-1,-100], 4]", "expected": "[3,99,-1,-100]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4,5,6], 2]", "expected": "[5,6,1,2,3,4]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3], 2]", "expected": "[2,3,1]", "is_single_array_arg": false, "isSample": false},
+    {"input": "[[1,2,3,4,5,6,7,8], 3]", "expected": "[6,7,8,1,2,3,4,5]", "is_single_array_arg": false, "isSample": false}
+  ]
+}

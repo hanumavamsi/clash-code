@@ -1,0 +1,27 @@
+{
+  "title": "Search a 2D Matrix",
+  "difficulty": "medium",
+  "args": ["integer[][]", "integer"],
+  "returnType": "boolean",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 100",
+    "-10^9 <= matrix[i][j], target <= 10^9"
+  ],
+  "description": "Write an efficient algorithm that searches for a value `target` in an `m x n` integer matrix `matrix`.\n\nThis matrix has the following properties:\n- Integers in each row are sorted from left to right.\n- Integers in each column are sorted from top to bottom.",
+  "tests": [
+    {
+      "input": "[[[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], 5]",
+      "expected": "true",
+      "explanation": "5 is in the matrix.",
+      "isSample": true
+    },
+    {
+      "input": "[[[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], 13]",
+      "expected": "true",
+      "explanation": "13 is in the matrix.",
+      "isSample": true
+    }
+  ]
+}

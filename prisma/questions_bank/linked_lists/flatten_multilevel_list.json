@@ -1,0 +1,18 @@
+{
+  "title": "Flatten Multilevel Doubly Linked List",
+  "difficulty": "medium",
+  "args": ["Node"],
+  "returnType": "Node",
+  "constraints": [
+    "Node.val is in range [1, 100]."
+  ],
+  "description": "You are given a doubly linked list. In addition to the next and previous pointers, each node has a child pointer, which may or may not point to a separate doubly linked list.\n\nThese child lists may have one or more children of their own, and so on, to produce a multilevel data structure.\n\nFlattened the list so that all the nodes appear in a single-level, doubly linked list.",
+  "tests": [
+    {
+      "input": "[1[2[3]],4]",
+      "expected": "Flattened list.",
+      "explanation": "Flatten multilevel list.",
+      "isSample": true
+    }
+  ]
+}

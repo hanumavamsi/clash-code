@@ -1,0 +1,40 @@
+{
+  "title": "Group Anagrams",
+  "difficulty": "medium",
+  "args": ["string[]"],
+  "returnType": "string[][]",
+  "constraints": [
+    "1 <= strs.length <= 10^4",
+    "0 <= strs[i].length <= 100",
+    "strs[i] consists of lowercase English letters only"
+  ],
+  "description": "Given an array of strings `strs`, group the anagrams together. You can return the answer in **any order**.\n\nAn **anagram** is a word or phrase formed by rearranging the letters of a different word or phrase, using all the original letters exactly once.",
+  "tests": [
+    {"input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]", "expected": "[[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]", "explanation": "The groups are: [bat], [tan,nat], [eat,tea,ate].", "isSample": true},
+    {"input": "[\"\"]", "expected": "[[\"\"]]", "isSample": true},
+    {"input": "[\"a\"]", "expected": "[[\"a\"]]", "isSample": true},
+    {"input": "[\"ab\",\"ba\"]", "expected": "[[\"ab\",\"ba\"]]", "isSample": false},
+    {"input": "[\"abc\",\"cba\",\"bca\",\"xyz\"]", "expected": "[[\"abc\",\"cba\",\"bca\"],[\"xyz\"]]", "isSample": false},
+    {"input": "[\"a\",\"b\",\"a\"]", "expected": "[[\"a\",\"a\"],[\"b\"]]", "isSample": false},
+    {"input": "[\"listen\",\"silent\",\"enlist\",\"hello\"]", "expected": "[[\"listen\",\"silent\",\"enlist\"],[\"hello\"]]", "isSample": false},
+    {"input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]", "expected": "[[\"cat\",\"tac\",\"act\"],[\"dog\",\"god\"]]", "isSample": false},
+    {"input": "[\"aab\",\"baa\",\"aba\",\"bba\"]", "expected": "[[\"aab\",\"baa\",\"aba\"],[\"bba\"]]", "isSample": false},
+    {"input": "[\"z\"]", "expected": "[[\"z\"]]", "isSample": false},
+    {"input": "[\"aa\",\"aa\"]", "expected": "[[\"aa\",\"aa\"]]", "isSample": false},
+    {"input": "[\"ab\",\"cd\",\"dc\",\"ab\"]", "expected": "[[\"ab\",\"ab\"],[\"cd\",\"dc\"]]", "isSample": false},
+    {"input": "[\"\",\"\",\"\"]", "expected": "[[\"\",\"\",\"\"]]", "isSample": false},
+    {"input": "[\"abc\",\"def\",\"fed\",\"cba\",\"ghi\"]", "expected": "[[\"abc\",\"cba\"],[\"def\",\"fed\"],[\"ghi\"]]", "isSample": false},
+    {"input": "[\"a\",\"b\",\"c\"]", "expected": "[[\"a\"],[\"b\"],[\"c\"]]", "isSample": false},
+    {"input": "[\"race\",\"care\",\"acre\",\"hello\",\"world\"]", "expected": "[[\"race\",\"care\",\"acre\"],[\"hello\"],[\"world\"]]", "isSample": false},
+    {"input": "[\"ab\",\"ba\",\"ab\",\"ba\"]", "expected": "[[\"ab\",\"ba\",\"ab\",\"ba\"]]", "isSample": false},
+    {"input": "[\"aabc\",\"cbaa\",\"baac\",\"xyz\",\"zyx\"]", "expected": "[[\"aabc\",\"cbaa\",\"baac\"],[\"xyz\",\"zyx\"]]", "isSample": false},
+    {"input": "[\"a\",\"aa\",\"aaa\"]", "expected": "[[\"a\"],[\"aa\"],[\"aaa\"]]", "isSample": false},
+    {"input": "[\"abcde\",\"edcba\",\"deabc\",\"xyz\"]", "expected": "[[\"abcde\",\"edcba\",\"deabc\"],[\"xyz\"]]", "isSample": false},
+    {"input": "[\"tin\",\"nit\",\"int\",\"ant\",\"tan\",\"nat\"]", "expected": "[[\"tin\",\"nit\",\"int\"],[\"ant\",\"tan\",\"nat\"]]", "isSample": false},
+    {"input": "[\"ab\"]", "expected": "[[\"ab\"]]", "isSample": false},
+    {"input": "[\"abc\",\"bcd\",\"cde\",\"def\"]", "expected": "[[\"abc\"],[\"bcd\"],[\"cde\"],[\"def\"]]", "isSample": false},
+    {"input": "[\"ba\",\"ab\",\"ba\",\"ab\",\"ba\"]", "expected": "[[\"ba\",\"ab\",\"ba\",\"ab\",\"ba\"]]", "isSample": false},
+    {"input": "[\"aaa\",\"aab\",\"abb\",\"bbb\"]", "expected": "[[\"aaa\"],[\"aab\"],[\"abb\"],[\"bbb\"]]", "isSample": false},
+    {"input": "[\"stop\",\"tops\",\"pots\",\"spot\",\"opts\"]", "expected": "[[\"stop\",\"tops\",\"pots\",\"spot\",\"opts\"]]", "isSample": false}
+  ]
+}
