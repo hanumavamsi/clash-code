@@ -34,6 +34,10 @@ function setupJudgeWorker(io, prisma) {
             player.score += points;
             player.progress += 1;
 
+            // Track which specific question was solved (if not already solved)
+            if (!player.solvedQuestions) player.solvedQuestions = {};
+            player.solvedQuestions[question.id] = true;
+
             io.to(socketId).emit("submission_result", {
                 success: true, points,
                 message: `Accepted! Passed ${ratio} tests.`,

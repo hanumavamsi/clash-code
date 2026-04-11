@@ -1,0 +1,65 @@
+{
+  "title": "Edit Distance",
+  "difficulty": "hard",
+  "args": [
+    "string",
+    "string"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "0 <= word1.length, word2.length <= 500",
+    "word1 and word2 consist of lowercase English letters."
+  ],
+  "description": "Given two strings `word1` and `word2`, return the **minimum number of operations** required to convert `word1` to `word2`.\n\nYou have the following three operations permitted on a word:\n- **Insert** a character\n- **Delete** a character\n- **Replace** a character\n\n**2D DP table** for `\"horse\"` → `\"ros\"`:\n\n```text\n      \"\"  r  o  s\n  \"\" [ 0  1  2  3]\n   h [ 1  1  2  3]\n   o [ 2  2  1  2]\n   r [ 3  2  2  2]\n   s [ 4  3  3  2]\n   e [ 5  4  4  3]  <- Answer: 3\n```\n\n`dp[i][j]`:\n- If `word1[i] == word2[j]`: `dp[i-1][j-1]` (no cost)\n- Else: `1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])` (delete, insert, replace)",
+  "tests": [
+    {
+      "input": "[\"horse\", \"ros\"]",
+      "expected": "3",
+      "explanation": "horse → rorse (replace h with r) → rose (delete r) → ros (delete e). 3 operations.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[\"intention\", \"execution\"]",
+      "expected": "5",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[\"\", \"\"]",
+      "expected": "0",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[\"a\", \"\"]",
+      "expected": "1",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[\"\", \"abc\"]",
+      "expected": "3",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[\"abc\", \"abc\"]",
+      "expected": "0",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[\"sitting\", \"kitten\"]",
+      "expected": "3",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[\"pneumonoultramicroscopicsilicovolcanoconiosis\", \"ultramicroscopically\"]",
+      "expected": "27",
+      "is_single_array_arg": false,
+      "isSample": false
+    }
+  ]
+}

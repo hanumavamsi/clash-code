@@ -1,0 +1,69 @@
+{
+  "title": "Word Search",
+  "difficulty": "hard",
+  "args": [
+    "string[][]",
+    "string"
+  ],
+  "returnType": "boolean",
+  "constraints": [
+    "m == board.length",
+    "n == board[i].length",
+    "1 <= m, n <= 6",
+    "1 <= word.length <= 15",
+    "board and word consist of only lowercase and uppercase English letters."
+  ],
+  "description": "Given an `m x n` grid of characters `board` and a string `word`, return `true` if `word` exists in the grid.\n\nThe word can be constructed from letters of sequentially **adjacent cells**, where adjacent cells are **horizontally or vertically** neighboring. The same letter cell **may not be used more than once**.\n\n```text\nboard:\n  A  B  C  E\n  S  F  C  S\n  A  D  E  E\n\nword = \"ABCCED\"\n\nPath: A(0,0)→B(0,1)→C(0,2)→C(1,2)→E(2,2)→D(2,1)\nResult: true\n\nword = \"ABCB\" → false (can't reuse B at (0,1))\n```",
+  "tests": [
+    {
+      "input": "[[[ \"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"ABCCED\"]",
+      "expected": "true",
+      "explanation": "The path A→B→C→C→E→D exists in the grid.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"SEE\"]",
+      "expected": "true",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"ABCB\"]",
+      "expected": "false",
+      "explanation": "The path requires reusing the cell B, which is not allowed.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[[[\"A\"]], \"A\"]",
+      "expected": "true",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[[\"A\"]], \"B\"]",
+      "expected": "false",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[[\"a\",\"b\"],[\"c\",\"d\"]], \"abdc\"]",
+      "expected": "true",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[[\"a\",\"b\"],[\"c\",\"d\"]], \"abcd\"]",
+      "expected": "false",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[[\"C\",\"A\",\"A\"],[\"A\",\"A\",\"A\"],[\"B\",\"C\",\"D\"]], \"AAB\"]",
+      "expected": "true",
+      "is_single_array_arg": false,
+      "isSample": false
+    }
+  ]
+}

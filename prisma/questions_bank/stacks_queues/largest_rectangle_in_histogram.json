@@ -1,0 +1,64 @@
+{
+  "title": "Largest Rectangle in Histogram",
+  "difficulty": "hard",
+  "args": [
+    "integer[]"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= heights.length <= 10^5",
+    "0 <= heights[i] <= 10^4"
+  ],
+  "description": "Given an array of integers `heights` representing the histogram's bar heights where the width of each bar is `1`, return the area of the **largest rectangle** in the histogram.\n\n```text\n  heights: [2, 1, 5, 6, 2, 3]\n\n      6\n    5 6\n    5 6\n  2 5 6 2 3\n  2 5 6 2 3\n1 2 5 6 2 3\n-----------\n0 1 2 3 4 5  (indices)\n\nLargest rectangle: width=2, height=5 (bars at index 2,3)\nArea = 2 * 5 = 10\n```",
+  "tests": [
+    {
+      "input": "[2,1,5,6,2,3]",
+      "expected": "10",
+      "explanation": "The largest rectangle has area 10 (width=2, height=5, bars at indices 2 and 3).",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[2,4]",
+      "expected": "4",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[1]",
+      "expected": "1",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[0]",
+      "expected": "0",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[5,5,5,5,5]",
+      "expected": "25",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[1,2,3,4,5]",
+      "expected": "9",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[5,4,3,2,1]",
+      "expected": "9",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[6,7,5,2,4,5,9,3]",
+      "expected": "16",
+      "is_single_array_arg": true,
+      "isSample": false
+    }
+  ]
+}

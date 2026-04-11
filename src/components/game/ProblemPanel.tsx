@@ -9,33 +9,35 @@ interface ProblemPanelProps {
   onSelectQuestion: (index: number) => void;
   players: any[];
   currentUser: any;
+  solvedQuestionIds?: Set<string>;
 }
 
-export function ProblemPanel({ questions, currentIndex, onSelectQuestion, players, currentUser }: ProblemPanelProps) {
+export function ProblemPanel({ questions, currentIndex, onSelectQuestion, players, currentUser, solvedQuestionIds }: ProblemPanelProps) {
   const q = questions[currentIndex];
-  // Calculate completed indices based on score bounds
   const me = players.find(p => p.id === currentUser?.id);
-  const myProgress = me?.progress || 0;
 
   return (
     <div className="w-1/3 flex flex-col bg-[#1e2333] border-r border-[#2d3244] shadow-xl z-10 relative">
       <div className="flex-none flex items-center justify-between px-4 py-3 bg-[#181c29] border-b border-[#2d3244]">
         <div className="flex bg-[#23283b] rounded-lg p-1 w-full gap-1 overflow-x-auto no-scrollbar">
-          {questions.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => onSelectQuestion(i)}
-              className={`flex-1 min-w-[40px] h-8 rounded-md text-xs font-bold transition-all flex items-center justify-center ${
-                i === currentIndex
-                  ? "bg-brand-600 text-white shadow-md"
-                  : i < myProgress
-                  ? "bg-green-500/20 text-green-400"
-                  : "text-dark-400 hover:bg-[#2d3244] hover:text-dark-200"
-              }`}
-            >
-              {i < myProgress ? <Check className="w-4 h-4" /> : `Q${i + 1}`}
-            </button>
-          ))}
+          {questions.map((question, i) => {
+            const isSolved = solvedQuestionIds?.has(question.id) || false;
+            return (
+              <button
+                key={i}
+                onClick={() => onSelectQuestion(i)}
+                className={`flex-1 min-w-[40px] h-8 rounded-md text-xs font-bold transition-all flex items-center justify-center ${
+                  i === currentIndex
+                    ? "bg-brand-600 text-white shadow-md"
+                    : isSolved
+                    ? "bg-green-500/20 text-green-400"
+                    : "text-dark-400 hover:bg-[#2d3244] hover:text-dark-200"
+                }`}
+              >
+                {isSolved ? <Check className="w-4 h-4" /> : `Q${i + 1}`}
+              </button>
+            );
+          })}
         </div>
       </div>
 

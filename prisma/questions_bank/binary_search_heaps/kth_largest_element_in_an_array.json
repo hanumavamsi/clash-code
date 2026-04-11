@@ -1,0 +1,65 @@
+{
+  "title": "Kth Largest Element in an Array",
+  "difficulty": "medium",
+  "args": [
+    "integer[]",
+    "integer"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= k <= nums.length <= 10^4",
+    "-10^4 <= nums[i] <= 10^4"
+  ],
+  "description": "Given an integer array `nums` and an integer `k`, return the **`k`th largest element** in the array.\n\nNote that it is the `k`th largest element in **sorted order**, not the `k`th distinct element.\n\nYou must solve it in `O(n log n)` time complexity or better.\n\n**Approaches:**\n1. **Sort** and return `nums[n - k]` — O(n log n)\n2. **Min-heap** of size `k` — O(n log k)\n3. **Quickselect** — O(n) average\n\n```text\nnums = [3, 2, 1, 5, 6, 4], k = 2\n\nSorted descending: [6, 5, 4, 3, 2, 1]\n                        ^\n                    2nd largest = 5\n```",
+  "tests": [
+    {
+      "input": "[[3,2,1,5,6,4], 2]",
+      "expected": "5",
+      "explanation": "Sorted descending: [6,5,4,3,2,1]. The 2nd largest is 5.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[[3,2,3,1,2,4,5,5,6], 4]",
+      "expected": "4",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[[1], 1]",
+      "expected": "1",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[[7,6,5,4,3,2,1], 5]",
+      "expected": "3",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[-1,-1], 1]",
+      "expected": "-1",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[100,100,100], 2]",
+      "expected": "100",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[-10000,10000,0], 1]",
+      "expected": "10000",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[2,1], 2]",
+      "expected": "1",
+      "is_single_array_arg": false,
+      "isSample": false
+    }
+  ]
+}

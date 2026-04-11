@@ -1,0 +1,55 @@
+{
+  "title": "Counting Bits",
+  "difficulty": "easy",
+  "args": [
+    "integer"
+  ],
+  "returnType": "integer[]",
+  "constraints": [
+    "0 <= n <= 10^5"
+  ],
+  "description": "Given an integer `n`, return an array `ans` of length `n + 1` such that for each `i` (`0 <= i <= n`), `ans[i]` is the **number of `1`s** in the binary representation of `i`.\n\n```text\nn = 5\n\ni  binary  popcount\n0  000     0\n1  001     1\n2  010     1\n3  011     2\n4  100     1\n5  101     2\n\nAnswer: [0, 1, 1, 2, 1, 2]\n```\n\n**DP trick:** For any `i`, if `i` is even: `ans[i] = ans[i/2]` (same bits, just shifted left). If `i` is odd: `ans[i] = ans[i-1] + 1`.",
+  "tests": [
+    {
+      "input": "2",
+      "expected": "[0,1,1]",
+      "explanation": "0 has 0 ones, 1 has 1 one, 2 has 1 one.",
+      "isSample": true
+    },
+    {
+      "input": "5",
+      "expected": "[0,1,1,2,1,2]",
+      "isSample": true
+    },
+    {
+      "input": "0",
+      "expected": "[0]",
+      "isSample": true
+    },
+    {
+      "input": "1",
+      "expected": "[0,1]",
+      "isSample": false
+    },
+    {
+      "input": "7",
+      "expected": "[0,1,1,2,1,2,2,3]",
+      "isSample": false
+    },
+    {
+      "input": "8",
+      "expected": "[0,1,1,2,1,2,2,3,1]",
+      "isSample": false
+    },
+    {
+      "input": "15",
+      "expected": "[0,1,1,2,1,2,2,3,1,2,2,3,2,3,3,4]",
+      "isSample": false
+    },
+    {
+      "input": "10",
+      "expected": "[0,1,1,2,1,2,2,3,1,2,2]",
+      "isSample": false
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "title": "Reverse Linked List",
+  "difficulty": "easy",
+  "args": [
+    "integer[]"
+  ],
+  "returnType": "integer[]",
+  "constraints": [
+    "0 <= n <= 5000",
+    "-5000 <= Node.val <= 5000",
+    "The list is represented as an array of node values"
+  ],
+  "description": "Given the `head` of a singly linked list, reverse the list, and return the **reversed list**.\n\nThe linked list is represented as an array of integers where each element is a node value.\n\n```text\nInput:  1 -> 2 -> 3 -> 4 -> 5\n                 |\n                 v\nOutput: 5 -> 4 -> 3 -> 2 -> 1\n```\n\nYou may implement this iteratively or recursively.",
+  "tests": [
+    {
+      "input": "[1,2,3,4,5]",
+      "expected": "[5,4,3,2,1]",
+      "explanation": "Reversing [1,2,3,4,5] gives [5,4,3,2,1].",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[1,2]",
+      "expected": "[2,1]",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[]",
+      "expected": "[]",
+      "explanation": "An empty list reversed is still empty.",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[1]",
+      "expected": "[1]",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[7,7,7,7]",
+      "expected": "[7,7,7,7]",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[-3,-2,-1,0,1,2,3]",
+      "expected": "[3,2,1,0,-1,-2,-3]",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[100]",
+      "expected": "[100]",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[0,0,0]",
+      "expected": "[0,0,0]",
+      "is_single_array_arg": true,
+      "isSample": false
+    }
+  ]
+}

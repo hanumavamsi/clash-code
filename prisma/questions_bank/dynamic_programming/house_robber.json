@@ -1,0 +1,65 @@
+{
+  "title": "House Robber",
+  "difficulty": "easy",
+  "args": [
+    "integer[]"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "0 <= nums[i] <= 400"
+  ],
+  "description": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. The only constraint stopping you from robbing each of them is that **adjacent houses have security systems connected** — it will automatically contact the police if two adjacent houses were broken into on the same night.\n\nGiven an integer array `nums` representing the amount of money of each house, return the **maximum amount of money** you can rob tonight without alerting the police.\n\n**DP Recurrence:** `dp[i] = max(dp[i-1], dp[i-2] + nums[i])`\n\n- `dp[i-1]`: skip the current house\n- `dp[i-2] + nums[i]`: rob the current house (can't rob `i-1`)",
+  "tests": [
+    {
+      "input": "[1,2,3,1]",
+      "expected": "4",
+      "explanation": "Rob house 1 (money=1) then house 3 (money=3). Total = 1 + 3 = 4.",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[2,7,9,3,1]",
+      "expected": "12",
+      "explanation": "Rob house 1 (money=2), house 3 (money=9), house 5 (money=1). Total = 2 + 9 + 1 = 12.",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[1]",
+      "expected": "1",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[0]",
+      "expected": "0",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[2,1]",
+      "expected": "2",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expected": "3",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[100,1,100,1,100]",
+      "expected": "300",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[5,3,4,11,2]",
+      "expected": "16",
+      "is_single_array_arg": true,
+      "isSample": false
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Climbing Stairs",
+  "difficulty": "easy",
+  "args": [
+    "integer"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= n <= 45"
+  ],
+  "description": "You are climbing a staircase. It takes `n` steps to reach the top.\n\nEach time you can either climb `1` or `2` steps. In how many **distinct ways** can you climb to the top?",
+  "tests": [
+    {
+      "input": "2",
+      "expected": "2",
+      "explanation": "Two ways: (1+1) or (2).",
+      "isSample": true
+    },
+    {
+      "input": "3",
+      "expected": "3",
+      "explanation": "Three ways: (1+1+1), (1+2), or (2+1).",
+      "isSample": true
+    },
+    {
+      "input": "1",
+      "expected": "1",
+      "isSample": true
+    },
+    {
+      "input": "4",
+      "expected": "5",
+      "isSample": false
+    },
+    {
+      "input": "5",
+      "expected": "8",
+      "isSample": false
+    },
+    {
+      "input": "10",
+      "expected": "89",
+      "isSample": false
+    },
+    {
+      "input": "20",
+      "expected": "10946",
+      "isSample": false
+    },
+    {
+      "input": "45",
+      "expected": "1836311903",
+      "isSample": false
+    }
+  ]
+}

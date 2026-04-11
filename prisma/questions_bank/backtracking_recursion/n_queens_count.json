@@ -1,0 +1,57 @@
+{
+  "title": "N-Queens Count",
+  "difficulty": "hard",
+  "args": [
+    "integer"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= n <= 9"
+  ],
+  "description": "The **N-Queens** puzzle is the problem of placing `n` queens on an `n x n` chessboard such that no two queens attack each other.\n\nA queen attacks any piece in the same row, column, or diagonal.\n\nGiven an integer `n`, return the **number of distinct solutions** to the N-Queens puzzle.\n\n```text\nFor n = 4, there are 2 solutions:\n\n  Solution 1:      Solution 2:\n  . Q . .          . . Q .\n  . . . Q          Q . . .\n  Q . . .          . . . Q\n  . . Q .          . Q . .\n```\n\n**Backtracking approach:**\n- Place queens one row at a time.\n- For each row, try every column. Skip if that column, left diagonal, or right diagonal is already occupied.\n- Use three sets: `cols`, `diag1` (row-col), `diag2` (row+col) to track conflicts.",
+  "tests": [
+    {
+      "input": "4",
+      "expected": "2",
+      "explanation": "There are 2 distinct arrangements for a 4x4 board.",
+      "isSample": true
+    },
+    {
+      "input": "1",
+      "expected": "1",
+      "explanation": "A single queen on a 1x1 board.",
+      "isSample": true
+    },
+    {
+      "input": "8",
+      "expected": "92",
+      "explanation": "The classic 8-Queens problem has 92 solutions.",
+      "isSample": true
+    },
+    {
+      "input": "2",
+      "expected": "0",
+      "isSample": false
+    },
+    {
+      "input": "3",
+      "expected": "0",
+      "isSample": false
+    },
+    {
+      "input": "5",
+      "expected": "10",
+      "isSample": false
+    },
+    {
+      "input": "6",
+      "expected": "4",
+      "isSample": false
+    },
+    {
+      "input": "9",
+      "expected": "352",
+      "isSample": false
+    }
+  ]
+}

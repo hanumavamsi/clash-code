@@ -1,0 +1,58 @@
+{
+  "title": "Reverse Bits",
+  "difficulty": "easy",
+  "args": [
+    "integer"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "The input must be treated as an unsigned 32-bit integer.",
+    "0 <= n <= 2^32 - 1"
+  ],
+  "description": "Reverse the bits of a given 32-bit unsigned integer.\n\n**Note:** In languages with no unsigned integer type (like Java), treat the integer's internal binary representation as a 32-bit unsigned integer.\n\n```text\nInput:  00000010100101000001111010011100\n                  (binary of 43261596)\nOutput: 00111001011110000010100101000000\n                  (binary of 964176192)\n\nReversed bit-by-bit:\n  Original:  0  0 ... 1 0 0 (LSB)\n  Reversed: (LSB) 0 0 1 ... 0  0\n```\n\n**Algorithm:** For 32 iterations, extract the least significant bit of `n`, shift the result left, OR in that bit, then shift `n` right.",
+  "tests": [
+    {
+      "input": "43261596",
+      "expected": "964176192",
+      "explanation": "00000010100101000001111010011100 reversed is 00111001011110000010100101000000.",
+      "isSample": true
+    },
+    {
+      "input": "4294967293",
+      "expected": "3221225471",
+      "explanation": "11111111111111111111111111111101 reversed is 10111111111111111111111111111111.",
+      "isSample": true
+    },
+    {
+      "input": "0",
+      "expected": "0",
+      "explanation": "All zeros reversed is all zeros.",
+      "isSample": true
+    },
+    {
+      "input": "1",
+      "expected": "2147483648",
+      "isSample": false
+    },
+    {
+      "input": "2147483648",
+      "expected": "1",
+      "isSample": false
+    },
+    {
+      "input": "4294967295",
+      "expected": "4294967295",
+      "isSample": false
+    },
+    {
+      "input": "2",
+      "expected": "1073741824",
+      "isSample": false
+    },
+    {
+      "input": "3",
+      "expected": "3221225472",
+      "isSample": false
+    }
+  ]
+}

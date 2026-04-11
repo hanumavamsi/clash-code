@@ -1,10 +1,13 @@
 /**
  * seed-questions.js
  *
- * Reads all JSON files from prisma/questions_bank/ and upserts them into
- * the Question table. Uses a deterministic SHA-256-based ID derived from
- * the question title so the script is fully idempotent — running it twice
- * will update existing rows rather than creating duplicates.
+ * Reads all JSON files from prisma/questions_bank/{category}/{slug}.json
+ * and upserts them into the Question table. Each problem lives in its own
+ * file so diffs are clean and problems are individually editable.
+ *
+ * Uses a deterministic SHA-256-based ID derived from the question title so
+ * the script is fully idempotent — running it twice will update existing
+ * rows rather than creating duplicates.
  *
  * Usage:
  *   node scripts/seed-questions.js
@@ -23,6 +26,23 @@ const crypto = require("crypto");
 
 const prisma = new PrismaClient();
 const BANK_DIR = path.join(__dirname, "../prisma/questions_bank");
+
+/**
+ * Recursively collect all .json files under a directory.
+ * Returns an array of { file: absolutePath, category: dirName } objects.
+ */
+function collectJsonFiles(dir) {
+  const results = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...collectJsonFiles(full));
+    } else if (entry.isFile() && entry.name.endsWith(".json")) {
+      results.push({ file: full, category: path.basename(path.dirname(full)) });
+    }
+  }
+  return results;
+}
 
 /**
  * Generate a deterministic UUID-format ID from a question title.
@@ -119,92 +139,90 @@ function buildDescription(q) {
 }
 
 async function seed() {
-  // Collect all JSON files in the bank directory
   if (!fs.existsSync(BANK_DIR)) {
     console.error(`Bank directory not found: ${BANK_DIR}`);
     process.exit(1);
   }
 
-  const files = fs.readdirSync(BANK_DIR).filter((f) => f.endsWith(".json"));
-  if (files.length === 0) {
+  // Each problem now lives in its own file: questions_bank/{category}/{slug}.json
+  const entries = collectJsonFiles(BANK_DIR);
+  if (entries.length === 0) {
     console.log("No question bank files found.");
     return;
   }
 
-  console.log(`Found ${files.length} question bank file(s):\n`);
+  console.log(`Found ${entries.length} problem file(s):\n`);
 
   let total = 0;
   let errors = 0;
+  let currentCategory = null;
 
-  for (const file of files) {
-    const filePath = path.join(BANK_DIR, file);
-    let questions;
+  for (const { file, category } of entries) {
+    if (category !== currentCategory) {
+      if (currentCategory !== null) console.log();
+      console.log(`  [${category}]`);
+      currentCategory = category;
+    }
 
+    let q;
     try {
-      const raw = fs.readFileSync(filePath, "utf8");
-      questions = JSON.parse(raw);
+      q = JSON.parse(fs.readFileSync(file, "utf8"));
     } catch (e) {
-      console.error(`  [PARSE ERROR] ${file}: ${e.message}`);
+      console.error(`    [PARSE ERROR] ${path.basename(file)}: ${e.message}`);
       errors++;
       continue;
     }
 
-    console.log(`  ${file} (${questions.length} questions)`);
-
-    for (const q of questions) {
-      if (!q.title) {
-        console.error(`    [SKIP] Question missing title in ${file}`);
-        errors++;
-        continue;
-      }
-
-      const id = titleToId(q.title);
-
-      // Split tests by isSample flag; strip isSample before storing
-      const sampleTests = (q.tests || [])
-        .filter((t) => t.isSample === true)
-        .map(({ isSample, ...rest }) => rest);
-
-      const hiddenTests = (q.tests || [])
-        .filter((t) => t.isSample === false)
-        .map(({ isSample, ...rest }) => rest);
-
-      const fullDescription = buildDescription(q);
-
-      try {
-        await prisma.question.upsert({
-          where: { id },
-          update: {
-            title: q.title,
-            difficulty: q.difficulty,
-            args: q.args || [],
-            returnType: q.returnType || "integer",
-            constraints: q.constraints || [],
-            description: fullDescription,
-            sampleTests,
-            hiddenTests,
-          },
-          create: {
-            id,
-            title: q.title,
-            difficulty: q.difficulty,
-            args: q.args || [],
-            returnType: q.returnType || "integer",
-            constraints: q.constraints || [],
-            description: fullDescription,
-            sampleTests,
-            hiddenTests,
-          },
-        });
-        console.log(`    [OK] "${q.title}" (${q.difficulty}) — ${sampleTests.length} sample, ${hiddenTests.length} hidden tests`);
-        total++;
-      } catch (e) {
-        console.error(`    [FAIL] "${q.title}": ${e.message}`);
-        errors++;
-      }
+    if (!q.title) {
+      console.error(`    [SKIP] Missing title in ${path.basename(file)}`);
+      errors++;
+      continue;
     }
 
-    console.log();
+    const id = titleToId(q.title);
+
+    // Split tests by isSample flag; strip isSample before storing
+    const sampleTests = (q.tests || [])
+      .filter((t) => t.isSample === true)
+      .map(({ isSample, ...rest }) => rest);
+
+    const hiddenTests = (q.tests || [])
+      .filter((t) => t.isSample === false)
+      .map(({ isSample, ...rest }) => rest);
+
+    const fullDescription = buildDescription(q);
+
+    try {
+      await prisma.question.upsert({
+        where: { id },
+        update: {
+          title: q.title,
+          difficulty: q.difficulty,
+          args: q.args || [],
+          returnType: q.returnType || "integer",
+          constraints: q.constraints || [],
+          description: fullDescription,
+          sampleTests,
+          hiddenTests,
+        },
+        create: {
+          id,
+          title: q.title,
+          difficulty: q.difficulty,
+          args: q.args || [],
+          returnType: q.returnType || "integer",
+          constraints: q.constraints || [],
+          description: fullDescription,
+          sampleTests,
+          hiddenTests,
+        },
+      });
+      console.log(`    [OK] "${q.title}" (${q.difficulty}) — ${sampleTests.length} sample, ${hiddenTests.length} hidden tests`);
+      total++;
+    } catch (e) {
+      console.error(`    [FAIL] "${q.title}": ${e.message}`);
+      errors++;
+    }
   }
 
   console.log(`─────────────────────────────────────`);

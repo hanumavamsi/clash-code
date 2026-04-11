@@ -1,0 +1,68 @@
+{
+  "title": "Search Insert Position",
+  "difficulty": "easy",
+  "args": [
+    "integer[]",
+    "integer"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-10^4 <= nums[i] <= 10^4",
+    "nums contains distinct values sorted in ascending order.",
+    "-10^4 <= target <= 10^4"
+  ],
+  "description": "Given a sorted array of distinct integers `nums` and a `target` value, return the **index** if the target is found. If not, return the **index where it would be inserted** in order.\n\nYou must write an algorithm with `O(log n)` runtime complexity.\n\n```text\nnums = [1, 3, 5, 6], target = 5  ->  index 2  (found at index 2)\nnums = [1, 3, 5, 6], target = 2  ->  index 1  (would be inserted at index 1)\nnums = [1, 3, 5, 6], target = 7  ->  index 4  (would be appended at end)\nnums = [1, 3, 5, 6], target = 0  ->  index 0  (would be prepended at start)\n```",
+  "tests": [
+    {
+      "input": "[[1,3,5,6], 5]",
+      "expected": "2",
+      "explanation": "5 is found at index 2.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[[1,3,5,6], 2]",
+      "expected": "1",
+      "explanation": "2 would be inserted at index 1 to keep sorted order.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[[1,3,5,6], 7]",
+      "expected": "4",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[[1,3,5,6], 0]",
+      "expected": "0",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[1], 0]",
+      "expected": "0",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[1], 1]",
+      "expected": "0",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[1], 2]",
+      "expected": "1",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[[1,3,5,7,9], 6]",
+      "expected": "3",
+      "is_single_array_arg": false,
+      "isSample": false
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "title": "Sum of Two Integers",
+  "difficulty": "medium",
+  "args": [
+    "integer",
+    "integer"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "-1000 <= a, b <= 1000"
+  ],
+  "description": "Given two integers `a` and `b`, return the **sum of the two integers** without using the operators `+` and `-`.\n\n**Bitwise addition algorithm:**\n\n1. XOR gives the sum without carry: `a ^ b`\n2. AND then left-shift gives carry: `(a & b) << 1`\n3. Repeat until carry is 0\n\n```text\na = 1  (0001)\nb = 2  (0010)\n\nStep 1: sum  = 1 ^ 2  = 3  (0011)\n        carry = (1 & 2) << 1 = 0\nNo more carry → result = 3\n\na = 3  (0011)\nb = 5  (0101)\n\nStep 1: sum  = 3 ^ 5  = 6  (0110)\n        carry = (3 & 5) << 1 = 2  (0010)\nStep 2: sum  = 6 ^ 2  = 4  (0100)\n        carry = (6 & 2) << 1 = 4  (0100)\nStep 3: sum  = 4 ^ 4  = 0  (0000)\n        carry = (4 & 4) << 1 = 8  (1000)\nStep 4: sum  = 0 ^ 8  = 8  (1000)\n        carry = 0\nResult = 8  ✓\n```",
+  "tests": [
+    {
+      "input": "[1, 2]",
+      "expected": "3",
+      "explanation": "1 + 2 = 3.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[2, 3]",
+      "expected": "5",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[0, 0]",
+      "expected": "0",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[-1, 1]",
+      "expected": "0",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[-5, -3]",
+      "expected": "-8",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[100, 200]",
+      "expected": "300",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[-1000, 1000]",
+      "expected": "0",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[999, 1]",
+      "expected": "1000",
+      "is_single_array_arg": false,
+      "isSample": false
+    }
+  ]
+}

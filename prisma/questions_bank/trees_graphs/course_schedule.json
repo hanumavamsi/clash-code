@@ -1,0 +1,70 @@
+{
+  "title": "Course Schedule",
+  "difficulty": "hard",
+  "args": [
+    "integer",
+    "integer[][]"
+  ],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= numCourses <= 2000",
+    "0 <= prerequisites.length <= 5000",
+    "prerequisites[i].length == 2",
+    "0 <= ai, bi < numCourses",
+    "All the pairs [ai, bi] are unique."
+  ],
+  "description": "There are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [a, b]` indicates that you **must** take course `b` first if you want to take course `a`.\n\nReturn `true` if you can finish all courses. Otherwise, return `false`.\n\nA cycle in the prerequisite graph means it is **impossible** to complete all courses.\n\n```text\nnumCourses = 2, prerequisites = [[1, 0]]\n\n  0 ---> 1   (take 0, then 1)\n\nNo cycle -> true\n\nnumCourses = 2, prerequisites = [[1, 0], [0, 1]]\n\n  0 ---> 1\n  1 ---> 0   (cycle!)\n\nCycle detected -> false\n```",
+  "tests": [
+    {
+      "input": "[2, [[1,0]]]",
+      "expected": "true",
+      "explanation": "Take course 0 first, then course 1. No cycle.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[2, [[1,0],[0,1]]]",
+      "expected": "false",
+      "explanation": "Course 0 requires course 1, and course 1 requires course 0 -- a cycle exists.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[1, []]",
+      "expected": "true",
+      "explanation": "One course with no prerequisites.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[3, [[1,0],[2,1]]]",
+      "expected": "true",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[3, [[1,0],[2,1],[0,2]]]",
+      "expected": "false",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[4, [[1,0],[2,0],[3,1],[3,2]]]",
+      "expected": "true",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[5, [[1,0],[2,1],[3,2],[4,3],[0,4]]]",
+      "expected": "false",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[6, [[1,0],[2,0],[3,1],[4,2],[5,3],[5,4]]]",
+      "expected": "true",
+      "is_single_array_arg": false,
+      "isSample": false
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "title": "Best Time to Buy and Sell Stock",
+  "difficulty": "easy",
+  "args": [
+    "integer[]"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= prices.length <= 10^5",
+    "0 <= prices[i] <= 10^4"
+  ],
+  "description": "You are given an array `prices` where `prices[i]` is the price of a given stock on the `i`th day.\n\nYou want to maximize your profit by choosing a **single day** to buy one stock and choosing a **different day in the future** to sell that stock.\n\nReturn the **maximum profit** you can achieve from this transaction. If you cannot achieve any profit, return `0`.",
+  "tests": [
+    {
+      "input": "[7,1,5,3,6,4]",
+      "expected": "5",
+      "explanation": "Buy on day 2 (price=1), sell on day 5 (price=6). Profit = 6 - 1 = 5.",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[7,6,4,3,1]",
+      "expected": "0",
+      "explanation": "Prices only decrease, so no profitable transaction is possible. Return 0.",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[1,2]",
+      "expected": "1",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[2,4,1]",
+      "expected": "2",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[1]",
+      "expected": "0",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[3,3,3,3]",
+      "expected": "0",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[1,2,3,4,5]",
+      "expected": "4",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[2,1,4,5,2,9,7]",
+      "expected": "8",
+      "is_single_array_arg": true,
+      "isSample": false
+    }
+  ]
+}

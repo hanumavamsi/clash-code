@@ -98,6 +98,31 @@ function registerRoomHandlers(io, socket, prisma, socketToUser, pendingForfeits)
         }
 
         socket.join(roomId);
+
+        // ── Start timeout for second player if this is the first player ──────
+        if (room.players.length === 1 && !room.matchStartTimeout) {
+            room.matchStartTimeout = setTimeout(() => {
+                if (room.state === "WAITING" && room.players.length === 1) {
+                    console.log(`[Socket] Room ${roomId} timeout: only 1 player after 30s. Kicking player and removing room.`);
+                    const player = room.players[0];
+                    if (player) {
+                        const socket = io.sockets.sockets.get(player.socketId);
+                        if (socket) {
+                            socket.emit("room_error", { message: "Match failed to start: opponent did not join." });
+                            socket.disconnect(true);
+                        }
+                    }
+                    rooms.delete(roomId);
+                }
+            }, 30000); // 30 second timeout
+        }
+
+        // ── Cancel timeout if second player joins ──────────────────────────
+        if (room.players.length === 2 && room.matchStartTimeout) {
+            clearTimeout(room.matchStartTimeout);
+            room.matchStartTimeout = undefined;
+        }
+
         io.to(roomId).emit("room_state", sanitizeRoom(room));
     });
 

@@ -1,0 +1,65 @@
+{
+  "title": "Single Number",
+  "difficulty": "easy",
+  "args": [
+    "integer[]"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= nums.length <= 3 * 10^4",
+    "-3 * 10^4 <= nums[i] <= 3 * 10^4",
+    "Every element appears exactly twice except for one element which appears only once."
+  ],
+  "description": "Given a **non-empty** array of integers `nums`, every element appears **twice** except for one. Find that single one.\n\nYou must implement a solution with a **linear runtime complexity** and use only **constant extra space**.\n\n**Key insight:** XOR (`^`) has two useful properties:\n- `a ^ a = 0` (same number XORed with itself = 0)\n- `a ^ 0 = a` (any number XORed with 0 = itself)\n\nSo XOR-ing all elements cancels out pairs, leaving only the unique element.\n\n```text\nnums = [4, 1, 2, 1, 2]\n4 ^ 1 ^ 2 ^ 1 ^ 2\n= 4 ^ (1^1) ^ (2^2)\n= 4 ^ 0 ^ 0\n= 4\n```",
+  "tests": [
+    {
+      "input": "[2,2,1]",
+      "expected": "1",
+      "explanation": "2 XOR 2 = 0, 0 XOR 1 = 1.",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[4,1,2,1,2]",
+      "expected": "4",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[1]",
+      "expected": "1",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[0,0,99]",
+      "expected": "99",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[-1,-1,-2]",
+      "expected": "-2",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[-3,-3,0]",
+      "expected": "0",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[7,3,5,3,7]",
+      "expected": "5",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[30000,29999,30000]",
+      "expected": "29999",
+      "is_single_array_arg": true,
+      "isSample": false
+    }
+  ]
+}

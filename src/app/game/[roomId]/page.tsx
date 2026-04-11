@@ -33,6 +33,7 @@ export default function GameScreen() {
     const [winner, setWinner] = useState<any>(null);
     const [language, setLanguage] = useState("javascript");
     const [codeStuffs, setCodeStuffs] = useState<Record<number, string>>({});
+    const [solvedQuestionIds, setSolvedQuestionIds] = useState<Set<string>>(new Set());
 
     const [showExitModal, setShowExitModal] = useState(false);
     const [disconnectBanner, setDisconnectBanner] = useState<string | null>(null);
@@ -61,12 +62,6 @@ export default function GameScreen() {
             if (is1DArray) return `${mapped}[]`;
             return mapped;
         }
-        if (lang === "csharp") {
-            mapped = base === "integer" ? "int" : base === "boolean" ? "bool" : base === "string" ? "string" : base;
-            if (is2DArray) return `${mapped}[][]`;
-            if (is1DArray) return `${mapped}[]`;
-            return mapped;
-        }
         if (lang === "typescript") {
             mapped = base === "integer" ? "number" : base === "boolean" ? "boolean" : base === "string" ? "string" : "any";
             if (is2DArray) return `${mapped}[][]`;
@@ -83,14 +78,12 @@ export default function GameScreen() {
         const cppParams  = argsTypes.map((t: string, i: number) => `${mapType(t, "cpp", false)} arg${i}`).join(", ");
         const cppRet     = mapType(retType, "cpp", true);
         const javaParams = argsTypes.map((t: string, i: number) => `${mapType(t, "java")} arg${i}`).join(", ");
-        const csParams   = argsTypes.map((t: string, i: number) => `${mapType(t, "csharp")} arg${i}`).join(", ");
         const tsParams   = argsTypes.map((t: string, i: number) => `arg${i}: ${mapType(t, "typescript")}`).join(", ");
         const untypedParams = argsTypes.map((_: any, i: number) => `arg${i}`).join(", ");
 
         if (lang === "python" || lang === "python3") return `import math, sys, collections\n\n# Solve: ${q.title}\ndef solution(${untypedParams}):\n    pass\n`;
         if (lang === "cpp" || lang === "c") return `#include <iostream>\n#include <vector>\n#include <string>\n#include <algorithm>\n#include <unordered_map>\n#include <unordered_set>\nusing namespace std;\n\n// Solve: ${q.title}\n${cppRet} solution(${cppParams}) {\n    \n}\n`;
         if (lang === "java") return `import java.util.*;\n\n// Solve: ${q.title}\nclass Solution {\n    public ${mapType(retType, "java")} solution(${javaParams}) {\n        \n    }\n}\n`;
-        if (lang === "csharp") return `using System;\nusing System.Collections.Generic;\n\n// Solve: ${q.title}\npublic class Solution {\n    public ${mapType(retType, "csharp")} solution(${csParams}) {\n        \n    }\n}\n`;
         if (lang === "typescript") return `// Solve: ${q.title}\nfunction solution(${tsParams}): ${mapType(retType, "typescript")} {\n  \n}\n`;
         return `// Solve: ${q.title}\nfunction solution(${untypedParams}) {\n  \n}\n`;
     };
@@ -178,9 +171,10 @@ export default function GameScreen() {
             setIsSubmitting(false);
             setOutput(result);
             if (result.success) {
-                const updatedList = [...questionsRef.current];
-                updatedList[currentQuestionIndexRef.current].passed = true;
-                setQuestions(updatedList);
+                const currentQuestion = questionsRef.current[currentQuestionIndexRef.current];
+                if (currentQuestion) {
+                    setSolvedQuestionIds(prev => new Set([...prev, currentQuestion.id]));
+                }
             }
         });
 
@@ -199,6 +193,11 @@ export default function GameScreen() {
             setPlayers(players);
             setMatchEnded(true);
             setDisconnectBanner(null);
+            setShowExitModal(false);
+            // Auto-redirect after 5 seconds if they don't click anything
+            setTimeout(() => {
+                router.replace("/");
+            }, 5000);
         });
 
         return () => {
@@ -284,12 +283,13 @@ export default function GameScreen() {
             </AnimatePresence>
 
             <div className="flex-1 flex overflow-hidden">
-                <ProblemPanel 
+                <ProblemPanel
                   questions={questions}
                   currentIndex={currentQuestionIndex}
                   onSelectQuestion={switchQuestion}
                   players={players}
                   currentUser={currentUser}
+                  solvedQuestionIds={solvedQuestionIds}
                 />
 
                 <div className="flex-1 flex flex-col min-w-0">
@@ -344,8 +344,9 @@ export default function GameScreen() {
                                         const socket = getSocket();
                                         if (socket && currentUser) {
                                             socket.emit("forfeit_match", { roomId, userId: currentUser.id });
+                                            setShowExitModal(false);
+                                            // Don't redirect immediately - wait for match_ended event
                                         }
-                                        router.replace("/");
                                     }}
                                     className="flex-1 py-3 bg-red-500 hover:bg-red-400 text-white font-bold rounded-xl transition-colors shadow-[0_0_15px_rgba(239,68,68,0.3)]"
                                 >

@@ -8,7 +8,9 @@
     "start": "NODE_ENV=production node server.js",
     "lint": "eslint",
     "seed:problems": "node scripts/seed-problems.js",
-    "seed:questions": "node scripts/seed-questions.js"
+    "seed:questions": "node scripts/seed-questions.js",
+    "test:problems": "node tests/judge/problems.test.js",
+    "test:problems:multilang": "node tests/judge/problems-multilang.test.js"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",

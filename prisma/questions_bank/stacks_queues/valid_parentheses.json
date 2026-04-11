@@ -1,0 +1,63 @@
+{
+  "title": "Valid Parentheses",
+  "difficulty": "easy",
+  "args": [
+    "string"
+  ],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s consists of parentheses only '()[]{}'."
+  ],
+  "description": "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is **valid**.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.",
+  "tests": [
+    {
+      "input": "\"()\"",
+      "expected": "true",
+      "explanation": "A single matched pair of parentheses is valid.",
+      "isSample": true
+    },
+    {
+      "input": "\"()[]{}\"",
+      "expected": "true",
+      "explanation": "All bracket types are correctly matched.",
+      "isSample": true
+    },
+    {
+      "input": "\"(]\"",
+      "expected": "false",
+      "explanation": "Opening '(' is not closed by the matching ')'.",
+      "isSample": true
+    },
+    {
+      "input": "\"([)]\"",
+      "expected": "false",
+      "isSample": false
+    },
+    {
+      "input": "\"{[]}\"",
+      "expected": "true",
+      "isSample": false
+    },
+    {
+      "input": "\"[\"",
+      "expected": "false",
+      "isSample": false
+    },
+    {
+      "input": "\"]\"",
+      "expected": "false",
+      "isSample": false
+    },
+    {
+      "input": "\"((()))\"",
+      "expected": "true",
+      "isSample": false
+    },
+    {
+      "input": "\"{[()]}\"",
+      "expected": "true",
+      "isSample": false
+    }
+  ]
+}

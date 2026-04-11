@@ -1,0 +1,63 @@
+{
+  "title": "Longest Substring Without Repeating Characters",
+  "difficulty": "medium",
+  "args": [
+    "string"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "0 <= s.length <= 5 * 10^4",
+    "s consists of English letters, digits, symbols and spaces."
+  ],
+  "description": "Given a string `s`, find the length of the **longest substring** without repeating characters.\n\nA **substring** is a contiguous non-empty sequence of characters within a string.",
+  "tests": [
+    {
+      "input": "\"abcabcbb\"",
+      "expected": "3",
+      "explanation": "The answer is \"abc\", with the length of 3.",
+      "isSample": true
+    },
+    {
+      "input": "\"bbbbb\"",
+      "expected": "1",
+      "explanation": "The answer is \"b\", with the length of 1.",
+      "isSample": true
+    },
+    {
+      "input": "\"pwwkew\"",
+      "expected": "3",
+      "explanation": "The answer is \"wke\", with the length of 3.",
+      "isSample": true
+    },
+    {
+      "input": "\"\"",
+      "expected": "0",
+      "isSample": false
+    },
+    {
+      "input": "\"a\"",
+      "expected": "1",
+      "isSample": false
+    },
+    {
+      "input": "\"au\"",
+      "expected": "2",
+      "isSample": false
+    },
+    {
+      "input": "\"dvdf\"",
+      "expected": "3",
+      "isSample": false
+    },
+    {
+      "input": "\" \"",
+      "expected": "1",
+      "isSample": false
+    },
+    {
+      "input": "\"abcdefghij\"",
+      "expected": "10",
+      "isSample": false
+    }
+  ]
+}

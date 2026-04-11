@@ -29,6 +29,12 @@ function _handleForfeit(io, prisma, roomId, userId, socketId, socketToUser) {
 
 /** Start a match: pick questions, start timer, notify players */
 async function _startMatch(io, prisma, roomId, room) {
+    // Clear any pending match start timeout
+    if (room.matchStartTimeout) {
+        clearTimeout(room.matchStartTimeout);
+        room.matchStartTimeout = undefined;
+    }
+
     room.state = "READY";
     io.to(roomId).emit("start_countdown", { duration: 3 });
 

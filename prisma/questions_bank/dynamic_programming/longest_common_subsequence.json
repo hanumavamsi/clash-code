@@ -1,0 +1,67 @@
+{
+  "title": "Longest Common Subsequence",
+  "difficulty": "medium",
+  "args": [
+    "string",
+    "string"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= text1.length, text2.length <= 1000",
+    "text1 and text2 consist of only lowercase English characters."
+  ],
+  "description": "Given two strings `text1` and `text2`, return the **length of their longest common subsequence**. If there is no common subsequence, return `0`.\n\nA **subsequence** of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.\n\nA **common subsequence** of two strings is a subsequence that is common to both strings.\n\n**2D DP table** for `\"abcde\"` and `\"ace\"`:\n\n```text\n     \"\" a  c  e\n  \"\" [0  0  0  0]\n   a [0  1  1  1]\n   b [0  1  1  1]\n   c [0  1  2  2]\n   d [0  1  2  2]\n   e [0  1  2  3]  <- Answer: 3 (\"ace\")\n```\n\n`dp[i][j] = dp[i-1][j-1] + 1` if characters match, else `max(dp[i-1][j], dp[i][j-1])`.",
+  "tests": [
+    {
+      "input": "[\"abcde\", \"ace\"]",
+      "expected": "3",
+      "explanation": "The longest common subsequence is \"ace\" with length 3.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[\"abc\", \"abc\"]",
+      "expected": "3",
+      "explanation": "The whole string is the LCS.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[\"abc\", \"def\"]",
+      "expected": "0",
+      "explanation": "No common subsequence exists.",
+      "is_single_array_arg": false,
+      "isSample": true
+    },
+    {
+      "input": "[\"a\", \"a\"]",
+      "expected": "1",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[\"a\", \"b\"]",
+      "expected": "0",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[\"bl\", \"yby\"]",
+      "expected": "1",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[\"oxcpqrsvwf\", \"shmtulqrypy\"]",
+      "expected": "2",
+      "is_single_array_arg": false,
+      "isSample": false
+    },
+    {
+      "input": "[\"hofubmnylkra\", \"pqhgxgdofcvmr\"]",
+      "expected": "5",
+      "is_single_array_arg": false,
+      "isSample": false
+    }
+  ]
+}

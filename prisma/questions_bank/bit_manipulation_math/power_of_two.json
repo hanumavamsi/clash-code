@@ -1,0 +1,62 @@
+{
+  "title": "Power of Two",
+  "difficulty": "easy",
+  "args": [
+    "integer"
+  ],
+  "returnType": "boolean",
+  "constraints": [
+    "-2^31 <= n <= 2^31 - 1"
+  ],
+  "description": "Given an integer `n`, return `true` if it is a power of two. Otherwise, return `false`.\n\nAn integer `n` is a power of two if there exists an integer `x` such that `n == 2^x`.\n\n**Bit trick:** A power of two has exactly one `1` bit in its binary representation.\n\n```text\n1  = 0001  →  power of 2 (2^0)\n2  = 0010  →  power of 2 (2^1)\n4  = 0100  →  power of 2 (2^2)\n3  = 0011  →  NOT a power of 2 (two 1-bits)\n\nKey insight: n & (n - 1) == 0 iff n has exactly one 1-bit.\n  4: 0100 & 0011 = 0000  →  true\n  6: 0110 & 0101 = 0100  →  false\n```\n\n**Edge case:** `n <= 0` is never a power of two.",
+  "tests": [
+    {
+      "input": "1",
+      "expected": "true",
+      "explanation": "2^0 = 1.",
+      "isSample": true
+    },
+    {
+      "input": "16",
+      "expected": "true",
+      "explanation": "2^4 = 16.",
+      "isSample": true
+    },
+    {
+      "input": "3",
+      "expected": "false",
+      "explanation": "3 is not a power of 2.",
+      "isSample": true
+    },
+    {
+      "input": "0",
+      "expected": "false",
+      "isSample": false
+    },
+    {
+      "input": "-1",
+      "expected": "false",
+      "isSample": false
+    },
+    {
+      "input": "2",
+      "expected": "true",
+      "isSample": false
+    },
+    {
+      "input": "1024",
+      "expected": "true",
+      "isSample": false
+    },
+    {
+      "input": "2147483648",
+      "expected": "true",
+      "isSample": false
+    },
+    {
+      "input": "6",
+      "expected": "false",
+      "isSample": false
+    }
+  ]
+}

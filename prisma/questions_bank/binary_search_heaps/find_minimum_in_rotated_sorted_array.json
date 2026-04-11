@@ -1,0 +1,69 @@
+{
+  "title": "Find Minimum in Rotated Sorted Array",
+  "difficulty": "medium",
+  "args": [
+    "integer[]"
+  ],
+  "returnType": "integer",
+  "constraints": [
+    "n == nums.length",
+    "1 <= n <= 5000",
+    "-5000 <= nums[i] <= 5000",
+    "All values of nums are unique.",
+    "nums is sorted and rotated between 1 and n times."
+  ],
+  "description": "Suppose an array of length `n` sorted in ascending order is **rotated** between `1` and `n` times.\n\nFor example, the array `[0,1,2,4,5,6,7]` might become `[4,5,6,7,0,1,2]` if rotated 4 times.\n\nGiven the sorted rotated array `nums`, return the **minimum element** of this array.\n\nYou must write an algorithm that runs in `O(log n)` time.\n\n```text\nOriginal:         [0, 1, 2, 4, 5, 6, 7]\nRotated 4 times:  [4, 5, 6, 7, 0, 1, 2]\n                              ^\n                         minimum = 0\n```",
+  "tests": [
+    {
+      "input": "[3,4,5,1,2]",
+      "expected": "1",
+      "explanation": "The original array was [1,2,3,4,5] rotated 3 times.",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[4,5,6,7,0,1,2]",
+      "expected": "0",
+      "explanation": "The original array was [0,1,2,4,5,6,7] rotated 4 times.",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[11,13,15,17]",
+      "expected": "11",
+      "explanation": "The array is already sorted (0 rotations), so the minimum is the first element.",
+      "is_single_array_arg": true,
+      "isSample": true
+    },
+    {
+      "input": "[1]",
+      "expected": "1",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[2,1]",
+      "expected": "1",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[5,1,2,3,4]",
+      "expected": "1",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[1,2,3,4,5]",
+      "expected": "1",
+      "is_single_array_arg": true,
+      "isSample": false
+    },
+    {
+      "input": "[6,7,8,9,10,1,2,3,4,5]",
+      "expected": "1",
+      "is_single_array_arg": true,
+      "isSample": false
+    }
+  ]
+}

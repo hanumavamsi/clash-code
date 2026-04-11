@@ -43,13 +43,13 @@ const concludeMatch = async (roomId, room, io, prisma, options = {}) => {
             : (p1.score > p2.score ? p1 : (p2.score > p1.score ? p2 : null));
 
         await prisma.$transaction([
-            ...(u1 ? [prisma.user.update({ 
-                where: { id: p1.id }, 
-                data: { eloRating: p1.newElo, matchCount: { increment: 1 } } 
+            ...(u1 ? [prisma.user.update({
+                where: { id: p1.id },
+                data: { eloRating: p1.newElo, matchCount: { increment: 1 } }
             })] : []),
-            ...(u2 ? [prisma.user.update({ 
-                where: { id: p2.id }, 
-                data: { eloRating: p2.newElo, matchCount: { increment: 1 } } 
+            ...(u2 ? [prisma.user.update({
+                where: { id: p2.id },
+                data: { eloRating: p2.newElo, matchCount: { increment: 1 } }
             })] : []),
             prisma.match.create({
                 data: {
@@ -64,7 +64,18 @@ const concludeMatch = async (roomId, room, io, prisma, options = {}) => {
             })
         ]).catch(err => console.error("[ELO] DB Update Error:", err));
 
-        io.to(roomId).emit("match_ended", { winner, players: room.players });
+        // Fetch fresh player data from DB to send correct ELO to both players
+        const updatedP1 = p1?.id ? await prisma.user.findUnique({ where: { id: p1.id }, select: { eloRating: true } }) : null;
+        const updatedP2 = p2?.id ? await prisma.user.findUnique({ where: { id: p2.id }, select: { eloRating: true } }) : null;
+
+        // Prepare players data with fresh ELO from database
+        const playersData = room.players.map(p => ({
+            ...p,
+            newElo: p.id === p1.id ? updatedP1?.eloRating : updatedP2?.eloRating,
+            eloDelta: p.id === p1.id ? p1.eloDelta : p2.eloDelta
+        }));
+
+        io.to(roomId).emit("match_ended", { winner, players: playersData });
 
     } catch(e) { 
         console.error("[ELO] Conclude Match Error:", e);

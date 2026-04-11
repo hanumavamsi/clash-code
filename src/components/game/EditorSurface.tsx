@@ -14,8 +14,8 @@ export function EditorSurface({ code, onChange, language, onLanguageChange, onSu
   return (
     <div className="flex-1 flex flex-col relative relative">
       <div className="flex-none h-12 bg-[#1a1f2e] border-b border-[#2d3244] flex items-center justify-between px-4">
-        <select 
-          value={language} 
+        <select
+          value={language}
           onChange={(e) => onLanguageChange(e.target.value)}
           className="bg-dark-800 text-sm font-semibold text-white px-3 py-1.5 rounded-lg border border-dark-600 focus:outline-none focus:ring-2 focus:ring-brand-500 hover:border-dark-500 transition-colors"
         >
@@ -23,8 +23,6 @@ export function EditorSurface({ code, onChange, language, onLanguageChange, onSu
           <option value="python">Python</option>
           <option value="cpp">C++</option>
           <option value="java">Java</option>
-          <option value="csharp">C#</option>
-          <option value="typescript">TypeScript</option>
         </select>
         <button 
           onClick={onSubmit} 

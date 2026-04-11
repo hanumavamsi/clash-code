@@ -49,10 +49,34 @@ function cppType(val) {
     return "auto";
 }
 
+/**
+ * Derive a C++ type from a schema type string (e.g. "integer[][]", "string[]").
+ * Used as a fallback when the runtime value is an empty array and cppType()
+ * would incorrectly return std::vector<int>.
+ */
+function cppTypeFromSchema(schemaType) {
+    if (!schemaType) return null;
+    const t = schemaType.trim().toLowerCase();
+    if (t === "integer[][]" || t === "int[][]") return "std::vector<std::vector<int>>";
+    if (t === "string[][]") return "std::vector<std::vector<std::string>>";
+    if (t === "integer[]" || t === "int[]") return "std::vector<int>";
+    if (t === "string[]") return "std::vector<std::string>";
+    if (t === "boolean[]" || t === "bool[]") return "std::vector<bool>";
+    if (t === "integer" || t === "int") return "int";
+    if (t === "string") return "std::string";
+    if (t === "boolean" || t === "bool") return "bool";
+    return null;
+}
+
 function javaLiteral(val) {
     if (val === null || val === undefined) return "null";
     if (typeof val === "boolean") return val ? "true" : "false";
-    if (typeof val === "number") return Number.isInteger(val) ? String(val) : val.toFixed(10);
+    // Append 'L' suffix for integers outside Java's int range to avoid literal overflow errors
+    if (typeof val === "number") {
+        if (!Number.isInteger(val)) return val.toFixed(10);
+        if (val > 2147483647 || val < -2147483648) return String(val) + "L";
+        return String(val);
+    }
     if (typeof val === "string") return `"${escapeString(val)}"`;
     if (Array.isArray(val)) {
         if (val.length === 0) return "new int[]{}";
@@ -69,10 +93,16 @@ function javaLiteral(val) {
     return String(val);
 }
 
-function javaEquality(actualExpr, expected) {
+function javaEquality(actualExpr, expected, returnTypeSchema) {
     if (Array.isArray(expected)) {
-        if (expected.length > 0 && Array.isArray(expected[0])) {
-            return `Arrays.deepEquals(${actualExpr}, ${javaLiteral(expected)})`;
+        const is2D = (expected.length > 0 && Array.isArray(expected[0])) ||
+                     (expected.length === 0 && returnTypeSchema &&
+                      (returnTypeSchema.trim().toLowerCase().endsWith("[][]")));
+        if (is2D) {
+            const lit = expected.length === 0
+                ? (returnTypeSchema && returnTypeSchema.trim().toLowerCase().startsWith("string") ? "new String[][]{}" : "new int[][]{}")
+                : javaLiteral(expected);
+            return `Arrays.deepEquals(${actualExpr}, ${lit})`;
         }
         return `Arrays.equals(${actualExpr}, ${javaLiteral(expected)})`;
     }
@@ -83,12 +113,28 @@ function javaEquality(actualExpr, expected) {
     return `${actualExpr} == ${javaLiteral(expected)}`;
 }
 
-function cppEquality(actualExpr, expected) {
+/**
+ * Resolve the C++ type for an expected value, falling back to the problem's
+ * declared returnType schema when the value is an empty array (cppType([])
+ * would otherwise wrongly emit std::vector<int>).
+ */
+function cppTypeResolved(val, returnTypeSchema) {
+    if (Array.isArray(val) && val.length === 0 && returnTypeSchema) {
+        const fallback = cppTypeFromSchema(returnTypeSchema);
+        if (fallback) return fallback;
+    }
+    return cppType(val);
+}
+
+function cppEquality(actualExpr, expected, returnTypeSchema) {
     if (typeof expected === "number" && !Number.isInteger(expected)) {
         return `std::abs(${actualExpr} - ${cppLiteral(expected)}) < 1e-9`;
     }
     const lit = cppLiteral(expected);
-    if (Array.isArray(expected)) return `${actualExpr} == ${cppType(expected)}${lit}`;
+    if (Array.isArray(expected)) {
+        const typ = cppTypeResolved(expected, returnTypeSchema);
+        return `${actualExpr} == ${typ}${lit}`;
+    }
     return `${actualExpr} == ${lit}`;
 }
 
@@ -96,8 +142,8 @@ function cppEquality(actualExpr, expected) {
  * Generates a C++ inline code block that sorts actual + expected before comparing.
  * Returns the lines to inject into the test block (sets bool ok).
  */
-function cppOrderIndependentBlock(actualVar, expected) {
-    const typ = cppType(expected);
+function cppOrderIndependentBlock(actualVar, expected, returnTypeSchema) {
+    const typ = cppTypeResolved(expected, returnTypeSchema);
     const lit = cppLiteral(expected);
     const isNested = Array.isArray(expected) && expected.length > 0 && Array.isArray(expected[0]);
     if (isNested) {
@@ -114,7 +160,7 @@ function cppOrderIndependentBlock(actualVar, expected) {
         std::sort(_exp${actualVar}.begin(), _exp${actualVar}.end());
         bool ok = (${actualVar} == _exp${actualVar});`;
     }
-    return `bool ok = (${cppEquality(actualVar, expected)});`;
+    return `bool ok = (${cppEquality(actualVar, expected, returnTypeSchema)});`;
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -253,8 +299,17 @@ if __name__ == "__main__":
                 if (isMultiArg) {
                     const parts = input.map((arg, j) => {
                         const varName = `_arg${i}_${j}`;
+                        let typ;
+                        if (Array.isArray(arg)) {
+                            // Use schema type to resolve the correct C++ type when the
+                            // array is empty (cppType([]) would wrongly emit vector<int>).
+                            const schemaType = Array.isArray(question.args) ? question.args[j] : null;
+                            typ = (arg.length === 0 && schemaType)
+                                ? (cppTypeFromSchema(schemaType) || cppType(arg))
+                                : cppType(arg);
+                        }
                         const decl = Array.isArray(arg)
-                            ? `${cppType(arg)} ${varName} = ${cppType(arg)}${cppLiteral(arg)};`
+                            ? `${typ} ${varName} = ${typ}${cppLiteral(arg)};`
                             : `auto ${varName} = ${cppLiteral(arg)};`;
                         return { varName, decl };
                     });
@@ -262,7 +317,12 @@ if __name__ == "__main__":
                     callArgs = parts.map(p => p.varName).join(", ");
                 } else {
                     const varName = `_arg${i}_0`;
-                    argDecls = `${cppType(input)} ${varName} = ${cppType(input)}${cppLiteral(input)};`;
+                    // Single-arg: use schema type when array is empty
+                    const schemaType = Array.isArray(question.args) ? question.args[0] : null;
+                    const typ = (input.length === 0 && schemaType)
+                        ? (cppTypeFromSchema(schemaType) || cppType(input))
+                        : cppType(input);
+                    argDecls = `${typ} ${varName} = ${typ}${cppLiteral(input)};`;
                     callArgs = varName;
                 }
             } else {
@@ -274,8 +334,8 @@ if __name__ == "__main__":
             const comma = i < parsedTests.length - 1 ? '","' : '""';
             const expectedLabel = escapeString(Array.isArray(expected) ? JSON.stringify(expected) : String(expected));
             const okBlock = orderIndependent
-                ? cppOrderIndependentBlock("actual", expected)
-                : `bool ok = (${cppEquality("actual", expected)});`;
+                ? cppOrderIndependentBlock("actual", expected, question.returnType)
+                : `bool ok = (${cppEquality("actual", expected, question.returnType)});`;
 
             return `
     // Test ${i + 1}
@@ -298,6 +358,7 @@ if __name__ == "__main__":
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <functional>
 #include <map>
 #include <set>
 #include <queue>
@@ -351,9 +412,31 @@ ${testBlocks}
             if (Array.isArray(input)) {
                 const isMultiArg = (!isSingle && Array.isArray(question.args) && question.args.length > 1) ||
                                    (!isSingle && input.length > 0 && input.every(e => Array.isArray(e)));
-                callArgs = isMultiArg
-                    ? input.map(arg => javaLiteral(arg)).join(", ")
-                    : javaLiteral(input);
+                if (isMultiArg) {
+                    callArgs = input.map((arg, j) => {
+                        // Use schema type to emit correct empty-array literal (e.g. new int[][]{} vs new int[]{})
+                        if (Array.isArray(arg) && arg.length === 0) {
+                            const schemaType = Array.isArray(question.args) ? question.args[j] : null;
+                            const t = schemaType ? schemaType.trim().toLowerCase() : "";
+                            if (t === "integer[][]" || t === "int[][]") return "new int[][]{}";
+                            if (t === "string[][]") return "new String[][]{}";
+                            if (t === "string[]") return "new String[]{}";
+                        }
+                        return javaLiteral(arg);
+                    }).join(", ");
+                } else {
+                    // Single-arg empty array — apply schema fallback
+                    if (Array.isArray(input) && input.length === 0) {
+                        const schemaType = Array.isArray(question.args) ? question.args[0] : null;
+                        const t = schemaType ? schemaType.trim().toLowerCase() : "";
+                        if (t === "integer[][]" || t === "int[][]") callArgs = "new int[][]{}";
+                        else if (t === "string[][]") callArgs = "new String[][]{}";
+                        else if (t === "string[]") callArgs = "new String[]{}";
+                        else callArgs = javaLiteral(input);
+                    } else {
+                        callArgs = javaLiteral(input);
+                    }
+                }
             } else {
                 callArgs = javaLiteral(input);
             }
@@ -364,23 +447,26 @@ ${testBlocks}
             // Build equality block
             let okBlock;
             if (orderIndependent && Array.isArray(expected)) {
-                const isNested2D = expected.length > 0 && Array.isArray(expected[0]);
-                const expLit = javaLiteral(expected);
+                const isNested2D = (expected.length > 0 && Array.isArray(expected[0])) ||
+                                   (expected.length === 0 && question.returnType &&
+                                    question.returnType.trim().toLowerCase().endsWith("[][]"));
                 if (isNested2D) {
+                    const expLit = expected.length === 0 ? "new int[][]{}" : javaLiteral(expected);
                     okBlock = `for (int[] _r : actual) java.util.Arrays.sort(_r);
             java.util.Arrays.sort(actual, java.util.Arrays::compare);
-            var _exp${i} = ${expLit};
+            int[][] _exp${i} = ${expLit};
             for (int[] _r : _exp${i}) java.util.Arrays.sort(_r);
             java.util.Arrays.sort(_exp${i}, java.util.Arrays::compare);
             boolean ok = java.util.Arrays.deepEquals(actual, _exp${i});`;
                 } else {
+                    const expLit = javaLiteral(expected);
                     okBlock = `java.util.Arrays.sort(actual);
             int[] _exp${i} = ${expLit};
             java.util.Arrays.sort(_exp${i});
             boolean ok = java.util.Arrays.equals(actual, _exp${i});`;
                 }
             } else {
-                okBlock = `boolean ok = (${javaEquality("actual", expected)});`;
+                okBlock = `boolean ok = (${javaEquality("actual", expected, question.returnType)});`;
             }
 
             return `
