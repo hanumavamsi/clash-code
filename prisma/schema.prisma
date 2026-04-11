@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                 String  @id @default(uuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String?
+  username      String?   @unique
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  eloRating     Int       @default(1200)
+  matchCount    Int       @default(0)
+
+  accounts      Account[]
+  sessions      Session[]
+  submissions   Submission[]
+  friends1      Friendship[] @relation("FriendshipUser1")
+  friends2      Friendship[] @relation("FriendshipUser2")
+  createdAt     DateTime  @default(now())
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Room {
+  id        String   @id
+  status    String   @default("WAITING") // WAITING, READY, IN_PROGRESS, FINISHED
+  player1Id String?
+  player2Id String?
+  matches   Match[]
+  createdAt DateTime @default(now())
+}
+
+model Match {
+  id        String    @id @default(uuid())
+  roomId    String
+  room      Room      @relation(fields: [roomId], references: [id])
+  startTime DateTime?
+  endTime   DateTime?
+  winnerId  String?
+  eloAfter  Json?
+}
+
+model Friendship {
+  id        String   @id @default(uuid())
+  user1Id   String
+  user2Id   String
+  status    String   @default("PENDING") // PENDING, ACCEPTED
+  createdAt DateTime @default(now())
+
+  user1 User @relation("FriendshipUser1", fields: [user1Id], references: [id])
+  user2 User @relation("FriendshipUser2", fields: [user2Id], references: [id])
+
+  @@unique([user1Id, user2Id])
+}
+
+model Question {
+  id          String       @id @default(uuid())
+  title       String
+  description String
+  difficulty  String       // easy, medium, hard
+  args        String[]     // e.g. ["intArray", "string"]
+  returnType  String
+  constraints String[]     // e.g. ["2 <= nums.length <= 10^4"]
+  sampleTests Json         // Array of exact I/O and optional explanations
+  hiddenTests Json
+  submissions Submission[]
+  createdAt   DateTime     @default(now())
+}
+
+model Submission {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  questionId    String
+  question      Question @relation(fields: [questionId], references: [id])
+  code          String
+  status        String   // PENDING, ACCEPTED, WRONG_ANSWER, ERROR
+  executionTime Int?     // in ms
+  createdAt     DateTime @default(now())
+}

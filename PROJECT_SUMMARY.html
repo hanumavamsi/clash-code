@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Code Clash - Project Summary</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="code-clash---project-summary">Code Clash - Project Summary</h1>
+<p>This document provides a detailed overview of the core features, architecture, and components that have been developed for <strong>Code Clash</strong>, an interactive, real-time 1v1 competitive coding platform.</p>
+<hr>
+<h2 id="1-core-architecture--tech-stack">1. Core Architecture &amp; Tech Stack</h2>
+<ul>
+<li><strong>Framework:</strong> Next.js (App Router) with React 19.</li>
+<li><strong>Real-Time Communication:</strong> Custom Node.js HTTP server running <strong><a href="http://Socket.io">Socket.io</a></strong> (<code>server.js</code>, <code>server/socket/</code>).</li>
+<li><strong>Database Layer:</strong> <strong>PostgreSQL</strong> with <strong>Prisma ORM</strong>.</li>
+<li><strong>Authentication:</strong> <strong>NextAuth.js</strong> integrated with the Prisma adapter.</li>
+<li><strong>Matchmaking Engine:</strong> Backed by <strong>Redis</strong> (<code>ioredis</code>) for scalable memory management of active player queues.</li>
+<li><strong>Styling &amp; UI:</strong> Vanilla CSS (globals), <strong>Tailwind CSS v4</strong>, Framer Motion for sleek animations, and Lucide React for iconography.</li>
+<li><strong>Code Editor:</strong> <code>@monaco-editor/react</code> providing a robust, VS Code-like coding interface directly in the browser.</li>
+</ul>
+<hr>
+<h2 id="2-real-time-game--lobby-architecture">2. Real-Time Game &amp; Lobby Architecture</h2>
+<p>A modular real-time connection infrastructure handles player interaction:</p>
+<ul>
+<li><strong>Lobby System:</strong> Players can queue up for matchmaking.</li>
+<li><strong>Matchmaking Service (<code>matchmakingService.js</code>):</strong> Puts querying players into active instances matching their respective rankings.</li>
+<li><strong>Room Handlers (<code>roomHandler.js</code>):</strong> Manages room lifecycle events, joining, game start, real-time code synchronization across the wire, and instant forfeit logics when players disconnect prematurely.</li>
+<li><strong>Elo Rating Math (<code>eloService.js</code>):</strong> Calculates changes in player rankings upon match completions (win/loss).</li>
+</ul>
+<hr>
+<h2 id="3-sandboxed-judge-service-judgeservicejs">3. Sandboxed Judge Service (<code>judgeService.js</code>)</h2>
+<p>At the heart of the platform sits a highly secure remote code execution and testing engine:</p>
+<ul>
+<li><strong>Execution:</strong> Spawns strictly isolated <strong>Docker</strong> containers for each submission to prevent arbitrary code execution attacks. Uses <code>--network=none</code> to restrict web access, caps CPU/memory, and drops privileges (<code>--cap-drop=ALL</code>).</li>
+<li><strong>Supported Languages:</strong>
+<ul>
+<li><strong>JavaScript / TypeScript</strong> (via Node.js 18)</li>
+<li><strong>Python</strong> (via <code>python:3.10-slim</code>)</li>
+<li><strong>C++ / C</strong> (via <code>gcc:latest</code> container)</li>
+<li><strong>Java</strong> (via <code>eclipse-temurin:17-jdk</code>)</li>
+</ul>
+</li>
+<li><strong>Advanced Evaluation Math:</strong> Includes custom deep comparison algorithms, order-independent nested evaluation arrays, and flexible precision thresholds to rigorously grade outputs across languages against expected hidden and sample test cases.</li>
+</ul>
+<hr>
+<h2 id="4-database-schema-prisma">4. Database Schema (Prisma)</h2>
+<p>The application models its logic accurately with the following key database tables (<code>schema.prisma</code>):</p>
+<ul>
+<li><strong>User / Accounts / Sessions:</strong> Core profile models representing next-auth users and storing their current Elo Rating.</li>
+<li><strong>Room / Match:</strong> Represents active and historical gameplay states between two peers tracking time and winners.</li>
+<li><strong>Question:</strong> Holds challenges, arguments, difficulty constraints, and both hidden/sample verification test JSON payloads.</li>
+<li><strong>Submission:</strong> A permanent register for code runs indexing their status (PENDING, ACCEPTED, WRONG_ANSWER, ERROR) and execution times.</li>
+</ul>
+<hr>
+<h2 id="5-automated-data-ingestion-pipeline">5. Automated Data Ingestion pipeline</h2>
+<ul>
+<li><strong>LeetCode Scraper Pipeline:</strong> Built robust scraping implementations (<code>scripts/leetcode_scraper.js</code> &amp; <code>scripts/seed-problems.js</code>) to scrape structural data (titles, constraints, templates, difficulty, input arguments) and automatically translate them into our <code>Question</code> representation.</li>
+<li><strong>Local Seeding (<code>seed_db.js</code>):</strong> Bootstrapping scripts that populate the platform with initial content so the environment is always ready for matches.</li>
+</ul>
+<hr>
+<h2 id="6-frontend-features">6. Frontend Features</h2>
+<ul>
+<li><strong>Dynamic Homepage:</strong> Beautiful, engaging landing interface outlining the app's benefits and features.</li>
+<li><strong>Queue / Matchmaking Views:</strong> Sleek transitions placing players into the search state until a match is found.</li>
+<li><strong>Arena (Game) View:</strong>
+<ul>
+<li>Integrated <code>Monaco Editor</code> for drafting logic.</li>
+<li>Interactive test case panes.</li>
+<li>Submission feedback panels communicating <code>Passed</code> / <code>Wrong Answer</code> / <code>Compilation Error</code> statuses live.</li>
+<li>Winner/Loser end-screen Modals upon match conclusions or opponent forfeiture.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="current-state-of-the-platform"><em>Current State of the Platform</em></h3>
+<p>Code Clash operates as a highly scalable production-grade Minimum Viable Product (MVP). It successfully spans the entire lifecycle of a competitive programming match: authenticating users -&gt; finding peers -&gt; executing arbitrary player logic securely against hidden tests -&gt; determining the winner -&gt; adjusting leaderboards accordingly natively.</p>
+
+            
+            
+        </body>
+        </html>

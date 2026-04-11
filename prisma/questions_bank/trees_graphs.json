@@ -1,0 +1,326 @@
+[
+  {
+    "title": "Maximum Depth of Binary Tree",
+    "difficulty": "easy",
+    "args": ["integer[]"],
+    "returnType": "integer",
+    "constraints": [
+      "0 <= number of nodes <= 10^4",
+      "-100 <= Node.val <= 100",
+      "Tree is given as a level-order array; use -1 to represent null nodes"
+    ],
+    "description": "Given the root of a binary tree (as a **level-order array**), return its **maximum depth**.\n\nThe maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.\n\n**Tree encoding:** Nodes are given in level-order (BFS order). Use `-1` to represent a missing (`null`) child.\n\n```text\nLevel-order: [3, 9, 20, -1, -1, 15, 7]\n\n        3          <- depth 1\n       / \\\n      9  20        <- depth 2\n        /  \\\n       15   7      <- depth 3\n\nAnswer: 3\n```\n\n**Hint:** Decode the level-order array into a tree, then run DFS or BFS to find the max depth.",
+    "tests": [
+      {
+        "input": "[3,9,20,-1,-1,15,7]",
+        "expected": "3",
+        "explanation": "The longest path is 3 → 20 → 15 (or 3 → 20 → 7), depth = 3.",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[1,-1,2]",
+        "expected": "2",
+        "explanation": "Tree has root 1 with only a right child 2.",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[]",
+        "expected": "0",
+        "explanation": "Empty tree has depth 0.",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[0]",
+        "expected": "1",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[1,2,3,4,5]",
+        "expected": "3",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[1,2,-1,3,-1,-1,-1,4]",
+        "expected": "4",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[1,-1,-1]",
+        "expected": "1",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[1,2,3,-1,-1,4,-1,-1,-1,-1,-1,5]",
+        "expected": "4",
+        "is_single_array_arg": true,
+        "isSample": false
+      }
+    ]
+  },
+  {
+    "title": "Invert Binary Tree",
+    "difficulty": "easy",
+    "args": ["integer[]"],
+    "returnType": "integer[]",
+    "constraints": [
+      "0 <= number of nodes <= 100",
+      "-100 <= Node.val <= 100",
+      "Tree is given as a level-order array; use -1 to represent null nodes"
+    ],
+    "description": "Given the root of a binary tree (as a **level-order array**), invert the tree, and return the **level-order array** of the inverted tree.\n\nInverting a tree means swapping the left and right children of every node.\n\n**Tree encoding:** Nodes are in level-order (BFS order). Use `-1` for missing nodes.\n\n```text\nBefore inversion:        After inversion:\n\n      4                        4\n    /   \\                    /   \\\n   2     7        →         7     2\n  / \\   / \\               / \\   / \\\n 1   3 6   9             9   6 3   1\n\nInput:  [4, 2, 7, 1, 3, 6, 9]\nOutput: [4, 7, 2, 9, 6, 3, 1]\n```",
+    "tests": [
+      {
+        "input": "[4,2,7,1,3,6,9]",
+        "expected": "[4,7,2,9,6,3,1]",
+        "explanation": "Left and right subtrees are swapped at every level.",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[2,1,3]",
+        "expected": "[2,3,1]",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[]",
+        "expected": "[]",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[1]",
+        "expected": "[1]",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[1,2,-1]",
+        "expected": "[1,-1,2]",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[1,-1,2]",
+        "expected": "[1,2,-1]",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[3,9,20,-1,-1,15,7]",
+        "expected": "[3,20,9,7,15,-1,-1]",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[1,2,3,4,-1,-1,5]",
+        "expected": "[1,3,2,5,-1,-1,4]",
+        "is_single_array_arg": true,
+        "isSample": false
+      }
+    ]
+  },
+  {
+    "title": "Number of Islands",
+    "difficulty": "medium",
+    "args": ["integer[][]"],
+    "returnType": "integer",
+    "constraints": [
+      "m == grid.length",
+      "n == grid[i].length",
+      "1 <= m, n <= 300",
+      "grid[i][j] is 0 or 1",
+      "1 represents land, 0 represents water"
+    ],
+    "description": "Given an `m x n` 2D binary grid `grid` (represented as a 2D integer array where `1` = land and `0` = water), return the **number of islands**.\n\nAn **island** is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.\n\n```text\nGrid:\n[ 1  1  1  1  0 ]\n[ 1  1  0  1  0 ]\n[ 1  1  0  0  0 ]\n[ 0  0  0  0  0 ]\n\nOnly 1 connected land region → Answer: 1\n\nGrid:\n[ 1  1  0  0  0 ]\n[ 1  1  0  0  0 ]\n[ 0  0  1  0  0 ]\n[ 0  0  0  1  1 ]\n\nThree separate islands → Answer: 3\n```\n\n**Hint:** Use DFS or BFS. When you find a `1`, increment count and flood-fill all connected land to `0` (or use a visited set).",
+    "tests": [
+      {
+        "input": "[[1,1,1,1,0],[1,1,0,1,0],[1,1,0,0,0],[0,0,0,0,0]]",
+        "expected": "1",
+        "explanation": "All land cells are connected, forming a single island.",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[[1,1,0,0,0],[1,1,0,0,0],[0,0,1,0,0],[0,0,0,1,1]]",
+        "expected": "3",
+        "explanation": "Three separate islands: top-left 2x2, center single cell, and bottom-right pair.",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[[1]]",
+        "expected": "1",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[[0]]",
+        "expected": "0",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[[1,0,1,0,1]]",
+        "expected": "3",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[[1,1],[1,1]]",
+        "expected": "1",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[[1,0],[0,1]]",
+        "expected": "2",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[[0,0,0,0,0],[0,1,0,1,0],[0,0,0,0,0],[0,1,0,1,0],[0,0,0,0,0]]",
+        "expected": "4",
+        "is_single_array_arg": true,
+        "isSample": false
+      }
+    ]
+  },
+  {
+    "title": "Binary Tree Level Order Traversal",
+    "difficulty": "medium",
+    "args": ["integer[]"],
+    "returnType": "integer[][]",
+    "constraints": [
+      "0 <= number of nodes <= 2000",
+      "-1000 <= Node.val <= 1000",
+      "Tree is given as a level-order array; use -1 to represent null nodes"
+    ],
+    "description": "Given the root of a binary tree (as a **level-order array**), return the **level order traversal** of its nodes' values (i.e., from left to right, level by level) as a 2D array.\n\n**Tree encoding:** Nodes are in BFS order. Use `-1` for null nodes.\n\n```text\nInput:  [3, 9, 20, -1, -1, 15, 7]\n\n        3          <- level 0\n       / \\\n      9  20        <- level 1\n        /  \\\n       15   7      <- level 2\n\nOutput: [[3], [9, 20], [15, 7]]\n```\n\n**Hint:** Use a queue (BFS). For each level, process all nodes currently in the queue and collect their values before enqueuing their children.",
+    "tests": [
+      {
+        "input": "[3,9,20,-1,-1,15,7]",
+        "expected": "[[3],[9,20],[15,7]]",
+        "explanation": "Three levels: root [3], second level [9,20], third level [15,7].",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[1]",
+        "expected": "[[1]]",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[]",
+        "expected": "[]",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[1,2,3]",
+        "expected": "[[1],[2,3]]",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[1,2,-1,3]",
+        "expected": "[[1],[2],[3]]",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[1,2,3,4,5,6,7]",
+        "expected": "[[1],[2,3],[4,5,6,7]]",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[5,4,8,11,-1,13,4,7,2,-1,-1,-1,-1,-1,1]",
+        "expected": "[[5],[4,8],[11,13,4],[7,2,1]]",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[1,-1,3,-1,-1,-1,4]",
+        "expected": "[[1],[3],[4]]",
+        "is_single_array_arg": true,
+        "isSample": false
+      }
+    ]
+  },
+  {
+    "title": "Course Schedule",
+    "difficulty": "hard",
+    "args": ["integer", "integer[][]"],
+    "returnType": "boolean",
+    "constraints": [
+      "1 <= numCourses <= 2000",
+      "0 <= prerequisites.length <= 5000",
+      "prerequisites[i].length == 2",
+      "0 <= ai, bi < numCourses",
+      "All the pairs [ai, bi] are unique."
+    ],
+    "description": "There are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [a, b]` indicates that you **must** take course `b` first if you want to take course `a`.\n\nReturn `true` if you can finish all courses. Otherwise, return `false`.\n\nA cycle in the prerequisite graph means it is **impossible** to complete all courses.\n\n```text\nnumCourses = 2, prerequisites = [[1, 0]]\n\n  0 ──→ 1   (take 0, then 1)\n\nNo cycle → true\n\nnumCourses = 2, prerequisites = [[1, 0], [0, 1]]\n\n  0 ──→ 1\n  1 ──→ 0   (cycle!)\n\nCycle detected → false\n```\n\n**Hint:** Model courses as nodes and prerequisites as directed edges. Use DFS cycle detection or Kahn's topological sort (BFS with in-degree count).",
+    "tests": [
+      {
+        "input": "[2, [[1,0]]]",
+        "expected": "true",
+        "explanation": "Take course 0 first, then course 1. No cycle.",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[2, [[1,0],[0,1]]]",
+        "expected": "false",
+        "explanation": "Course 0 requires course 1, and course 1 requires course 0 — a cycle exists.",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[1, []]",
+        "expected": "true",
+        "explanation": "One course with no prerequisites.",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[3, [[1,0],[2,1]]]",
+        "expected": "true",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[3, [[1,0],[2,1],[0,2]]]",
+        "expected": "false",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[4, [[1,0],[2,0],[3,1],[3,2]]]",
+        "expected": "true",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[5, [[1,0],[2,1],[3,2],[4,3],[0,4]]]",
+        "expected": "false",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[6, [[1,0],[2,0],[3,1],[4,2],[5,3],[5,4]]]",
+        "expected": "true",
+        "is_single_array_arg": false,
+        "isSample": false
+      }
+    ]
+  }
+]

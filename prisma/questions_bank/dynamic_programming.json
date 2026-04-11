@@ -1,0 +1,310 @@
+[
+  {
+    "title": "Climbing Stairs",
+    "difficulty": "easy",
+    "args": ["integer"],
+    "returnType": "integer",
+    "constraints": [
+      "1 <= n <= 45"
+    ],
+    "description": "You are climbing a staircase. It takes `n` steps to reach the top.\n\nEach time you can either climb `1` or `2` steps. In how many **distinct ways** can you climb to the top?\n\n**Pattern:** The number of ways to reach step `n` equals the ways to reach step `n-1` (then take 1 step) plus the ways to reach step `n-2` (then take 2 steps).\n\nThis is the **Fibonacci sequence**: `f(n) = f(n-1) + f(n-2)` with `f(1)=1`, `f(2)=2`.",
+    "tests": [
+      {
+        "input": "2",
+        "expected": "2",
+        "explanation": "Two ways: (1+1) or (2).",
+        "isSample": true
+      },
+      {
+        "input": "3",
+        "expected": "3",
+        "explanation": "Three ways: (1+1+1), (1+2), or (2+1).",
+        "isSample": true
+      },
+      {
+        "input": "1",
+        "expected": "1",
+        "isSample": true
+      },
+      {
+        "input": "4",
+        "expected": "5",
+        "isSample": false
+      },
+      {
+        "input": "5",
+        "expected": "8",
+        "isSample": false
+      },
+      {
+        "input": "10",
+        "expected": "89",
+        "isSample": false
+      },
+      {
+        "input": "20",
+        "expected": "10946",
+        "isSample": false
+      },
+      {
+        "input": "45",
+        "expected": "1836311903",
+        "isSample": false
+      }
+    ]
+  },
+  {
+    "title": "House Robber",
+    "difficulty": "easy",
+    "args": ["integer[]"],
+    "returnType": "integer",
+    "constraints": [
+      "1 <= nums.length <= 100",
+      "0 <= nums[i] <= 400"
+    ],
+    "description": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. The only constraint stopping you from robbing each of them is that **adjacent houses have security systems connected** — it will automatically contact the police if two adjacent houses were broken into on the same night.\n\nGiven an integer array `nums` representing the amount of money of each house, return the **maximum amount of money** you can rob tonight without alerting the police.\n\n**DP Recurrence:** `dp[i] = max(dp[i-1], dp[i-2] + nums[i])`\n\n- `dp[i-1]`: skip the current house\n- `dp[i-2] + nums[i]`: rob the current house (can't rob `i-1`)",
+    "tests": [
+      {
+        "input": "[1,2,3,1]",
+        "expected": "4",
+        "explanation": "Rob house 1 (money=1) then house 3 (money=3). Total = 1 + 3 = 4.",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[2,7,9,3,1]",
+        "expected": "12",
+        "explanation": "Rob house 1 (money=2), house 3 (money=9), house 5 (money=1). Total = 2 + 9 + 1 = 12.",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[1]",
+        "expected": "1",
+        "is_single_array_arg": true,
+        "isSample": true
+      },
+      {
+        "input": "[0]",
+        "expected": "0",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[2,1]",
+        "expected": "2",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[1,1,1,1,1]",
+        "expected": "3",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[100,1,100,1,100]",
+        "expected": "300",
+        "is_single_array_arg": true,
+        "isSample": false
+      },
+      {
+        "input": "[5,3,4,11,2]",
+        "expected": "16",
+        "is_single_array_arg": true,
+        "isSample": false
+      }
+    ]
+  },
+  {
+    "title": "Coin Change",
+    "difficulty": "medium",
+    "args": ["integer[]", "integer"],
+    "returnType": "integer",
+    "constraints": [
+      "1 <= coins.length <= 12",
+      "1 <= coins[i] <= 2^31 - 1",
+      "0 <= amount <= 10^4"
+    ],
+    "description": "You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.\n\nReturn the **fewest number of coins** that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return `-1`.\n\nYou may assume that you have an **infinite number** of each kind of coin.\n\n**DP approach:** Let `dp[i]` = minimum coins to make amount `i`.\n\n```text\ncoins = [1, 5, 11], amount = 15\n\ndp[0]  = 0\ndp[5]  = 1  (one 5-coin)\ndp[10] = 2  (two 5-coins)\ndp[11] = 1  (one 11-coin)\ndp[15] = 3  (5+5+5)  ← answer\n```",
+    "tests": [
+      {
+        "input": "[[1,5,11], 15]",
+        "expected": "3",
+        "explanation": "15 = 5 + 5 + 5 requires 3 coins.",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[[2], 3]",
+        "expected": "-1",
+        "explanation": "3 cannot be made from coins of denomination 2.",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[[1], 0]",
+        "expected": "0",
+        "explanation": "No coins needed to make amount 0.",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[[1,2,5], 11]",
+        "expected": "3",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[[2,5,10,1], 27]",
+        "expected": "4",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[[186,419,83,408], 6249]",
+        "expected": "20",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[[5,10,25], 30]",
+        "expected": "2",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[[3,7,405,436], 8839]",
+        "expected": "25",
+        "is_single_array_arg": false,
+        "isSample": false
+      }
+    ]
+  },
+  {
+    "title": "Longest Common Subsequence",
+    "difficulty": "medium",
+    "args": ["string", "string"],
+    "returnType": "integer",
+    "constraints": [
+      "1 <= text1.length, text2.length <= 1000",
+      "text1 and text2 consist of only lowercase English characters."
+    ],
+    "description": "Given two strings `text1` and `text2`, return the **length of their longest common subsequence**. If there is no common subsequence, return `0`.\n\nA **subsequence** of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.\n\nA **common subsequence** of two strings is a subsequence that is common to both strings.\n\n**2D DP table** for `\"abcde\"` and `\"ace\"`:\n\n```text\n     \"\" a  c  e\n  \"\" [0  0  0  0]\n   a [0  1  1  1]\n   b [0  1  1  1]\n   c [0  1  2  2]\n   d [0  1  2  2]\n   e [0  1  2  3]  <- Answer: 3 (\"ace\")\n```\n\n`dp[i][j] = dp[i-1][j-1] + 1` if characters match, else `max(dp[i-1][j], dp[i][j-1])`.",
+    "tests": [
+      {
+        "input": "[\"abcde\", \"ace\"]",
+        "expected": "3",
+        "explanation": "The longest common subsequence is \"ace\" with length 3.",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[\"abc\", \"abc\"]",
+        "expected": "3",
+        "explanation": "The whole string is the LCS.",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[\"abc\", \"def\"]",
+        "expected": "0",
+        "explanation": "No common subsequence exists.",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[\"a\", \"a\"]",
+        "expected": "1",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[\"a\", \"b\"]",
+        "expected": "0",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[\"bl\", \"yby\"]",
+        "expected": "1",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[\"oxcpqrsvwf\", \"shmtulqrypy\"]",
+        "expected": "2",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[\"hofubmnylkra\", \"pqhgxgdofcvmr\"]",
+        "expected": "5",
+        "is_single_array_arg": false,
+        "isSample": false
+      }
+    ]
+  },
+  {
+    "title": "Edit Distance",
+    "difficulty": "hard",
+    "args": ["string", "string"],
+    "returnType": "integer",
+    "constraints": [
+      "0 <= word1.length, word2.length <= 500",
+      "word1 and word2 consist of lowercase English letters."
+    ],
+    "description": "Given two strings `word1` and `word2`, return the **minimum number of operations** required to convert `word1` to `word2`.\n\nYou have the following three operations permitted on a word:\n- **Insert** a character\n- **Delete** a character\n- **Replace** a character\n\n**2D DP table** for `\"horse\"` → `\"ros\"`:\n\n```text\n      \"\"  r  o  s\n  \"\" [ 0  1  2  3]\n   h [ 1  1  2  3]\n   o [ 2  2  1  2]\n   r [ 3  2  2  2]\n   s [ 4  3  3  2]\n   e [ 5  4  4  3]  <- Answer: 3\n```\n\n`dp[i][j]`:\n- If `word1[i] == word2[j]`: `dp[i-1][j-1]` (no cost)\n- Else: `1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])` (delete, insert, replace)",
+    "tests": [
+      {
+        "input": "[\"horse\", \"ros\"]",
+        "expected": "3",
+        "explanation": "horse → rorse (replace h with r) → rose (delete r) → ros (delete e). 3 operations.",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[\"intention\", \"execution\"]",
+        "expected": "5",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[\"\", \"\"]",
+        "expected": "0",
+        "is_single_array_arg": false,
+        "isSample": true
+      },
+      {
+        "input": "[\"a\", \"\"]",
+        "expected": "1",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[\"\", \"abc\"]",
+        "expected": "3",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[\"abc\", \"abc\"]",
+        "expected": "0",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[\"sitting\", \"kitten\"]",
+        "expected": "3",
+        "is_single_array_arg": false,
+        "isSample": false
+      },
+      {
+        "input": "[\"pneumonoultramicroscopicsilicovolcanoconiosis\", \"ultramicroscopically\"]",
+        "expected": "27",
+        "is_single_array_arg": false,
+        "isSample": false
+      }
+    ]
+  }
+]
