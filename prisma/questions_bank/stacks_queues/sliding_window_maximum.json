@@ -1,0 +1,20 @@
+{
+  "title": "Sliding Window Maximum",
+  "difficulty": "hard",
+  "args": ["integer[]", "integer"],
+  "returnType": "integer[]",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^4 <= nums[i] <= 10^4",
+    "1 <= k <= nums.length"
+  ],
+  "description": "You are given an array of integers `nums`, there is a sliding window of size `k` which is moving from the very left of the array to the very right. You can only see the `k` numbers in the window. Each time the sliding window moves right by one position.\n\nReturn the max sliding window.",
+  "tests": [
+    {
+      "input": "[[1,3,-1,-3,5,3,6,7], 3]",
+      "expected": "[3,3,5,5,6,7]",
+      "explanation": "Maximum in each window.",
+      "isSample": true
+    }
+  ]
+}

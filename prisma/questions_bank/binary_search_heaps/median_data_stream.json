@@ -1,0 +1,18 @@
+{
+  "title": "Find Median from Data Stream",
+  "difficulty": "hard",
+  "args": ["integer"],
+  "returnType": "double",
+  "constraints": [
+    "-10^5 <= num <= 10^5"
+  ],
+  "description": "The median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value, and the median is the mean of the two middle values.\n\nDesign a data structure that supports adding a number and finding the median efficiently.",
+  "tests": [
+    {
+      "input": "[]",
+      "expected": "2.0",
+      "explanation": "Add 1, median is 1. Add 2, median is 1.5.",
+      "isSample": true
+    }
+  ]
+}

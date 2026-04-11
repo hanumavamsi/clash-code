@@ -1,0 +1,25 @@
+{
+  "title": "Regular Expression Matching",
+  "difficulty": "hard",
+  "args": ["string", "string"],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= s.length <= 20",
+    "1 <= p.length <= 30"
+  ],
+  "description": "Given an input string `s` and a pattern `p`, implement regular expression matching with support for '.' and '*' where:\n\n- '.' Matches any single character.\n- '*' Matches zero or more of the preceding element.",
+  "tests": [
+    {
+      "input": "[\"aa\", \"a\"]",
+      "expected": "false",
+      "explanation": "Pattern doesn't match.",
+      "isSample": true
+    },
+    {
+      "input": "[\"aa\", \"a*\"]",
+      "expected": "true",
+      "explanation": "'*' matches multiple 'a's.",
+      "isSample": true
+    }
+  ]
+}

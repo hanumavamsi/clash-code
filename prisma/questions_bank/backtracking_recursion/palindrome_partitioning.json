@@ -1,0 +1,39 @@
+{
+  "title": "Palindrome Partitioning",
+  "difficulty": "medium",
+  "args": ["string"],
+  "returnType": "string[][]",
+  "constraints": [
+    "1 <= s.length <= 16"
+  ],
+  "description": "Given a string `s`, partition `s` such that every **substring** of the partition is a **palindrome**. Return all possible palindrome partitioning of `s`.",
+  "tests": [
+    {
+      "input": "\"aab\"",
+      "expected": "[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]",
+      "explanation": "Two ways to partition.",
+      "isSample": true,
+      "orderIndependent": true
+    },
+    {
+      "input": "\"a\"",
+      "expected": "[[\"a\"]]",
+      "explanation": "Single character.",
+      "isSample": true
+    },
+    {
+      "input": "\"aba\"",
+      "expected": "[[\"a\",\"ba\"],[\"a\",\"b\",\"a\"],[\"ab\",\"a\"],[\"aba\"]]",
+      "explanation": "Four ways.",
+      "isSample": false,
+      "orderIndependent": true
+    },
+    {
+      "input": "\"ab\"",
+      "expected": "[[\"a\",\"b\"],[\"ab\"]]",
+      "explanation": "Two ways.",
+      "isSample": false,
+      "orderIndependent": true
+    }
+  ]
+}

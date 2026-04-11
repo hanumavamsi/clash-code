@@ -1,0 +1,19 @@
+{
+  "title": "Majority Element II",
+  "difficulty": "medium",
+  "args": ["integer[]"],
+  "returnType": "integer[]",
+  "constraints": [
+    "1 <= nums.length <= 5 * 10^4",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "description": "Given an integer array of size `n`, find all elements that appear more than `⌊ n/3 ⌋` times.",
+  "tests": [
+    {
+      "input": "[3,2,3]",
+      "expected": "[3]",
+      "explanation": "3 appears 2/3 times.",
+      "isSample": true
+    }
+  ]
+}

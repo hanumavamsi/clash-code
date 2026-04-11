@@ -1,0 +1,25 @@
+{
+  "title": "Minimum Number of Refueling Stops",
+  "difficulty": "hard",
+  "args": ["integer", "integer", "integer[]"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= target, fuel <= 10^9",
+    "1 <= stations.length <= 500"
+  ],
+  "description": "A car travels from a starting position to a destination which is `target` miles away. Along the way, there are gas stations. Each `stations[i]` represents a gas station at mile `stations[i]`.\n\nThe car starts with an infinite tank and can drive any distance. You are given:\n- `target`: the distance to destination\n- `fuel`: the maximum fuel the tank can hold\n- `stations`: array of gas stations positions\n\nReturn the minimum number of refueling stops needed to complete the journey.",
+  "tests": [
+    {
+      "input": "[1, 1, []]",
+      "expected": "0",
+      "explanation": "Already have enough fuel.",
+      "isSample": true
+    },
+    {
+      "input": "[100, 10, [10,20,30,40,50]]",
+      "expected": "4",
+      "explanation": "Need to stop at 4 stations.",
+      "isSample": true
+    }
+  ]
+}

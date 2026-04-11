@@ -1,0 +1,25 @@
+{
+  "title": "Remove Duplicates from Sorted List II",
+  "difficulty": "medium",
+  "args": ["ListNode"],
+  "returnType": "ListNode",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 300].",
+    "-100 <= Node.val <= 100"
+  ],
+  "description": "Given the `head` of a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list. Return the linked list **sorted** as well.",
+  "tests": [
+    {
+      "input": "[1,2,2]",
+      "expected": "[1]",
+      "explanation": "Remove all duplicates including 2.",
+      "isSample": true
+    },
+    {
+      "input": "[1,1,1,2,3]",
+      "expected": "[2,3]",
+      "explanation": "Remove all 1's.",
+      "isSample": true
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Unique Paths III",
+  "difficulty": "hard",
+  "args": ["integer[][]"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= grid.length * grid[0].length <= 20"
+  ],
+  "description": "You are given an `m x n` integer array `grid` where you can move in one of four cardinal directions. You want to find a path from start to end that visits every cell **exactly once**.\n\nReturn the number of such paths.",
+  "tests": [
+    {
+      "input": "[[[0,1],[2,0]]]",
+      "expected": "0",
+      "explanation": "No path exists.",
+      "isSample": true
+    }
+  ]
+}

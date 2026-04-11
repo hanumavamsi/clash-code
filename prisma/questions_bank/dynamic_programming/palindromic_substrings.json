@@ -1,0 +1,24 @@
+{
+  "title": "Palindromic Substrings",
+  "difficulty": "medium",
+  "args": ["string"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= s.length <= 1000"
+  ],
+  "description": "Given a string `s`, return the number of **palindromic substrings** in it.",
+  "tests": [
+    {
+      "input": "\"abc\"",
+      "expected": "3",
+      "explanation": "Three palindromes: a, b, c.",
+      "isSample": true
+    },
+    {
+      "input": "\"abacabad\"",
+      "expected": "8",
+      "explanation": "Eight palindromes.",
+      "isSample": true
+    }
+  ]
+}

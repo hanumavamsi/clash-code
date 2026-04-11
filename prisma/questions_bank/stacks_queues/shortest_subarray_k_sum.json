@@ -1,0 +1,20 @@
+{
+  "title": "Shortest Subarray with Sum at Least K",
+  "difficulty": "hard",
+  "args": ["integer[]", "integer"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= nums.length <= 50000",
+    "-10^9 <= nums[i] <= 10^9",
+    "1 <= k <= 10^9"
+  ],
+  "description": "Given an integer array `nums` and an integer `k`, return the length of the **shortest non-empty subarray** of `nums` with a sum of at least `k`. If there is no such subarray, return -1.",
+  "tests": [
+    {
+      "input": "[[1], 1]",
+      "expected": "1",
+      "explanation": "Shortest subarray.",
+      "isSample": true
+    }
+  ]
+}

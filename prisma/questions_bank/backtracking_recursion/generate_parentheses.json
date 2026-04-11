@@ -1,0 +1,43 @@
+{
+  "title": "Generate Parentheses",
+  "difficulty": "medium",
+  "args": ["integer"],
+  "returnType": "string[]",
+  "constraints": [
+    "1 <= n <= 8"
+  ],
+  "description": "Given `n` pairs of parentheses, write a function to **generate all combinations of well-formed parentheses**.",
+  "tests": [
+    {
+      "input": "3",
+      "expected": "[\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]",
+      "explanation": "All 5 valid combinations of 3 pairs.",
+      "isSample": true
+    },
+    {
+      "input": "1",
+      "expected": "[\"()\"]",
+      "explanation": "Only one way.",
+      "isSample": true
+    },
+    {
+      "input": "0",
+      "expected": "[\"\"]",
+      "explanation": "Empty string.",
+      "isSample": false
+    },
+    {
+      "input": "2",
+      "expected": "[\"(())\",\"()()\"]",
+      "explanation": "Two ways for 2 pairs.",
+      "isSample": false
+    },
+    {
+      "input": "4",
+      "expected": "[\"(((())))\",\"((()()))\",\"((())())\",\"((()))()\",\"(()()())\",\"(()())()\",\"(())(())\",\"(())()()\",\"()(()())\",\"()(())()\",\"()()(())\",\"()()()()\"]",
+      "explanation": "14 combinations for 4 pairs.",
+      "isSample": false,
+      "orderIndependent": true
+    }
+  ]
+}

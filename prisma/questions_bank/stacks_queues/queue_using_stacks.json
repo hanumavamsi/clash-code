@@ -1,0 +1,18 @@
+{
+  "title": "Implement Queue using Stacks",
+  "difficulty": "easy",
+  "args": ["integer"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= x <= 9"
+  ],
+  "description": "Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should support all the functions of a normal queue.",
+  "tests": [
+    {
+      "input": "[1,2,3,4,5]",
+      "expected": "Values in FIFO order.",
+      "explanation": "Queue using stacks.",
+      "isSample": true
+    }
+  ]
+}

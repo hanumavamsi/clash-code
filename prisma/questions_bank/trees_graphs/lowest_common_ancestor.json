@@ -1,0 +1,19 @@
+{
+  "title": "Lowest Common Ancestor of a Binary Tree",
+  "difficulty": "medium",
+  "args": ["TreeNode", "TreeNode", "TreeNode"],
+  "returnType": "TreeNode",
+  "constraints": [
+    "The number of nodes in the tree is in the range [2, 10^5].",
+    "-10^9 <= Node.val <= 10^9"
+  ],
+  "description": "Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.",
+  "tests": [
+    {
+      "input": "[3,5,1,6,2,0,8,null,null,7,4], 5, 1",
+      "expected": "3",
+      "explanation": "LCA of 5 and 1 is node 3.",
+      "isSample": true
+    }
+  ]
+}

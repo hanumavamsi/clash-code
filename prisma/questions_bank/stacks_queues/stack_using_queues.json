@@ -1,0 +1,18 @@
+{
+  "title": "Implement Stack using Queues",
+  "difficulty": "easy",
+  "args": ["integer"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= x <= 9"
+  ],
+  "description": "Implement a last in first out (LIFO) stack using only two queues. The implemented stack should support all the functions of a normal stack.",
+  "tests": [
+    {
+      "input": "[1,2,3,4,5]",
+      "expected": "Values in LIFO order.",
+      "explanation": "Stack using queues.",
+      "isSample": true
+    }
+  ]
+}

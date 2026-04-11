@@ -1,0 +1,20 @@
+{
+  "title": "Smallest Range Covering Elements from K Lists",
+  "difficulty": "hard",
+  "args": ["integer[][]"],
+  "returnType": "integer[]",
+  "constraints": [
+    "nums.length == k",
+    "1 <= nums[i].length <= 3500",
+    "-10^5 <= nums[i][j] <= 10^5"
+  ],
+  "description": "You have `k` lists of sorted integers in **non-decreasing order**. Find the **smallest** range that includes at least one number from each of the `k` lists.\n\nReturn the range as an array `[a, b]`, where `a` and `b` are the smallest and largest number that is part of the range.",
+  "tests": [
+    {
+      "input": "[[[1,2,3],[1,2,3],[1,2,3]]]",
+      "expected": "[1,1]",
+      "explanation": "All lists have 1.",
+      "isSample": true
+    }
+  ]
+}

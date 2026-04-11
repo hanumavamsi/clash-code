@@ -1,0 +1,24 @@
+{
+  "title": "Wildcard Matching",
+  "difficulty": "hard",
+  "args": ["string", "string"],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= s.length, p.length <= 2000"
+  ],
+  "description": "Given an input string `s` and a pattern `p`, implement wildcard matching with support for `'?'` and `'*'`.\n\n`'?'` Matches any single character.\n`'*'` Matches any sequence of characters (including the empty sequence).",
+  "tests": [
+    {
+      "input": "[\"aa\", \"a\"]",
+      "expected": "false",
+      "explanation": "Pattern doesn't match.",
+      "isSample": true
+    },
+    {
+      "input": "[\"aa\", \"*\"]",
+      "expected": "true",
+      "explanation": "'*' matches all.",
+      "isSample": true
+    }
+  ]
+}

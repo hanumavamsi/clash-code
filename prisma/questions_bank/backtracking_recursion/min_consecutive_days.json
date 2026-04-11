@@ -1,0 +1,18 @@
+{
+  "title": "Human Traffic of Stadium",
+  "difficulty": "medium",
+  "args": ["integer[]", "integer"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= nums.length <= 20"
+  ],
+  "description": "Find consecutive days where traffic is above a threshold.",
+  "tests": [
+    {
+      "input": "[[100,150,200,250], 150]",
+      "expected": "2",
+      "explanation": "Days 2-3 have traffic >= 150.",
+      "isSample": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "UTF-8 Validation",
+  "difficulty": "medium",
+  "args": ["integer[]"],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= data.length <= 50",
+    "0 <= data[i] <= 255"
+  ],
+  "description": "Given an array of integers `data` representing the utf-8 encoding of some characters, return `true` if it is a valid utf-8 encoding.",
+  "tests": [
+    {
+      "input": "[197,130,1]",
+      "expected": "true",
+      "explanation": "Valid UTF-8.",
+      "isSample": true
+    }
+  ]
+}

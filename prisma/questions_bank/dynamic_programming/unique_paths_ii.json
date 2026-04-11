@@ -1,0 +1,26 @@
+{
+  "title": "Unique Paths II",
+  "difficulty": "medium",
+  "args": ["integer[][]"],
+  "returnType": "integer",
+  "constraints": [
+    "m == obstacleGrid.length",
+    "n == obstacleGrid[0].length",
+    "1 <= m, n <= 100"
+  ],
+  "description": "You are given an `m x n` integer array `grid`. There is a robot initially at the top-left corner (i.e., `grid[0][0]`). The robot wants to reach the bottom-right corner (i.e., `grid[m-1][n-1]`).\n\nThe robot can only move either down or right at any point in time. Additionally, the grid contains obstacles (represented by 1) that block certain paths.\n\nReturn the number of unique paths in the grid. Obstacles are marked with 1.",
+  "tests": [
+    {
+      "input": "[[[0,0,0],[0,1,0],[0,0,0]]]",
+      "expected": "2",
+      "explanation": "2 unique paths with one obstacle.",
+      "isSample": true
+    },
+    {
+      "input": "[[[0,1],[0,0]]]",
+      "expected": "1",
+      "explanation": "1 unique path.",
+      "isSample": true
+    }
+  ]
+}

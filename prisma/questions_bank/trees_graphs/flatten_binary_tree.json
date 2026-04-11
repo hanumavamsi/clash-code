@@ -1,0 +1,19 @@
+{
+  "title": "Flatten Binary Tree to Linked List",
+  "difficulty": "medium",
+  "args": ["TreeNode"],
+  "returnType": "void",
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 2000].",
+    "-100 <= Node.val <= 100"
+  ],
+  "description": "Given the `root` of a binary tree, flatten the tree into a \"linked list\" in-place.\n\nThe \"linked list\" should use the same `TreeNode` class where the right child pointer points to the next node in the list and the left child pointer is always null.",
+  "tests": [
+    {
+      "input": "[1,2,5,3,4,null,6]",
+      "expected": "Flattened to linked list.",
+      "explanation": "Flatten tree.",
+      "isSample": true
+    }
+  ]
+}

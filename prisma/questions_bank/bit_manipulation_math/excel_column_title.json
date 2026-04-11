@@ -1,0 +1,24 @@
+{
+  "title": "Excel Sheet Column Title",
+  "difficulty": "easy",
+  "args": ["integer"],
+  "returnType": "string",
+  "constraints": [
+    "1 <= columnNumber <= 16384"
+  ],
+  "description": "Given an integer `columnNumber`, return its corresponding column title as it appears in an Excel sheet.\n\nA -> 1, B -> 2, C -> 3, ... Z -> 26, AA -> 27, AB -> 28, etc.",
+  "tests": [
+    {
+      "input": "1",
+      "expected": "\"A\"",
+      "explanation": "1 -> A.",
+      "isSample": true
+    },
+    {
+      "input": "28",
+      "expected": "\"AB\"",
+      "explanation": "28 -> AB.",
+      "isSample": true
+    }
+  ]
+}

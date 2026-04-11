@@ -1,0 +1,19 @@
+{
+  "title": "Linked List Cycle II",
+  "difficulty": "medium",
+  "args": ["ListNode"],
+  "returnType": "ListNode",
+  "constraints": [
+    "The number of the nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "description": "Given the `head` of a linked list, return **the node where the cycle begins**. If there is no cycle, return `null`.",
+  "tests": [
+    {
+      "input": "[[3,2,0,-4], 1]",
+      "expected": "1",
+      "explanation": "Cycle begins at node 1.",
+      "isSample": true
+    }
+  ]
+}

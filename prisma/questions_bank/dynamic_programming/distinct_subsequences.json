@@ -1,0 +1,24 @@
+{
+  "title": "Distinct Subsequences",
+  "difficulty": "hard",
+  "args": ["string", "string"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= s.length, t.length <= 1000"
+  ],
+  "description": "Given two strings `s` and `t`, return the number of distinct subsequences of `s` which equals `t`.",
+  "tests": [
+    {
+      "input": "[\"rabbbit\", \"rabbit\"]",
+      "expected": "3",
+      "explanation": "3 ways to delete characters.",
+      "isSample": true
+    },
+    {
+      "input": "[\"babgbag\", \"bag\"]",
+      "expected": "5",
+      "explanation": "5 distinct subsequences.",
+      "isSample": true
+    }
+  ]
+}

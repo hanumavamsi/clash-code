@@ -1,0 +1,19 @@
+{
+  "title": "Delete Node in a Linked List",
+  "difficulty": "easy",
+  "args": ["ListNode"],
+  "returnType": "void",
+  "constraints": [
+    "The number of the nodes in the given list is in the range [2, 1000].",
+    "1 <= Node.val <= 10^5"
+  ],
+  "description": "There is a singly-linked list `head` and we want to delete a node `node` in it.\n\nYou will **not be given access to the first node** of `head`. Instead, you will be given access to the node to be deleted directly.\n\nAll the values of the linked list are **unique**, and it is guaranteed that the given node `node` is **not the last node** in the linked list.",
+  "tests": [
+    {
+      "input": "[[4,5,1,9], 1]",
+      "expected": "[[4,1,9]]",
+      "explanation": "Delete node 5.",
+      "isSample": true
+    }
+  ]
+}

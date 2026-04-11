@@ -1,0 +1,26 @@
+{
+  "title": "Rotating List",
+  "difficulty": "medium",
+  "args": ["ListNode", "integer"],
+  "returnType": "ListNode",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 200].",
+    "0 <= Node.val <= 100",
+    "0 <= k <= 2 * 10^9"
+  ],
+  "description": "Given the `head` of a linked list, rotate the list to the right by `k` places.",
+  "tests": [
+    {
+      "input": "[[1,2,3,4,5], 2]",
+      "expected": "[4,5,1,2,3]",
+      "explanation": "Rotate by 2.",
+      "isSample": true
+    },
+    {
+      "input": "[[0,1,2], 4]",
+      "expected": "[2,0,1]",
+      "explanation": "Rotate by 4 (4 % 3 = 1, so rotate by 1).",
+      "isSample": true
+    }
+  ]
+}

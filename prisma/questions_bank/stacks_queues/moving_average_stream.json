@@ -1,0 +1,19 @@
+{
+  "title": "Moving Average from Data Stream",
+  "difficulty": "easy",
+  "args": ["integer", "integer"],
+  "returnType": "double",
+  "constraints": [
+    "1 <= size <= 40000",
+    "-10^5 <= val <= 10^5"
+  ],
+  "description": "Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window.",
+  "tests": [
+    {
+      "input": "[3, 1]",
+      "expected": "1.0",
+      "explanation": "Moving average with size 3.",
+      "isSample": true
+    }
+  ]
+}

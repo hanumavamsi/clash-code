@@ -1,0 +1,18 @@
+{
+  "title": "Min Stack Tracker",
+  "difficulty": "easy",
+  "args": ["integer"],
+  "returnType": "integer",
+  "constraints": [
+    "-2^31 <= val <= 2^31 - 1"
+  ],
+  "description": "Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.",
+  "tests": [
+    {
+      "input": "[-2,0,-3,0,-4,-2]",
+      "expected": "-5",
+      "explanation": "Track minimum while pushing/popping.",
+      "isSample": true
+    }
+  ]
+}

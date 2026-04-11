@@ -1,0 +1,19 @@
+{
+  "title": "Clone Graph",
+  "difficulty": "medium",
+  "args": ["Node"],
+  "returnType": "Node",
+  "constraints": [
+    "The number of nodes is in the range [0, 100].",
+    "1 <= Node.val <= 100"
+  ],
+  "description": "Given a reference of a node in a **connected undirected graph**, return a deep copy (clone) of the graph.\n\nEach node in the graph contains a value (`int`) and a list of neighbors.",
+  "tests": [
+    {
+      "input": "[[2,4],[1,3],[2,4],[1,3]]",
+      "expected": "Cloned graph.",
+      "explanation": "Clone graph.",
+      "isSample": true
+    }
+  ]
+}

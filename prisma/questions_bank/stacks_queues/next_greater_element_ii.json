@@ -1,0 +1,19 @@
+{
+  "title": "Next Greater Element II",
+  "difficulty": "medium",
+  "args": ["integer[]"],
+  "returnType": "integer[]",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-1 <= nums[i] <= 10^4"
+  ],
+  "description": "Given a circular integer array `nums` (i.e., the last element's next element is the first element), return the **next greater number** for every element in `nums`.",
+  "tests": [
+    {
+      "input": "[1,2,1]",
+      "expected": "[2,-1,2]",
+      "explanation": "Circular array next greater elements.",
+      "isSample": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Single Element in a Sorted Array",
+  "difficulty": "medium",
+  "args": ["integer[]"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= nums.length < 100,000",
+    "nums is sorted and every element appears twice except for one element which appears once"
+  ],
+  "description": "You are given a sorted array consisting of only integers where every element appears exactly twice, except for one element that appears exactly once.\n\nReturn the single element that appears only once.",
+  "tests": [
+    {
+      "input": "[1,1,2,3,3,4,4,8,8]",
+      "expected": "2",
+      "explanation": "2 appears only once.",
+      "isSample": true
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Unique Paths",
+  "difficulty": "medium",
+  "args": ["integer", "integer"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= m, n <= 100"
+  ],
+  "description": "A robot is located at the top-left corner of an `m x n` grid. The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid.\n\nHow many possible unique paths are there?",
+  "tests": [
+    {
+      "input": "[3, 7]",
+      "expected": "28",
+      "explanation": "28 unique paths.",
+      "isSample": true
+    },
+    {
+      "input": "[3, 3]",
+      "expected": "6",
+      "explanation": "6 unique paths.",
+      "isSample": true
+    }
+  ]
+}

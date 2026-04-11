@@ -1,0 +1,19 @@
+{
+  "title": "Time Based Key-Value Store",
+  "difficulty": "medium",
+  "args": ["string", "string", "integer"],
+  "returnType": "string",
+  "constraints": [
+    "1 <= key.length, value.length <= 100",
+    "timestamp range is within 10^7"
+  ],
+  "description": "Design a time-based key-value data structure that supports getting the value of a key at a certain timestamp.",
+  "tests": [
+    {
+      "input": "[\"foo\", \"bar\", 1]",
+      "expected": "bar",
+      "explanation": "Get foo at time 1.",
+      "isSample": true
+    }
+  ]
+}

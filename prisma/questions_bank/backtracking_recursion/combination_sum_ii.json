@@ -1,0 +1,28 @@
+{
+  "title": "Combination Sum II",
+  "difficulty": "medium",
+  "args": ["integer[]", "integer"],
+  "returnType": "integer[][]",
+  "constraints": [
+    "1 <= candidates.length <= 100",
+    "1 <= candidates[i] <= 50",
+    "1 <= target <= 30"
+  ],
+  "description": "Given a collection of candidate numbers (`candidates`) and a target number (`target`), find all unique combinations in `candidates` where the candidate numbers sum to `target`.\n\nEach number in `candidates` may only be used **once** in the combination. The solution set must not contain duplicate combinations.",
+  "tests": [
+    {
+      "input": "[[10,1,2,7,6,1,5], 8]",
+      "expected": "[[1,1,6],[1,2,5],[1,7],[2,6]]",
+      "explanation": "4 unique combinations.",
+      "isSample": true,
+      "orderIndependent": true
+    },
+    {
+      "input": "[[2,5,2,1,2], 5]",
+      "expected": "[[1,2,2],[5]]",
+      "explanation": "2 unique combinations.",
+      "isSample": true,
+      "orderIndependent": true
+    }
+  ]
+}

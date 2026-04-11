@@ -1,0 +1,25 @@
+{
+  "title": "Linked List Cycle",
+  "difficulty": "easy",
+  "args": ["ListNode"],
+  "returnType": "boolean",
+  "constraints": [
+    "The number of the nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "description": "Given `head`, the head of a linked list, determine if the linked list has a cycle in it.\n\nThere is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the `next` pointer.",
+  "tests": [
+    {
+      "input": "[[3,2,0,-4], 1]",
+      "expected": "true",
+      "explanation": "There is a cycle (tail connects to 2nd node).",
+      "isSample": true
+    },
+    {
+      "input": "[[1,2], 0]",
+      "expected": "true",
+      "explanation": "There is a cycle (tail connects to 1st node).",
+      "isSample": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Find the Celebrity",
+  "difficulty": "medium",
+  "args": ["integer[][]"],
+  "returnType": "integer",
+  "constraints": [
+    "n == knows.length == knows[i].length",
+    "1 <= n <= 100"
+  ],
+  "description": "Suppose you are at a party with `n` people (labeled from 0 to n - 1) and among them is a celebrity. A celebrity is defined as someone who knows nobody but is known by everybody else.\n\nDetermine who the celebrity is or return -1 if there is no celebrity.",
+  "tests": [
+    {
+      "input": "[[[1,1,0],[0,1,0],[0,0,1]]]",
+      "expected": "1",
+      "explanation": "Person 1 is the celebrity.",
+      "isSample": true
+    }
+  ]
+}

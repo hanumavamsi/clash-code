@@ -1,0 +1,25 @@
+{
+  "title": "Roman to Integer",
+  "difficulty": "easy",
+  "args": ["string"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= s.length <= 15",
+    "s contains only the characters I, V, X, L, C, D, M"
+  ],
+  "description": "Roman numerals are represented by seven different symbols. Given a roman numeral, convert it to an integer.",
+  "tests": [
+    {
+      "input": "\"III\"",
+      "expected": "3",
+      "explanation": "III = 3.",
+      "isSample": true
+    },
+    {
+      "input": "\"LVIII\"",
+      "expected": "58",
+      "explanation": "LVIII = 50 + 8 = 58.",
+      "isSample": true
+    }
+  ]
+}

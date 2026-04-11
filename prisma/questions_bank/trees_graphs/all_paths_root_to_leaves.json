@@ -1,0 +1,19 @@
+{
+  "title": "All Paths from Root to Leaves",
+  "difficulty": "medium",
+  "args": ["TreeNode"],
+  "returnType": "string[]",
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 100].",
+    "0 <= Node.val <= 100"
+  ],
+  "description": "Given the `root` of a binary tree, return all root-to-leaf paths in **any order**.",
+  "tests": [
+    {
+      "input": "[1,2,3,null,5]",
+      "expected": "[\"1->2->5\",\"1->3\"]",
+      "explanation": "All root-to-leaf paths.",
+      "isSample": true
+    }
+  ]
+}

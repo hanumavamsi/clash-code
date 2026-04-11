@@ -1,0 +1,18 @@
+{
+  "title": "Data Stream as Disjoint Intervals",
+  "difficulty": "hard",
+  "args": ["integer"],
+  "returnType": "integer[][]",
+  "constraints": [
+    "0 <= val <= 10^4"
+  ],
+  "description": "Given a data stream input of non-negative integers `nums`, summarize the numbers seen so far as a list of disjoint intervals.",
+  "tests": [
+    {
+      "input": "[1,2,3]",
+      "expected": "[[1,3]]",
+      "explanation": "Consecutive numbers form interval.",
+      "isSample": true
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Happy Number",
+  "difficulty": "easy",
+  "args": ["integer"],
+  "returnType": "boolean",
+  "constraints": [
+    "1 <= n <= 2^31 - 1"
+  ],
+  "description": "Write an algorithm to determine if a number `n` is happy.\n\nA **happy number** is a number defined by the following process:\n1. Start with any positive integer, replace the number by the sum of the squares of its digits.\n2. Repeat the process until the number equals 1 (happy) or it loops endlessly (not happy).",
+  "tests": [
+    {
+      "input": "7",
+      "expected": "true",
+      "explanation": "7 is a happy number.",
+      "isSample": true
+    },
+    {
+      "input": "2",
+      "expected": "false",
+      "explanation": "2 is not a happy number.",
+      "isSample": true
+    }
+  ]
+}

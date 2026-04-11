@@ -1,0 +1,25 @@
+{
+  "title": "Swap Nodes in Pairs",
+  "difficulty": "medium",
+  "args": ["ListNode"],
+  "returnType": "ListNode",
+  "constraints": [
+    "The number of the nodes in the list is in the range [0, 100].",
+    "0 <= Node.val <= 100"
+  ],
+  "description": "Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)",
+  "tests": [
+    {
+      "input": "[1,2,3,4]",
+      "expected": "[2,1,4,3]",
+      "explanation": "Swap adjacent nodes.",
+      "isSample": true
+    },
+    {
+      "input": "[]",
+      "expected": "[]",
+      "explanation": "Empty list.",
+      "isSample": true
+    }
+  ]
+}

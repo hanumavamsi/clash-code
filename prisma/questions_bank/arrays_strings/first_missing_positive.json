@@ -1,0 +1,139 @@
+{
+  "title": "First Missing Positive",
+  "difficulty": "hard",
+  "args": ["integer[]"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= nums.length <= 3 * 10^5",
+    "-2^31 <= nums[i] <= 2^31 - 1"
+  ],
+  "description": "Given an unsorted integer array `nums`, return the smallest missing positive integer.\n\nYou must implement an algorithm that runs in `O(n)` time and uses `O(1)` auxiliary space.",
+  "tests": [
+    {
+      "input": "[1,2,0]",
+      "expected": "3",
+      "explanation": "Missing 3.",
+      "isSample": true
+    },
+    {
+      "input": "[3,4,-1,1]",
+      "expected": "2",
+      "explanation": "Missing 2.",
+      "isSample": true
+    },
+    {
+      "input": "[7,8,9,11,12]",
+      "expected": "1",
+      "explanation": "Missing 1.",
+      "isSample": false
+    },
+    {
+      "input": "[1]",
+      "expected": "2",
+      "explanation": "Missing 2.",
+      "isSample": false
+    },
+    {
+      "input": "[2]",
+      "expected": "1",
+      "explanation": "Missing 1.",
+      "isSample": false
+    },
+    {
+      "input": "[1,2,3,4,5]",
+      "expected": "6",
+      "explanation": "Missing 6.",
+      "isSample": false
+    },
+    {
+      "input": "[1,1000000]",
+      "expected": "2",
+      "explanation": "Missing 2.",
+      "isSample": false
+    },
+    {
+      "input": "[-5,-2,0]",
+      "expected": "1",
+      "explanation": "All negative/zero.",
+      "isSample": false
+    },
+    {
+      "input": "[1,2,3]",
+      "expected": "4",
+      "explanation": "Missing 4.",
+      "isSample": false
+    },
+    {
+      "input": "[2,3,4]",
+      "expected": "1",
+      "explanation": "Missing 1.",
+      "isSample": false
+    },
+    {
+      "input": "[1,3,4]",
+      "expected": "2",
+      "explanation": "Missing 2.",
+      "isSample": false
+    },
+    {
+      "input": "[1,2,4]",
+      "expected": "3",
+      "explanation": "Missing 3.",
+      "isSample": false
+    },
+    {
+      "input": "[3]",
+      "expected": "1",
+      "explanation": "Missing 1.",
+      "isSample": false
+    },
+    {
+      "input": "[1,2,3,4,5,6,7,8,9,10]",
+      "expected": "11",
+      "explanation": "Missing 11.",
+      "isSample": false
+    },
+    {
+      "input": "[2,3,4,5,6]",
+      "expected": "1",
+      "explanation": "Missing 1.",
+      "isSample": false
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expected": "2",
+      "explanation": "Missing 2.",
+      "isSample": false
+    },
+    {
+      "input": "[-1,-2,-3]",
+      "expected": "1",
+      "explanation": "All negative.",
+      "isSample": false
+    },
+    {
+      "input": "[0,1,2,3]",
+      "expected": "4",
+      "explanation": "Missing 4.",
+      "isSample": false
+    },
+    {
+      "input": "[1,2,3,4,6]",
+      "expected": "5",
+      "explanation": "Missing 5.",
+      "isSample": false
+    },
+    {
+      "input": "[1,3]",
+      "expected": "2",
+      "explanation": "Missing 2.",
+      "isSample": false
+    },
+    {
+      "input": "[50,1,25,100,99]",
+      "expected": "2",
+      "explanation": "Missing 2.",
+      "isSample": false
+    }
+  ]
+}

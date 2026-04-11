@@ -1,0 +1,18 @@
+{
+  "title": "Serialize and Deserialize Binary Tree",
+  "difficulty": "hard",
+  "args": ["TreeNode"],
+  "returnType": "string",
+  "constraints": [
+    "Number of nodes in tree is in range [0, 100]"
+  ],
+  "description": "Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work.",
+  "tests": [
+    {
+      "input": "[1, 2, 3, null, null, 4, 5]",
+      "expected": "Serialized and deserialized.",
+      "explanation": "Serialize and deserialize tree.",
+      "isSample": true
+    }
+  ]
+}

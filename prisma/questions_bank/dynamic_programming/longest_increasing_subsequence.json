@@ -1,0 +1,25 @@
+{
+  "title": "Longest Increasing Subsequence Length",
+  "difficulty": "medium",
+  "args": ["integer[]"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= nums.length <= 2500",
+    "-10^4 <= nums[i] <= 10^4"
+  ],
+  "description": "Given an integer array `nums`, return the length of the longest strictly increasing subsequence.",
+  "tests": [
+    {
+      "input": "[10,9,2,5,3,7,101,18]",
+      "expected": "4",
+      "explanation": "LIS is [2,3,7,101], so the length is 4.",
+      "isSample": true
+    },
+    {
+      "input": "[0,1,0,4,4,4,2,3]",
+      "expected": "4",
+      "explanation": "LIS is [0,1,2,3].",
+      "isSample": true
+    }
+  ]
+}

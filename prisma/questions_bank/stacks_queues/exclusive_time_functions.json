@@ -1,0 +1,19 @@
+{
+  "title": "Exclusive Time of Functions",
+  "difficulty": "medium",
+  "args": ["integer", "string[]"],
+  "returnType": "integer[]",
+  "constraints": [
+    "1 <= n <= 100",
+    "1 <= logs.length <= 500"
+  ],
+  "description": "On a single-threaded CPU, we execute a program containing `n` functions. Each function has a unique ID between `0` and `n-1`. Functions are called **stack**wise where function B calls function A before B returns.\n\nGiven a list of `logs` in the format log which contains a function ID, the type of log (0: function start, 1: function end), and timestamp.\n\nReturn the exclusive time of each function.",
+  "tests": [
+    {
+      "input": "[2, [\"0:start:0\",\"1:start:2\",\"1:end:5\",\"0:end:6\"]]",
+      "expected": "[3,4]",
+      "explanation": "Exclusive time of functions.",
+      "isSample": true
+    }
+  ]
+}

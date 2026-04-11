@@ -1,0 +1,24 @@
+{
+  "title": "Factorial Trailing Zeros",
+  "difficulty": "medium",
+  "args": ["integer"],
+  "returnType": "integer",
+  "constraints": [
+    "0 <= n <= 10^4"
+  ],
+  "description": "Given an integer `n`, return the number of trailing zeros in `n!`.",
+  "tests": [
+    {
+      "input": "3",
+      "expected": "0",
+      "explanation": "3! = 6, which has 0 trailing zeros.",
+      "isSample": true
+    },
+    {
+      "input": "5",
+      "expected": "1",
+      "explanation": "5! = 120, which has 1 trailing zero.",
+      "isSample": true
+    }
+  ]
+}

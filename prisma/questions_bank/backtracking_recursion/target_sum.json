@@ -1,0 +1,26 @@
+{
+  "title": "Target Sum",
+  "difficulty": "hard",
+  "args": ["integer[]", "integer"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= nums.length <= 20",
+    "0 <= nums[i] <= 1000",
+    "0 <= target <= 1000"
+  ],
+  "description": "You are given an integer array `nums` and an integer `target`.\n\nYou want to build an **expression** out of nums by adding one of the symbols `'+'` and `'-'` before each integer in nums and then concatenate all the integers.\n\nReturn the number of different **expressions** that evaluate to `target`.",
+  "tests": [
+    {
+      "input": "[[1,1,1,1,1], 3]",
+      "expected": "5",
+      "explanation": "5 ways to build expressions summing to 3.",
+      "isSample": true
+    },
+    {
+      "input": "[[1], 1]",
+      "expected": "1",
+      "explanation": "Only '+1'.",
+      "isSample": true
+    }
+  ]
+}

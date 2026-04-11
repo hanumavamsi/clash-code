@@ -1,0 +1,25 @@
+{
+  "title": "House Robber II",
+  "difficulty": "medium",
+  "args": ["integer[]"],
+  "returnType": "integer",
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "0 <= nums[i] <= 1000"
+  ],
+  "description": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place **are arranged in a circle**. That means the first house is the neighbor of the last one.\n\nYou cannot rob two adjacent houses. Return the maximum amount of money you can rob.",
+  "tests": [
+    {
+      "input": "[1,2,3,1]",
+      "expected": "4",
+      "explanation": "Rob house 1 (money = 1) and house 3 (money = 3). Total = 1 + 3 = 4.",
+      "isSample": true
+    },
+    {
+      "input": "[2,3,2]",
+      "expected": "3",
+      "explanation": "Rob house 2 (money = 3). Total = 3.",
+      "isSample": true
+    }
+  ]
+}
