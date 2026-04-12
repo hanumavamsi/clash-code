@@ -17,7 +17,7 @@ export function ProblemPanel({ questions, currentIndex, onSelectQuestion, player
   const me = players.find(p => p.id === currentUser?.id);
 
   return (
-    <div className="w-1/3 flex flex-col bg-[#1e2333] border-r border-[#2d3244] shadow-xl z-10 relative">
+    <div className="flex flex-col bg-[#1e2333] border-r border-[#2d3244] shadow-xl z-10 relative h-full">
       <div className="flex-none flex items-center justify-between px-4 py-3 bg-[#181c29] border-b border-[#2d3244]">
         <div className="flex bg-[#23283b] rounded-lg p-1 w-full gap-1 overflow-x-auto no-scrollbar">
           {questions.map((question, i) => {

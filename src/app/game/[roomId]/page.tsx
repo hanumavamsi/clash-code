@@ -283,6 +283,7 @@ export default function GameScreen() {
             </AnimatePresence>
 
             <div className="flex-1 flex overflow-hidden">
+                <div className="w-1/3 flex-none">
                 <ProblemPanel
                   questions={questions}
                   currentIndex={currentQuestionIndex}
@@ -291,6 +292,7 @@ export default function GameScreen() {
                   currentUser={currentUser}
                   solvedQuestionIds={solvedQuestionIds}
                 />
+                </div>
 
                 <div className="flex-1 flex flex-col min-w-0">
                     <EditorSurface 
