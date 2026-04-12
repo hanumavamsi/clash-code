@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Loader2, Trophy, Skull, Handshake, Zap, Clock } from "lucide-react";
+import { X, Loader2, Trophy, Skull, Handshake, Zap, Clock, Play, Eye } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { MatchDetailResponse } from "@/types/dashboard";
 import { QuestionReviewPanel } from "./QuestionReviewPanel";
 
@@ -12,6 +13,7 @@ interface MatchDetailModalProps {
 }
 
 export function MatchDetailModal({ matchId, onClose }: MatchDetailModalProps) {
+  const router = useRouter();
   const [data, setData] = useState<MatchDetailResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -230,14 +232,79 @@ export function MatchDetailModal({ matchId, onClose }: MatchDetailModalProps) {
                   <h3 className="text-sm font-bold text-white uppercase tracking-wider">
                     Questions ({data.questions.length})
                   </h3>
-                  <div className="space-y-3">
-                    {data.questions.map((question, index) => (
-                      <QuestionReviewPanel
-                        key={question.id}
-                        question={question}
-                        questionIndex={index}
-                      />
-                    ))}
+                  <div className="space-y-2">
+                    {data.questions.map((question, index) => {
+                      const submission = question.submission;
+                      const statusColor =
+                        submission?.status === "ACCEPTED"
+                          ? "text-green-400"
+                          : submission?.status === "PENDING"
+                          ? "text-yellow-400"
+                          : "text-red-400";
+                      const statusIcon =
+                        submission?.status === "ACCEPTED"
+                          ? "✓"
+                          : submission?.status === "PENDING"
+                          ? "⏳"
+                          : "✗";
+
+                      return (
+                        <motion.div
+                          key={question.id}
+                          whileHover={{ scale: 1.01 }}
+                          className="p-3 rounded-lg border border-dark-600 bg-dark-900/50 hover:bg-dark-800/50 transition-colors"
+                        >
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-3 flex-1 min-w-0">
+                              {/* Question Number & Status */}
+                              <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-brand-600/20 flex items-center justify-center">
+                                <span className="text-brand-400 font-bold text-xs">Q{index + 1}</span>
+                              </div>
+
+                              {/* Question Info */}
+                              <div className="min-w-0 flex-1">
+                                <div className="flex items-center gap-2 mb-0.5">
+                                  <h4 className="text-white font-semibold truncate text-sm">
+                                    {question.title}
+                                  </h4>
+                                  <span className="inline-block px-2 py-0.5 rounded text-xs font-bold text-white bg-dark-700 flex-shrink-0">
+                                    {question.difficulty.toLowerCase()}
+                                  </span>
+                                </div>
+                                {submission && (
+                                  <p className={`text-xs font-semibold ${statusColor}`}>
+                                    {statusIcon}{" "}
+                                    {submission.status === "ACCEPTED"
+                                      ? "Accepted"
+                                      : submission.status === "PENDING"
+                                      ? "Pending"
+                                      : "Wrong Answer"}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => {
+                                  router.push(
+                                    `/replay/${matchId}/${question.id}`
+                                  );
+                                  onClose();
+                                }}
+                                className="p-2 rounded-lg bg-brand-600/20 hover:bg-brand-600/30 border border-brand-500/30 text-brand-300 hover:text-brand-200 transition-colors"
+                                title="Replay this question"
+                              >
+                                <Play className="w-4 h-4 fill-current" />
+                              </motion.button>
+                            </div>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
