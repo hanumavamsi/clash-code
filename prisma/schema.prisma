@@ -49,6 +49,8 @@ model User {
   submissions   Submission[]
   friends1      Friendship[] @relation("FriendshipUser1")
   friends2      Friendship[] @relation("FriendshipUser2")
+  matchesAsP1   Match[]   @relation("MatchPlayer1")
+  matchesAsP2   Match[]   @relation("MatchPlayer2")
   createdAt     DateTime  @default(now())
 }
 
@@ -70,13 +72,23 @@ model Room {
 }
 
 model Match {
-  id        String    @id @default(uuid())
-  roomId    String
-  room      Room      @relation(fields: [roomId], references: [id])
-  startTime DateTime?
-  endTime   DateTime?
-  winnerId  String?
-  eloAfter  Json?
+  id            String    @id @default(uuid())
+  roomId        String
+  room          Room      @relation(fields: [roomId], references: [id])
+  player1Id     String?
+  player2Id     String?
+  questionIds   String[]  @default([])  // IDs of questions in this match
+  startTime     DateTime?
+  endTime       DateTime?
+  winnerId      String?
+  eloAfter      Json?
+
+  player1       User?     @relation("MatchPlayer1", fields: [player1Id], references: [id])
+  player2       User?     @relation("MatchPlayer2", fields: [player2Id], references: [id])
+
+  @@index([player1Id])
+  @@index([player2Id])
+  @@index([endTime])
 }
 
 model Friendship {
@@ -102,6 +114,8 @@ model Question {
   constraints String[]     // e.g. ["2 <= nums.length <= 10^4"]
   sampleTests Json         // Array of exact I/O and optional explanations
   hiddenTests Json
+  solution    String?      // Editorial/reference solution code
+  solutionLanguage String? @default("javascript")
   submissions Submission[]
   createdAt   DateTime     @default(now())
 }

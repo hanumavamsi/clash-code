@@ -11,10 +11,16 @@ const concludeMatch = async (roomId, room, io, prisma, options = {}) => {
     const p1 = room.players[0];
     const p2 = room.players[1];
 
+    // Guard: ensure both players exist with IDs
+    if (!p1 || !p2 || !p1.id || !p2.id) {
+        console.error("[ELO] Cannot conclude match: missing player data", { p1Id: p1?.id, p2Id: p2?.id });
+        return;
+    }
+
     try {
         // 1. Fetch current DB state for both users
-        const u1 = p1?.id ? await prisma.user.findUnique({ where: { id: p1.id } }) : null;
-        const u2 = p2?.id ? await prisma.user.findUnique({ where: { id: p2.id } }) : null;
+        const u1 = await prisma.user.findUnique({ where: { id: p1.id } });
+        const u2 = await prisma.user.findUnique({ where: { id: p2.id } });
 
         const p1Params = { 
             id: p1.id, 
@@ -54,6 +60,9 @@ const concludeMatch = async (roomId, room, io, prisma, options = {}) => {
             prisma.match.create({
                 data: {
                     roomId,
+                    player1Id: p1.id,
+                    player2Id: p2.id,
+                    questionIds: room.questionIds || [], // Store the question IDs from the match
                     winnerId: winner?.id || null,
                     endTime: new Date(),
                     eloAfter: {
@@ -62,7 +71,10 @@ const concludeMatch = async (roomId, room, io, prisma, options = {}) => {
                     }
                 }
             })
-        ]).catch(err => console.error("[ELO] DB Update Error:", err));
+        ]).catch(err => {
+            console.error("[ELO] DB Update Error:", err);
+            throw err; // Re-throw so caller knows about it
+        });
 
         // Fetch fresh player data from DB to send correct ELO to both players
         const updatedP1 = p1?.id ? await prisma.user.findUnique({ where: { id: p1.id }, select: { eloRating: true } }) : null;
