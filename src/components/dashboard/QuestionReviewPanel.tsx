@@ -30,7 +30,8 @@ export function QuestionReviewPanel({
     setSolutionError(null);
     try {
       const response = await fetch(
-        `/api/questions/${question.id}/solution`
+        `/api/questions/${question.id}/solution`,
+        { credentials: "include" }
       );
 
       if (!response.ok) {

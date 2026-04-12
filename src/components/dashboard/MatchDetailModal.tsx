@@ -21,7 +21,7 @@ export function MatchDetailModal({ matchId, onClose }: MatchDetailModalProps) {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(`/api/matches/${matchId}`);
+        const response = await fetch(`/api/matches/${matchId}`, { credentials: "include" });
 
         if (!response.ok) {
           setError("Failed to load match details");

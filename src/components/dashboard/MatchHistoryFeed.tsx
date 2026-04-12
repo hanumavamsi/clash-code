@@ -24,7 +24,8 @@ export function MatchHistoryFeed() {
         setLoading(true);
         setError(null);
         const response = await fetch(
-          `/api/matches?limit=${ITEMS_PER_PAGE}&offset=${offset}`
+          `/api/matches?limit=${ITEMS_PER_PAGE}&offset=${offset}`,
+          { credentials: "include" }
         );
 
         if (!response.ok) {
