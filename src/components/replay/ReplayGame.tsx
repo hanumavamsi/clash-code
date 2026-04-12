@@ -9,6 +9,7 @@ import { EditorSurface } from "@/components/game/EditorSurface";
 import { TestCasesBlock } from "@/components/game/TestCasesBlock";
 import { ReplayContextResponse, TestExecutionResponse } from "@/types/replay";
 import { AlertCircle, CheckCircle } from "lucide-react";
+import { getDefaultCode } from "@/lib/codeSkeletons";
 
 interface ReplayGameProps {
   replayContext: ReplayContextResponse;
@@ -18,8 +19,10 @@ interface ReplayGameProps {
 
 export function ReplayGame({ replayContext, questionId, matchId }: ReplayGameProps) {
   const { match, question, userSubmission } = replayContext;
-  const [code, setCode] = useState(userSubmission.code || "");
-  const [language, setLanguage] = useState(userSubmission.language || "javascript");
+  const initialLang = userSubmission.language || "javascript";
+  const initialCode = userSubmission.code || getDefaultCode(question, initialLang);
+  const [code, setCode] = useState(initialCode);
+  const [language, setLanguage] = useState(initialLang);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [testResults, setTestResults] = useState<TestExecutionResponse | null>(null);
   const [showingSolution, setShowingSolution] = useState(false);
@@ -34,6 +37,7 @@ export function ReplayGame({ replayContext, questionId, matchId }: ReplayGamePro
 
   const handleLanguageChange = (newLang: string) => {
     setLanguage(newLang);
+    setCode(getDefaultCode(question, newLang));
   };
 
   const handleSubmit = async () => {
