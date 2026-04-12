@@ -283,7 +283,7 @@ export default function GameScreen() {
             </AnimatePresence>
 
             <div className="flex-1 flex overflow-hidden">
-                <div className="w-1/3 flex-none">
+                <div className="w-1/3 flex-none h-full">
                 <ProblemPanel
                   questions={questions}
                   currentIndex={currentQuestionIndex}

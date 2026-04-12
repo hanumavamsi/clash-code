@@ -111,7 +111,7 @@ export function ReplayGame({ replayContext, questionId, matchId }: ReplayGamePro
       />
 
       <div className="flex-1 flex overflow-hidden gap-0">
-        <div className="w-1/3 flex-none border-r border-[#2d3244]">
+        <div className="w-1/3 flex-none h-full border-r border-[#2d3244]">
           <ProblemPanel
             questions={questionsArray}
             currentIndex={currentIndex}
