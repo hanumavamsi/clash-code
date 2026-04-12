@@ -12,12 +12,16 @@ export async function GET(
 ) {
     try {
         const session = await getServerSession();
-        if (!session?.user?.email) {
+        const userSession = session?.user as any;
+        if (!userSession?.id && !userSession?.email) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
+        // Try to find user by ID first (from JWT), then by email
         const user = await prisma.user.findUnique({
-            where: { email: session.user.email }
+            where: userSession.id
+                ? { id: userSession.id }
+                : { email: userSession.email }
         });
 
         if (!user) {
