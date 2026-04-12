@@ -1,0 +1,145 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    REPLAY & PRACTICE MODE — PROPOSAL SUMMARY                  ║
+║                          Phase 4 Implementation Ready                          ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+📋 THE REQUEST
+──────────────
+Feature:   Move match questions from inline MatchDetailModal to separate route
+Purpose:   Enable realistic practice experience with code editing and testing
+Result:    Full-screen replay environment (no timer, no opponent)
+
+✨ THE SOLUTION
+───────────────
+BEFORE:    Questions shown inline in cramped modal
+AFTER:     Dedicated /replay/[matchId]/[questionId] route with full-screen editor
+
+🗺️  ROUTING STRUCTURE
+──────────────────────
+New Routes:
+  /replay/[matchId]/[questionId]     ← Replay single question from match
+  /replay/[matchId]                   ← Sequential replay (Phase 5 optional)
+  /practice/[questionId]              ← Practice any question (Phase 5)
+
+Preserved Routes (unchanged):
+  /                                   Home + History (modified modal only)
+  /game/[roomId]                      Live competitive match
+  /challenge/[token]                  Challenge mode
+  /room/[roomId]                      Pre-game lobby
+
+🏗️  COMPONENT ARCHITECTURE
+──────────────────────────────
+New Components:
+  ✓ ReplayPage.tsx                    Route handler for /replay/[m]/[q]
+  ✓ ReplayGame.tsx                    Main game interface (no timer/opponent)
+  ✓ ReplayHeader.tsx                  Minimal header with back button
+  ✓ ReplayActions.tsx                 Action bar (submit, solution, back)
+  ✓ MatchSummary.tsx                  Compact match overview with replay buttons
+
+Modified Components:
+  ⚠ MatchDetailModal.tsx              Remove inline questions, add replay buttons
+  ⚠ QuestionReviewPanel.tsx           Keep for solution viewer only
+
+Reused (No Changes):
+  ✓ EditorSurface                     Editor from /game
+  ✓ ProblemPanel                      Problem display from /game
+  ✓ TestCasesBlock                    Test results from /game
+
+📡 NEW API ENDPOINTS
+──────────────────────
+GET  /api/replay/[matchId]/[questionId]
+     Returns: Question + user's previous code + match context
+     
+POST /api/replay/[questionId]/test
+     Params:  { code, language }
+     Returns: { passed, total, results[], executionTime }
+
+🎮 USER EXPERIENCE
+───────────────────
+Current Flow:
+  Home → History → MatchCard → MatchDetailModal (everything inline)
+
+New Flow:
+  Home → History → MatchCard → MatchSummary (compact)
+                                  ↓
+                            Click "Replay" on Q2
+                                  ↓
+                            /replay/match-abc/q2 (full-screen)
+                            ├─ Problem panel (read-only)
+                            ├─ Code editor (pre-filled)
+                            ├─ Test cases + results
+                            └─ Actions: Submit, Solution, Back
+
+✅ KEY FEATURES
+────────────────
+✓ No Timer              Practice at your own pace
+✓ No Opponent           Solo environment
+✓ Infinite Retries      Edit & test unlimited times
+✓ Pre-filled Code       Your previous attempt is loaded
+✓ Real-time Feedback    See pass/fail for each test case
+✓ Solution Button       View editorial solution anytime
+✓ Language Switching    Try solving in different language
+✓ Match Context         Sidebar shows opponent & outcome
+✓ Back Navigation       Easy return to match
+
+🎯 DESIGN DECISIONS
+─────────────────────
+1. Questions location        → Separate route (better space, future-proof)
+2. Match context            → Minimal sidebar (motivational)
+3. Language switching       → Allowed (encourages learning)
+4. Code version             → Final submitted (consistent)
+5. Solution visibility      → Always available (learning-focused)
+6. Record attempts          → No Phase 4 (keep simple, add Phase 5)
+7. Question sequence        → One at a time (simpler)
+8. Test case limits         → Hide private (maintain some challenge)
+9. Back button              → Browser history (natural)
+10. Sandbox                 → Separate endpoint (clean separation)
+
+📊 EFFORT ESTIMATE
+────────────────────
+Phase 4A: 2-3 days (Routes, components, APIs)
+Phase 4B: 1 day    (Error handling, tests, polish)
+────────────────────
+Total:    3-4 days
+
+📈 SCALABILITY
+──────────────
+Phase 5 Addition: Practice Mode
+  ✓ Reuses /replay infrastructure
+  ✓ Adds /practice/[questionId] route
+  ✓ Adds practice statistics tracking
+  ✓ Enables sequential replay
+  ✓ No need to refactor Phase 4
+
+🚀 READY TO IMPLEMENT
+─────────────────────
+✓ UX Design:           COMPLETE
+✓ Routing:             FINALIZED
+✓ API Design:          SPECIFIED
+✓ Component Layout:    DETAILED
+✓ Data Models:         DEFINED
+✓ Design Decisions:    DOCUMENTED
+✓ Trade-offs:          EVALUATED
+✓ Implementation Plan: READY
+
+📚 DOCUMENTATION INCLUDED
+──────────────────────────
+1. REPLAY_QUICK_SUMMARY.md      (5 min read)    → Stakeholder overview
+2. REPLAY_PRACTICE_UX_PROPOSAL.md (30 min read) → Full specification
+3. ROUTING_DIAGRAMS.md           (15 min read) → Architecture visuals
+4. REPLAY_DECISIONS.md           (20 min read) → Design rationale
+5. REPLAY_PHASE4_INDEX.md        (10 min read) → Navigation & checklist
+
+💡 NEXT STEPS
+──────────────
+1. Review the proposal (you are here!)
+2. Review REPLAY_QUICK_SUMMARY.md (stakeholders)
+3. Approve the design decisions
+4. Start Phase 4A implementation
+5. Reference ROUTING_DIAGRAMS.md while coding
+6. Follow implementation checklist in REPLAY_PHASE4_INDEX.md
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Proposal Status: ✅ COMPLETE & READY FOR APPROVAL
+Implementation Status: 🟡 WAITING FOR GO-AHEAD
