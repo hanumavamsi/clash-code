@@ -5,8 +5,9 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const prisma = new PrismaClient();
 
-// GET /api/questions/[questionId]/solution
+// GET /api/questions/[questionId]/solution?lang=javascript
 // Get editorial solution (only if user has played this question in a match)
+// Returns solution for requested language, falls back to any available language.
 export async function GET(
     req: NextRequest,
     { params }: { params: Promise<{ questionId: string }> }
@@ -30,6 +31,7 @@ export async function GET(
         }
 
         const questionId = (await params).questionId;
+        const requestedLang = req.nextUrl.searchParams.get("lang") || "javascript";
 
         // Fetch the question
         const question = await prisma.question.findUnique({
@@ -37,8 +39,7 @@ export async function GET(
             select: {
                 id: true,
                 title: true,
-                solution: true,
-                solutionLanguage: true
+                solutions: true
             }
         });
 
@@ -46,7 +47,9 @@ export async function GET(
             return NextResponse.json({ error: "Question not found" }, { status: 404 });
         }
 
-        if (!question.solution) {
+        const solutionsMap = question.solutions as Record<string, string> | null;
+
+        if (!solutionsMap || Object.keys(solutionsMap).length === 0) {
             return NextResponse.json(
                 { error: "No solution available for this question" },
                 { status: 404 }
@@ -72,11 +75,23 @@ export async function GET(
             );
         }
 
+        // Return solution for requested lang, fall back to any available lang
+        const LANG_PRIORITY = ["javascript", "typescript", "python", "java", "cpp"];
+        let resolvedLang = requestedLang;
+        let solutionCode = solutionsMap[requestedLang];
+
+        if (!solutionCode) {
+            const fallback = LANG_PRIORITY.find(l => solutionsMap[l]);
+            resolvedLang = fallback ?? Object.keys(solutionsMap)[0];
+            solutionCode = solutionsMap[resolvedLang];
+        }
+
         return NextResponse.json({
             questionId: question.id,
             title: question.title,
-            solution: question.solution,
-            language: question.solutionLanguage || "javascript"
+            solution: solutionCode,
+            language: resolvedLang,
+            availableLanguages: Object.keys(solutionsMap)
         });
     } catch (error) {
         console.error("[API] /api/questions/[questionId]/solution error:", error);

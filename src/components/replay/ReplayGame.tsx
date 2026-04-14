@@ -28,6 +28,7 @@ export function ReplayGame({ replayContext, questionId, matchId }: ReplayGamePro
   const [showingSolution, setShowingSolution] = useState(false);
   const [isLoadingSolution, setIsLoadingSolution] = useState(false);
   const [solutionCode, setSolutionCode] = useState<string | null>(null);
+  const [solutionLanguage, setSolutionLanguage] = useState<string>("javascript");
   const [activeBottomTab, setActiveBottomTab] = useState<"testcases" | "result">("testcases");
   const [activeTestCaseIndex, setActiveTestCaseIndex] = useState(0);
   const [error, setError] = useState<string | null>(null);
@@ -38,6 +39,9 @@ export function ReplayGame({ replayContext, questionId, matchId }: ReplayGamePro
   const handleLanguageChange = (newLang: string) => {
     setLanguage(newLang);
     setCode(getDefaultCode(question, newLang));
+    // Bust solution cache — re-fetch for new lang when user opens solution again
+    setSolutionCode(null);
+    setShowingSolution(false);
   };
 
   const handleSubmit = async () => {
@@ -80,7 +84,7 @@ export function ReplayGame({ replayContext, questionId, matchId }: ReplayGamePro
     setError(null);
 
     try {
-      const response = await fetch(`/api/questions/${questionId}/solution`, {
+      const response = await fetch(`/api/questions/${questionId}/solution?lang=${encodeURIComponent(language)}`, {
         credentials: "include"
       });
 
@@ -90,6 +94,7 @@ export function ReplayGame({ replayContext, questionId, matchId }: ReplayGamePro
 
       const solution = await response.json();
       setSolutionCode(solution.solution || "");
+      setSolutionLanguage(solution.language || language);
       setShowingSolution(true);
     } catch (err) {
       const message = err instanceof Error ? err.message : "Failed to load solution";
@@ -133,8 +138,9 @@ export function ReplayGame({ replayContext, questionId, matchId }: ReplayGamePro
               exit={{ opacity: 0, x: -20 }}
               className="flex-1 flex flex-col bg-[#1a1f2e] border-b border-[#2d3244] relative z-10"
             >
-              <div className="flex-none h-12 bg-[#1a1f2e] border-b border-[#2d3244] px-4 flex items-center">
+              <div className="flex-none h-12 bg-[#1a1f2e] border-b border-[#2d3244] px-4 flex items-center justify-between">
                 <span className="text-sm font-bold text-dark-300">Editorial Solution</span>
+                <span className="text-xs text-emerald-400 font-mono">{solutionLanguage}</span>
               </div>
               <div className="flex-1 overflow-auto p-6 font-mono text-sm text-dark-300 bg-black/20 whitespace-pre-wrap break-words">
                 {solutionCode}
