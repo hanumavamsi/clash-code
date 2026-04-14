@@ -40,6 +40,7 @@ export function EditorSurface({ code, onChange, language, onLanguageChange, onSu
 
       <div className="flex-1 border-b border-[#2d3244]">
         <Editor
+          key={language}
           height="100%"
           language={language}
           theme="vs-dark"

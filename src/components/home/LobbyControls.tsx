@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Swords, Plus, LogIn } from "lucide-react";
+import { Swords, Plus, LogIn, History } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { MatchHistoryFeed } from "@/components/dashboard/MatchHistoryFeed";
 
 export function LobbyControls({ session, currentUser }: { session: any, currentUser: any }) {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<"matchmaking" | "create" | "join">("matchmaking");
+  const [activeTab, setActiveTab] = useState<"matchmaking" | "create" | "join" | "dashboard">("matchmaking");
   const [timeLimit, setTimeLimit] = useState<number>(15);
   const [difficulty, setDifficulty] = useState<string>("any");
   const [numQuestions, setNumQuestions] = useState<number>(5);
   const [joinRoomId, setJoinRoomId] = useState("");
 
   const handleAction = () => {
+    if (activeTab === "dashboard") return; // Dashboard doesn't need an action button
+
     const activeUserName = session?.user?.name || currentUser?.name || "Guest";
     const activeUserId = (session?.user as any)?.id || currentUser?.id || crypto.randomUUID();
 
@@ -23,7 +26,7 @@ export function LobbyControls({ session, currentUser }: { session: any, currentU
     } else if (activeTab === "create") {
       const newRoomId = Math.random().toString(36).substring(2, 8).toUpperCase();
       router.push(`/room/${newRoomId}?time=${timeLimit}&diff=${difficulty}&q=${numQuestions}`);
-    } else {
+    } else if (activeTab === "join") {
       if (!joinRoomId.trim()) {
         alert("Please enter a valid Room ID");
         return;
@@ -35,14 +38,14 @@ export function LobbyControls({ session, currentUser }: { session: any, currentU
   return (
     <div className="w-full">
       {/* Tab Toggle */}
-      <div className="flex bg-dark-900/80 p-1.5 rounded-xl mb-6 border border-dark-700/50 shadow-inner">
-        {(['matchmaking', 'create', 'join'] as const).map((tab) => (
+      <div className="flex bg-dark-900/80 p-1.5 rounded-xl mb-6 border border-dark-700/50 shadow-inner gap-1">
+        {(['matchmaking', 'create', 'join', 'dashboard'] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`relative flex-1 py-2.5 text-sm font-bold rounded-lg transition-all duration-300 ${
-              activeTab === tab 
-              ? "text-white" 
+              activeTab === tab
+              ? "text-white"
               : "text-dark-400 hover:text-dark-200"
             }`}
           >
@@ -53,17 +56,42 @@ export function LobbyControls({ session, currentUser }: { session: any, currentU
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
             )}
-            <span className="relative z-10 flex items-center justify-center gap-2">
-              {tab === 'matchmaking' && 'Find Match'}
-              {tab === 'create' && 'Create Room'}
-              {tab === 'join' && 'Join Room'}
+            <span className="relative z-10 flex items-center justify-center gap-1">
+              {tab === 'matchmaking' && <>
+                <Swords className="w-4 h-4" />
+                <span className="hidden sm:inline">Find Match</span>
+              </>}
+              {tab === 'create' && <>
+                <Plus className="w-4 h-4" />
+                <span className="hidden sm:inline">Create</span>
+              </>}
+              {tab === 'join' && <>
+                <LogIn className="w-4 h-4" />
+                <span className="hidden sm:inline">Join</span>
+              </>}
+              {tab === 'dashboard' && <>
+                <History className="w-4 h-4" />
+                <span className="hidden sm:inline">History</span>
+              </>}
             </span>
           </button>
         ))}
       </div>
 
-      <div className="min-h-[180px]">
+      <div className="min-h-[180px] max-h-[600px] overflow-y-auto">
         <AnimatePresence mode="wait">
+          {activeTab === "dashboard" && (
+            <motion.div
+              key="dashboard"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <MatchHistoryFeed />
+            </motion.div>
+          )}
+
           {(activeTab === "create" || activeTab === "matchmaking") && (
             <motion.div 
               key="config"
@@ -129,24 +157,26 @@ export function LobbyControls({ session, currentUser }: { session: any, currentU
       </div>
 
       {/* Action Button */}
-      <button
-        onClick={handleAction}
-        className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-[0_0_20px_rgba(99,102,241,0.25)] hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] transform hover:-translate-y-0.5 active:translate-y-0"
-      >
-        {activeTab === "matchmaking" ? (
-          <>
-            <Swords className="w-5 h-5" /> Queue for Battle
-          </>
-        ) : activeTab === "create" ? (
-          <>
-            <Plus className="w-5 h-5" /> Host New Room
-          </>
-        ) : (
-          <>
-            <LogIn className="w-5 h-5" /> Join Match
-          </>
-        )}
-      </button>
+      {activeTab !== "dashboard" && (
+        <button
+          onClick={handleAction}
+          className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-[0_0_20px_rgba(99,102,241,0.25)] hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] transform hover:-translate-y-0.5 active:translate-y-0"
+        >
+          {activeTab === "matchmaking" ? (
+            <>
+              <Swords className="w-5 h-5" /> Queue for Battle
+            </>
+          ) : activeTab === "create" ? (
+            <>
+              <Plus className="w-5 h-5" /> Host New Room
+            </>
+          ) : (
+            <>
+              <LogIn className="w-5 h-5" /> Join Match
+            </>
+          )}
+        </button>
+      )}
     </div>
   );
 }

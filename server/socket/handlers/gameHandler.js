@@ -85,6 +85,7 @@ async function _startMatch(io, prisma, roomId, room) {
 
     filtered.sort(() => Math.random() - 0.5);
     room.questions = filtered.slice(0, need);
+    room.questionIds = room.questions.map(q => q.id); // Store question IDs for match history
     room.timeLeft  = (room.config?.timeLimit || 15) * 60;
 
     // Emit match_start with questions (strip hiddenTests from the payload!)
