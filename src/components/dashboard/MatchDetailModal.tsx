@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Loader2, Trophy, Skull, Handshake, Zap, Clock, Play, Eye } from "lucide-react";
+import { X, Loader2, Trophy, Skull, Handshake, Zap, Clock, Dumbbell } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { MatchDetailResponse } from "@/types/dashboard";
 import { QuestionReviewPanel } from "./QuestionReviewPanel";
@@ -229,9 +229,11 @@ export function MatchDetailModal({ matchId, onClose }: MatchDetailModalProps) {
               {/* Questions Section */}
               {data.questions.length > 0 && (
                 <div className="space-y-3">
-                  <h3 className="text-sm font-bold text-white uppercase tracking-wider">
-                    Questions ({data.questions.length})
-                  </h3>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+                      Questions ({data.questions.length})
+                    </h3>
+                  </div>
                   <div className="space-y-2">
                     {data.questions.map((question, index) => {
                       const submission = question.submission;
@@ -284,28 +286,31 @@ export function MatchDetailModal({ matchId, onClose }: MatchDetailModalProps) {
                               </div>
                             </div>
 
-                            {/* Action Buttons */}
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                              <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={() => {
-                                  router.push(
-                                    `/replay/${matchId}/${question.id}`
-                                  );
-                                  onClose();
-                                }}
-                                className="p-2 rounded-lg bg-brand-600/20 hover:bg-brand-600/30 border border-brand-500/30 text-brand-300 hover:text-brand-200 transition-colors"
-                                title="Replay this question"
-                              >
-                                <Play className="w-4 h-4 fill-current" />
-                              </motion.button>
+                            {/* Status badge only */}
+                            <div className="flex items-center flex-shrink-0">
+                              <span className={`text-lg font-bold ${statusColor}`}>
+                                {statusIcon}
+                              </span>
                             </div>
                           </div>
                         </motion.div>
                       );
                     })}
                   </div>
+
+                  {/* Practice button */}
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      router.push(`/replay/${matchId}`);
+                      onClose();
+                    }}
+                    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-[0_0_20px_rgba(99,102,241,0.25)] hover:shadow-[0_0_30px_rgba(99,102,241,0.4)]"
+                  >
+                    <Dumbbell className="w-4 h-4" />
+                    Practice This Match
+                  </motion.button>
                 </div>
               )}
             </div>

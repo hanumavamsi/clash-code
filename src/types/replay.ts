@@ -71,3 +71,14 @@ export interface ReplayContextResponse {
   question: ReplayQuestion;
   userSubmission: UserSubmission;
 }
+
+// Multi-question practice mode types
+
+export interface PracticeQuestion extends ReplayQuestion {
+  userSubmission: UserSubmission | null;
+}
+
+export interface MatchPracticeContextResponse {
+  match: ReplayMatchContext;
+  questions: PracticeQuestion[];
+}
